@@ -9,6 +9,13 @@ that let us keep the spec files and the configuration bits in one single repo
 (this one) without duplicating the boilerplate on each git repo hosting the
 actual clients.
 
+## Sample clients
+
+Two clients have been successfully generated with the present workflow:
+
+* [Go](https://github.com/bcmi-labs/iot-api-client-go)
+* [Python](https://github.com/bcmi-labs/iot-api-client-py)
+
 ## Requirements
 
 * Python 3.6+
@@ -56,12 +63,18 @@ apigentools validate
 If validation succeeded, chances are that this step is as easy as running:
 
 ```sh
-apigentools generate --builtin-templates
+apigentools generate --builtin-templates --clone-repo
 ```
 
 `apigentools` has a simple script that can be invoked for each client generated
-that will push the resulting code to different repos. A release process should
-take from there and shouldn't be part of this workflow.
+that will push the resulting code to different repos, using different branches
+so the code can be reviewed and merged through a regular PR:
+
+```sh
+apigentools push
+```
+
+A release process should take from here and shouldn't be part of this workflow.
 
 [0]: https://openapi-generator.tech/docs/generators
 [1]: https://github.com/DataDog/apigentools
