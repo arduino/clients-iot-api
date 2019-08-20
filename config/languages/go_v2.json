@@ -1,5 +1,5 @@
 {
-    "gitUserId": "Arduino",
+    "gitUserId": "bcmi-labs",
     "gitRepoId": "iot-api-client-go",
     "isGoSubmodule": true,
     "packageName": "iot",

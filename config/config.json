@@ -3,7 +3,7 @@
     "languages": {
         "go": {
             "github_repo_name": "iot-api-client-go",
-            "github_org_name": "Arduino",
+            "github_org_name": "bcmi-labs",
             "spec_versions": [
                 "v2"
             ],
@@ -11,7 +11,7 @@
         },
         "python": {
             "github_repo_name": "iot-api-client-py",
-            "github_org_name": "Arduino",
+            "github_org_name": "bcmi-labs",
             "spec_versions": [
                 "v2"
             ],
