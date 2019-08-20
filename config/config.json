@@ -1,0 +1,32 @@
+{
+    "codegen_exec": "openapi-generator",
+    "languages": {
+        "go": {
+            "github_repo_name": "iot-api-client-go",
+            "github_org_name": "Arduino",
+            "spec_versions": [
+                "v2"
+            ],
+            "version_path_template": "iot-api_{{spec_version}}"
+        },
+        "python": {
+            "github_repo_name": "iot-api-client-py",
+            "github_org_name": "Arduino",
+            "spec_versions": [
+                "v2"
+            ],
+            "version_path_template": "iot-api_{{spec_version}}"
+        }
+    },
+    "server_base_urls": {
+        "v2": "http://api-dev.arduino.cc"
+    },
+    "spec_sections": {
+        "v2": [
+            "swagger.yaml"
+        ]
+    },
+    "spec_versions": [
+        "v2"
+    ]
+}
