@@ -1,8 +1,8 @@
 {
-    "gitUserId": "myorg",
-    "gitRepoId": "my-api-client-go",
+    "gitUserId": "Arduino",
+    "gitRepoId": "iot-api-client-go",
     "isGoSubmodule": true,
-    "packageName": "myapi_v2",
+    "packageName": "iot",
     "packageVersion": "0.0.1",
     "withGoCodegenComment": true
 }
