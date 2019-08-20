@@ -76,7 +76,16 @@ apigentools push
 
 A release process should take from here and shouldn't be part of this workflow.
 
+## Customization
+
+The code generator can be fine tuned using [templates][4]. By patching existing
+templates for each language or adding new ones, any aspect of the resulting client
+can be adjusted to fit custom needs: the readme, the docs, the tests, the model
+classes themselves can be changed downstream, and changes will reflect on the
+resulting client.
+
 [0]: https://openapi-generator.tech/docs/generators
 [1]: https://github.com/DataDog/apigentools
 [2]: http://api-dev.arduino.cc/iot/swagger.json
 [3]: clients-iot-api/spec/v2/swagger.yaml
+[4]: https://openapi-generator.tech/docs/templating
