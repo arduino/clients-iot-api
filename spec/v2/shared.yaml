@@ -7,6 +7,14 @@ components:
   requestBodies: {}
   responses: {}
   schemas: {}
-  securitySchemes: {}
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.oniudra.cc/oauth/token
+          scopes:
+            iot:devices: Read and write my devices
+            iot:things: Read and write my things
 security: []
 tags: []
