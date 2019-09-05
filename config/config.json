@@ -19,7 +19,7 @@
         }
     },
     "server_base_urls": {
-        "v2": "http://api-dev.arduino.cc"
+        "v2": "http://api-dev.arduino.cc/iot"
     },
     "spec_sections": {
         "v2": [
