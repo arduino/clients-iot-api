@@ -15,6 +15,7 @@ Two clients have been successfully generated with the present workflow:
 
 * [Go](https://github.com/bcmi-labs/iot-api-client-go)
 * [Python](https://github.com/bcmi-labs/iot-api-client-py)
+* [Javascript](https://github.com/bcmi-labs/iot-api-client-js)
 
 ## Requirements
 
