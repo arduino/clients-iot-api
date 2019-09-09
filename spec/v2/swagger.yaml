@@ -2764,10 +2764,10 @@ components:
             timestamp: 1458609066
           additionalProperties: true
         status:
-          type: string
-          description: the HTTP status code applicable to this problem, expressed as a
-            string value.
-          example: "400"
+          type: integer
+          description: the HTTP status code applicable to this problem
+          example: 400
+          format: int64
       description: Error response media type (default view)
       example:
         code: invalid_value
@@ -2775,7 +2775,7 @@ components:
         id: 3F1FKVRR
         meta:
           timestamp: 1458609066
-        status: "400"
+        status: 400
     propertiesValue:
       title: propertiesValue
       type: object
