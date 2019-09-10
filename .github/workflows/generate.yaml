@@ -38,4 +38,7 @@ jobs:
         env:
           APIGENTOOLS_GIT_VIA_HTTPS: true
           APIGENTOOLS_GIT_VIA_HTTPS_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
-        run: apigentools push
+        run: |
+          git config --global user.email "arduinobot@arduino.cc"
+          git config --global user.name "ArduinoBot"
+          apigentools push
