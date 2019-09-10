@@ -10,6 +10,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Setup Node
+        uses: actions/setup-node@v1
+
+      - name: Install Openapi Generator
+        run: npm install @openapitools/openapi-generator-cli -g
+
       - name: Install Python
         uses: actions/setup-python@v1
         with:
