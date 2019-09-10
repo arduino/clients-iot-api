@@ -22,7 +22,11 @@ jobs:
           python-version: '3.x'
           architecture: 'x64'
 
+      - name: Install apigentools
+        run: pip install apigentools
+
       - name: Validate specfile
-        run: |
-          pip install apigentools
-          apigentools validate
+        run: apigentools validate
+
+      - name: Generate clients
+        run: apigentools generate --builtin-templates
