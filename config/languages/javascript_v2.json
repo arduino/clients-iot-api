@@ -1,4 +1,5 @@
 {
     "packageVersion": "0.0.1",
-    "projectVersion": "0.0.1"
+    "projectVersion": "0.0.1",
+    "usePromises": true
 }
