@@ -1,8 +1,7 @@
 {
     "gitUserId": "bcmi-labs",
     "gitRepoId": "iot-api-client-go",
-    "isGoSubmodule": true,
-    "packageName": "iot",
+    "isGoSubmodule": false,
     "packageVersion": "0.0.1",
     "withGoCodegenComment": true
 }
