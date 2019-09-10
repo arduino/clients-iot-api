@@ -26,11 +26,12 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
-        run: pip install apigentools
+        run: pip install git+https://github.com/masci/apigentools.git@oauth-token
 
       - name: Generate clients
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APIGENTOOLS_GIT_VIA_HTTPS: true
+          APIGENTOOLS_GIT_VIA_HTTPS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: apigentools generate --builtin-templates --clone-repo
 
       - name: Push client repos
