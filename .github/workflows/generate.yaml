@@ -35,4 +35,7 @@ jobs:
         run: apigentools generate --builtin-templates --clone-repo
 
       - name: Push client repos
+        env:
+          APIGENTOOLS_GIT_VIA_HTTPS: true
+          APIGENTOOLS_GIT_VIA_HTTPS_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
         run: apigentools push
