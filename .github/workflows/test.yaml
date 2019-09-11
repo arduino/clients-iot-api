@@ -23,7 +23,8 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
-        run: pip install apigentools
+        # use master until 0.3.0 is released
+        run: pip install git+https://github.com/DataDog/apigentools.git@master
 
       - name: Validate specfile
         run: apigentools validate
