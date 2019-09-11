@@ -3,7 +3,7 @@ name: generate
 on:
   push:
     branches:
-      - massi/workflow
+      - master
 
 jobs:
   push:
@@ -26,6 +26,7 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
+        # use a fork until merge https://github.com/DataDog/apigentools/pull/44
         run: pip install git+https://github.com/masci/apigentools.git@oauth-token
 
       - name: Generate clients
