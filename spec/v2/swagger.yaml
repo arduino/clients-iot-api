@@ -643,13 +643,13 @@ paths:
           description: Not Found
       security:
         - oauth2: []
-  "/v1/things/{id}/properties/{pid}/publish":
+  "/v1/things/{id}/properties/{pid}/send":
     put:
       tags:
         - properties_v1
-      summary: publish properties_v1
-      description: Publish a property value to MQTT
-      operationId: properties_v1#publish
+      summary: send properties_v1
+      description: Publish a property value to MQTT, as string
+      operationId: properties_v1#send
       parameters:
         - name: id
           in: path
@@ -667,8 +667,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/propertyValue"
-        description: PropertyValuePayload describes a property value
+              $ref: "#/components/schemas/propertyStringValue"
+        description: PropertyStringValuePayload describes a property value
         required: true
       responses:
         "200":
@@ -1104,7 +1104,7 @@ components:
         id:
           type: string
           description: The arn of the device
-          example: 01134975-9215-4f75-a322-f2c4266a5745
+          example: 974237ff-1909-4898-af46-800e7fbac7a3
           format: uuid
         metadata:
           type: object
@@ -1127,7 +1127,7 @@ components:
         user_id:
           type: string
           description: The id of the user
-          example: 432458ce-b2eb-417a-8917-723836f7ed8f
+          example: a1191c06-d4d3-49a7-b377-31b07f41f3c6
           format: uuid
         webhooks:
           $ref: "#/components/schemas/ArduinoDevicev2WebhookCollection"
@@ -1135,22 +1135,22 @@ components:
       example:
         created_at: 1994-09-07T13:31:11Z
         href: Nam soluta libero rem aut sed facere.
-        id: 01134975-9215-4f75-a322-f2c4266a5745
+        id: 974237ff-1909-4898-af46-800e7fbac7a3
         metadata:
           Quo voluptatum omnis quae quia quidem velit.: false
         name: Voluptatibus fugiat ratione ut praesentium cumque autem.
         serial: Aperiam qui et cumque magnam dolorem.
         type: Voluptatem repellat et explicabo.
-        user_id: 432458ce-b2eb-417a-8917-723836f7ed8f
+        user_id: a1191c06-d4d3-49a7-b377-31b07f41f3c6
         webhooks:
           - active: true
-            id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
             uri: http://beckereichmann.name/reina
           - active: true
-            id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
             uri: http://beckereichmann.name/reina
           - active: true
-            id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
             uri: http://beckereichmann.name/reina
       required:
         - id
@@ -1170,41 +1170,22 @@ components:
       example:
         - created_at: 1994-09-07T13:31:11Z
           href: Nam soluta libero rem aut sed facere.
-          id: 01134975-9215-4f75-a322-f2c4266a5745
+          id: 974237ff-1909-4898-af46-800e7fbac7a3
           metadata:
             Quo voluptatum omnis quae quia quidem velit.: false
           name: Voluptatibus fugiat ratione ut praesentium cumque autem.
           serial: Aperiam qui et cumque magnam dolorem.
           type: Voluptatem repellat et explicabo.
-          user_id: 432458ce-b2eb-417a-8917-723836f7ed8f
+          user_id: a1191c06-d4d3-49a7-b377-31b07f41f3c6
           webhooks:
             - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
               uri: http://beckereichmann.name/reina
             - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
               uri: http://beckereichmann.name/reina
             - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
-              uri: http://beckereichmann.name/reina
-        - created_at: 1994-09-07T13:31:11Z
-          href: Nam soluta libero rem aut sed facere.
-          id: 01134975-9215-4f75-a322-f2c4266a5745
-          metadata:
-            Quo voluptatum omnis quae quia quidem velit.: false
-          name: Voluptatibus fugiat ratione ut praesentium cumque autem.
-          serial: Aperiam qui et cumque magnam dolorem.
-          type: Voluptatem repellat et explicabo.
-          user_id: 432458ce-b2eb-417a-8917-723836f7ed8f
-          webhooks:
-            - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
-              uri: http://beckereichmann.name/reina
-            - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
-              uri: http://beckereichmann.name/reina
-            - active: true
-              id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
               uri: http://beckereichmann.name/reina
     ArduinoDevicev2Webhook:
       title: "Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
@@ -1219,7 +1200,7 @@ components:
         id:
           type: string
           description: The uuid of the webhook
-          example: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+          example: 878a75f9-edb3-4b68-a170-1c5a6c420206
           format: uuid
         uri:
           type: string
@@ -1230,7 +1211,7 @@ components:
         view)
       example:
         active: true
-        id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+        id: 878a75f9-edb3-4b68-a170-1c5a6c420206
         uri: http://beckereichmann.name/reina
       required:
         - id
@@ -1245,13 +1226,7 @@ components:
         ArduinoDevicev2Webhook (default view)
       example:
         - active: true
-          id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
-          uri: http://beckereichmann.name/reina
-        - active: true
-          id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
-          uri: http://beckereichmann.name/reina
-        - active: true
-          id: 00ad562c-29b8-4c6a-b769-caa0ab718cdf
+          id: 878a75f9-edb3-4b68-a170-1c5a6c420206
           uri: http://beckereichmann.name/reina
     ArduinoDevicev2properties:
       title: "Mediatype identifier: application/vnd.arduino.devicev2properties+json;
@@ -1266,31 +1241,31 @@ components:
         deviceId:
           type: string
           description: The device of the property
-          example: 595e35b3-12d1-4f51-8087-a54b47089ff5
+          example: 7b003e5c-ad74-47eb-99db-1e3975e0e9be
           format: uuid
         properties:
           $ref: "#/components/schemas/ArduinoPropertyCollection"
         user_id:
           type: string
           description: The user id of the owner
-          example: 0e10e297-389f-4ac1-8ef1-a6459c8fbf65
+          example: 893523cc-80bc-4616-b32c-8b02bb228c88
           format: uuid
       description: ArduinoDevicev2properties media type (default view)
       example:
         data_retention_days: 0.8510933658457186
-        deviceId: 595e35b3-12d1-4f51-8087-a54b47089ff5
+        deviceId: 7b003e5c-ad74-47eb-99db-1e3975e0e9be
         properties:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
@@ -1300,38 +1275,21 @@ components:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
             updated_at: 1976-06-15T02:13:21Z
             value_updated_at: 1975-12-11T02:29:59Z
             variable_name: Nihil ut assumenda sed fugit.
-          - created_at: 1989-02-10T21:50:38Z
-            deleted_at: 1986-10-07T08:22:10Z
-            href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
-            last_value: 7384484011810122000
-            max_value: 0.934796755829885
-            min_value: 0.22797089832637085
-            name: Veritatis voluptatem molestias repudiandae quia non et.
-            permission: Eius blanditiis voluptatibus.
-            persist: true
-            thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
-            type: Sint quam provident magnam ex.
-            update_parameter: 0.9108133227344599
-            update_strategy: Odit rerum.
-            updated_at: 1976-06-15T02:13:21Z
-            value_updated_at: 1975-12-11T02:29:59Z
-            variable_name: Nihil ut assumenda sed fugit.
-        user_id: 0e10e297-389f-4ac1-8ef1-a6459c8fbf65
+        user_id: 893523cc-80bc-4616-b32c-8b02bb228c88
       required:
         - deviceId
         - user_id
@@ -1481,21 +1439,6 @@ components:
               sf: 0.763900217608657
               snr: 0.035072020695238175
               time: 0.8941566755879066
-        - created_at: 1971-04-18T03:22:50Z
-          value:
-            payload: Blanditiis et accusantium ipsum rerum.
-            seqno: 7418648063896745000
-            statistics:
-              adr: 0.13561737572509147
-              channel: 0.3902353259273426
-              duplicate: 0.5028846468947827
-              freq: 0.7126670896862375
-              modBW: 0.863865814062173
-              rssi: 0.5253658020227948
-              seqno: 0.13888126585007018
-              sf: 0.763900217608657
-              snr: 0.035072020695238175
-              time: 0.8941566755879066
     ArduinoDevicev2propertyvalues:
       title: "Mediatype identifier:
         application/vnd.arduino.devicev2propertyvalues+json; view=default"
@@ -1550,36 +1493,6 @@ components:
                 sf: 0.763900217608657
                 snr: 0.035072020695238175
                 time: 0.8941566755879066
-          - created_at: 1971-04-18T03:22:50Z
-            value:
-              payload: Blanditiis et accusantium ipsum rerum.
-              seqno: 7418648063896745000
-              statistics:
-                adr: 0.13561737572509147
-                channel: 0.3902353259273426
-                duplicate: 0.5028846468947827
-                freq: 0.7126670896862375
-                modBW: 0.863865814062173
-                rssi: 0.5253658020227948
-                seqno: 0.13888126585007018
-                sf: 0.763900217608657
-                snr: 0.035072020695238175
-                time: 0.8941566755879066
-          - created_at: 1971-04-18T03:22:50Z
-            value:
-              payload: Blanditiis et accusantium ipsum rerum.
-              seqno: 7418648063896745000
-              statistics:
-                adr: 0.13561737572509147
-                channel: 0.3902353259273426
-                duplicate: 0.5028846468947827
-                freq: 0.7126670896862375
-                modBW: 0.863865814062173
-                rssi: 0.5253658020227948
-                seqno: 0.13888126585007018
-                sf: 0.763900217608657
-                snr: 0.035072020695238175
-                time: 0.8941566755879066
       required:
         - id
         - last_evaluated_key
@@ -1607,7 +1520,7 @@ components:
         id:
           type: string
           description: The id of the property
-          example: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+          example: 7da0d34e-3ffd-4afd-825a-f796afccb256
           format: uuid
         last_value:
           description: Last value of this property
@@ -1637,7 +1550,7 @@ components:
         thing_id:
           type: string
           description: The id of the thing
-          example: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+          example: 6bd21de0-760d-419d-b0bd-2c282fef43fb
           format: uuid
         type:
           type: string
@@ -1672,14 +1585,14 @@ components:
         created_at: 1989-02-10T21:50:38Z
         deleted_at: 1986-10-07T08:22:10Z
         href: Molestiae veritatis maiores fugiat consequatur error vitae.
-        id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+        id: 7da0d34e-3ffd-4afd-825a-f796afccb256
         last_value: 7384484011810122000
         max_value: 0.934796755829885
         min_value: 0.22797089832637085
         name: Veritatis voluptatem molestias repudiandae quia non et.
         permission: Eius blanditiis voluptatibus.
         persist: true
-        thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+        thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
         type: Sint quam provident magnam ex.
         update_parameter: 0.9108133227344599
         update_strategy: Odit rerum.
@@ -1706,14 +1619,14 @@ components:
         - created_at: 1989-02-10T21:50:38Z
           deleted_at: 1986-10-07T08:22:10Z
           href: Molestiae veritatis maiores fugiat consequatur error vitae.
-          id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+          id: 7da0d34e-3ffd-4afd-825a-f796afccb256
           last_value: 7384484011810122000
           max_value: 0.934796755829885
           min_value: 0.22797089832637085
           name: Veritatis voluptatem molestias repudiandae quia non et.
           permission: Eius blanditiis voluptatibus.
           persist: true
-          thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+          thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
           type: Sint quam provident magnam ex.
           update_parameter: 0.9108133227344599
           update_strategy: Odit rerum.
@@ -1725,113 +1638,56 @@ components:
         view=default"
       type: object
       properties:
+        resp_version:
+          type: integer
+          description: Response version
+          example: 5613636511543308000
+          format: int64
         responses:
           type: array
           items:
             $ref: "#/components/schemas/ArduinoSeriesResponse"
           description: Responses of the request
           example:
-            - from_date: 2003-07-25T05:02:48Z
-              interval: 2386181605155306000
-              query: Iusto commodi enim est autem illo.
-              resp_version: 4379231762876168000
-              series:
-                - aggr: Sed cum.
-                  expression: Sunt nostrum error et alias.
-                  metric: Sit perspiciatis qui.
-              status: Porro corrupti maxime at.
+            - count_values: 851851550549702700
+              from_date: 1999-09-13T13:37:37Z
+              interval: 1619240658769318100
+              message: Sunt tenetur soluta omnis aliquam eos delectus.
+              query: Doloribus voluptate ut maxime in corrupti optio.
+              resp_version: 5675835107047086000
+              series_limit: 7822583224165287000
+              status: Eius quis et aliquam qui dolorum quam.
               times:
-                - 2008-06-08T20:14:25Z
-                - 2008-06-08T20:14:25Z
-              to_date: 1974-03-12T16:42:06Z
+                - 1970-06-26T14:03:25Z
+                - 1970-06-26T14:03:25Z
+                - 1970-06-26T14:03:25Z
+              to_date: 1980-10-04T17:34:46Z
               values:
-                - - 0.4277002823405778
-                  - 0.4277002823405778
-            - from_date: 2003-07-25T05:02:48Z
-              interval: 2386181605155306000
-              query: Iusto commodi enim est autem illo.
-              resp_version: 4379231762876168000
-              series:
-                - aggr: Sed cum.
-                  expression: Sunt nostrum error et alias.
-                  metric: Sit perspiciatis qui.
-              status: Porro corrupti maxime at.
-              times:
-                - 2008-06-08T20:14:25Z
-                - 2008-06-08T20:14:25Z
-              to_date: 1974-03-12T16:42:06Z
-              values:
-                - - 0.4277002823405778
-                  - 0.4277002823405778
-            - from_date: 2003-07-25T05:02:48Z
-              interval: 2386181605155306000
-              query: Iusto commodi enim est autem illo.
-              resp_version: 4379231762876168000
-              series:
-                - aggr: Sed cum.
-                  expression: Sunt nostrum error et alias.
-                  metric: Sit perspiciatis qui.
-              status: Porro corrupti maxime at.
-              times:
-                - 2008-06-08T20:14:25Z
-                - 2008-06-08T20:14:25Z
-              to_date: 1974-03-12T16:42:06Z
-              values:
-                - - 0.4277002823405778
-                  - 0.4277002823405778
+                - 0.7096323467348542
+                - 0.7096323467348542
       description: ArduinoSeriesBatch media type (default view)
       example:
+        resp_version: 5613636511543308000
         responses:
-          - from_date: 2003-07-25T05:02:48Z
-            interval: 2386181605155306000
-            query: Iusto commodi enim est autem illo.
-            resp_version: 4379231762876168000
-            series:
-              - aggr: Sed cum.
-                expression: Sunt nostrum error et alias.
-                metric: Sit perspiciatis qui.
-            status: Porro corrupti maxime at.
+          - count_values: 851851550549702700
+            from_date: 1999-09-13T13:37:37Z
+            interval: 1619240658769318100
+            message: Sunt tenetur soluta omnis aliquam eos delectus.
+            query: Doloribus voluptate ut maxime in corrupti optio.
+            resp_version: 5675835107047086000
+            series_limit: 7822583224165287000
+            status: Eius quis et aliquam qui dolorum quam.
             times:
-              - 2008-06-08T20:14:25Z
-              - 2008-06-08T20:14:25Z
-            to_date: 1974-03-12T16:42:06Z
+              - 1970-06-26T14:03:25Z
+              - 1970-06-26T14:03:25Z
+              - 1970-06-26T14:03:25Z
+            to_date: 1980-10-04T17:34:46Z
             values:
-              - - 0.4277002823405778
-                - 0.4277002823405778
-          - from_date: 2003-07-25T05:02:48Z
-            interval: 2386181605155306000
-            query: Iusto commodi enim est autem illo.
-            resp_version: 4379231762876168000
-            series:
-              - aggr: Sed cum.
-                expression: Sunt nostrum error et alias.
-                metric: Sit perspiciatis qui.
-            status: Porro corrupti maxime at.
-            times:
-              - 2008-06-08T20:14:25Z
-              - 2008-06-08T20:14:25Z
-            to_date: 1974-03-12T16:42:06Z
-            values:
-              - - 0.4277002823405778
-                - 0.4277002823405778
-          - from_date: 2003-07-25T05:02:48Z
-            interval: 2386181605155306000
-            query: Iusto commodi enim est autem illo.
-            resp_version: 4379231762876168000
-            series:
-              - aggr: Sed cum.
-                expression: Sunt nostrum error et alias.
-                metric: Sit perspiciatis qui.
-            status: Porro corrupti maxime at.
-            times:
-              - 2008-06-08T20:14:25Z
-              - 2008-06-08T20:14:25Z
-            to_date: 1974-03-12T16:42:06Z
-            values:
-              - - 0.4277002823405778
-                - 0.4277002823405778
+              - 0.7096323467348542
+              - 0.7096323467348542
       required:
         - responses
+        - resp_version
     ArduinoSeriesRawBatch:
       title: "Mediatype identifier: application/vnd.arduino.series.raw.batch+json;
         view=default"
@@ -1840,7 +1696,7 @@ components:
         resp_version:
           type: integer
           description: Response version
-          example: 752566507615075500
+          example: 2868069847177909000
           format: int64
         responses:
           type: array
@@ -1848,86 +1704,44 @@ components:
             $ref: "#/components/schemas/ArduinoSeriesRawResponse"
           description: Responses of the request
           example:
-            - count_values: 1469546162969823700
-              from_date: 1987-02-22T01:59:53Z
-              message: Maxime in corrupti optio esse omnis dolor.
-              query: Quis et aliquam qui dolorum.
-              resp_version: 607825916963675000
+            - count_values: 3226417121431339000
+              from_date: 1988-11-09T05:13:38Z
+              message: Minus voluptatum occaecati.
+              query: Blanditiis enim eum quaerat fugit.
+              resp_version: 8883929672170843000
               series:
-                metric: Nesciunt quia earum ratione dolores cum.
-              series_limit: 3226417121431339000
+                metric: Eius ut vero animi odit est.
+              series_limit: 8233079230249179000
               sort: ASC
-              status: Minus voluptatum occaecati.
+              status: Qui impedit ipsam est iure laborum distinctio.
               times:
-                - 2009-02-05T18:41:38Z
-                - 2009-02-05T18:41:38Z
-                - 2009-02-05T18:41:38Z
-              to_date: 1970-06-26T01:03:13Z
+                - 1982-11-25T17:42:45Z
+              to_date: 1986-01-28T11:49:00Z
               values:
-                - 2009-01-22T10:40:42Z
-                - 2009-01-22T10:40:42Z
-                - 2009-01-22T10:40:42Z
-            - count_values: 1469546162969823700
-              from_date: 1987-02-22T01:59:53Z
-              message: Maxime in corrupti optio esse omnis dolor.
-              query: Quis et aliquam qui dolorum.
-              resp_version: 607825916963675000
-              series:
-                metric: Nesciunt quia earum ratione dolores cum.
-              series_limit: 3226417121431339000
-              sort: ASC
-              status: Minus voluptatum occaecati.
-              times:
-                - 2009-02-05T18:41:38Z
-                - 2009-02-05T18:41:38Z
-                - 2009-02-05T18:41:38Z
-              to_date: 1970-06-26T01:03:13Z
-              values:
-                - 2009-01-22T10:40:42Z
-                - 2009-01-22T10:40:42Z
-                - 2009-01-22T10:40:42Z
+                - false
+                - false
+                - false
       description: ArduinoSeriesRawBatch media type (default view)
       example:
-        resp_version: 752566507615075500
+        resp_version: 2868069847177909000
         responses:
-          - count_values: 1469546162969823700
-            from_date: 1987-02-22T01:59:53Z
-            message: Maxime in corrupti optio esse omnis dolor.
-            query: Quis et aliquam qui dolorum.
-            resp_version: 607825916963675000
+          - count_values: 3226417121431339000
+            from_date: 1988-11-09T05:13:38Z
+            message: Minus voluptatum occaecati.
+            query: Blanditiis enim eum quaerat fugit.
+            resp_version: 8883929672170843000
             series:
-              metric: Nesciunt quia earum ratione dolores cum.
-            series_limit: 3226417121431339000
+              metric: Eius ut vero animi odit est.
+            series_limit: 8233079230249179000
             sort: ASC
-            status: Minus voluptatum occaecati.
+            status: Qui impedit ipsam est iure laborum distinctio.
             times:
-              - 2009-02-05T18:41:38Z
-              - 2009-02-05T18:41:38Z
-              - 2009-02-05T18:41:38Z
-            to_date: 1970-06-26T01:03:13Z
+              - 1982-11-25T17:42:45Z
+            to_date: 1986-01-28T11:49:00Z
             values:
-              - 2009-01-22T10:40:42Z
-              - 2009-01-22T10:40:42Z
-              - 2009-01-22T10:40:42Z
-          - count_values: 1469546162969823700
-            from_date: 1987-02-22T01:59:53Z
-            message: Maxime in corrupti optio esse omnis dolor.
-            query: Quis et aliquam qui dolorum.
-            resp_version: 607825916963675000
-            series:
-              metric: Nesciunt quia earum ratione dolores cum.
-            series_limit: 3226417121431339000
-            sort: ASC
-            status: Minus voluptatum occaecati.
-            times:
-              - 2009-02-05T18:41:38Z
-              - 2009-02-05T18:41:38Z
-              - 2009-02-05T18:41:38Z
-            to_date: 1970-06-26T01:03:13Z
-            values:
-              - 2009-01-22T10:40:42Z
-              - 2009-01-22T10:40:42Z
-              - 2009-01-22T10:40:42Z
+              - false
+              - false
+              - false
       required:
         - responses
         - resp_version
@@ -1939,33 +1753,33 @@ components:
         count_values:
           type: integer
           description: Total number of values in the array 'values'
-          example: 1469546162969823700
+          example: 3226417121431339000
           format: int64
         from_date:
           type: string
           description: From date
-          example: 1987-02-22T01:59:53Z
+          example: 1988-11-09T05:13:38Z
           format: date-time
         message:
           type: string
           description: If the response is different than 'ok'
           default: ""
-          example: Maxime in corrupti optio esse omnis dolor.
+          example: Minus voluptatum occaecati.
         query:
           type: string
           description: Query of for the data
-          example: Quis et aliquam qui dolorum.
+          example: Blanditiis enim eum quaerat fugit.
         resp_version:
           type: integer
           description: Response version
-          example: 607825916963675000
+          example: 8883929672170843000
           format: int64
         series:
           $ref: "#/components/schemas/BatchQueryRawResponseSeriesMediaV1"
         series_limit:
           type: integer
           description: Max of values
-          example: 3226417121431339000
+          example: 8233079230249179000
           format: int64
         sort:
           type: string
@@ -1977,53 +1791,49 @@ components:
         status:
           type: string
           description: Status of the response
-          example: Minus voluptatum occaecati.
+          example: Qui impedit ipsam est iure laborum distinctio.
         times:
           type: array
           items:
             type: string
-            example: 2009-02-05T18:41:38Z
+            example: 1982-11-25T17:42:45Z
             format: date-time
           description: Timestamp in RFC3339
           example:
-            - 2009-02-05T18:41:38Z
-            - 2009-02-05T18:41:38Z
-            - 2009-02-05T18:41:38Z
+            - 1982-11-25T17:42:45Z
         to_date:
           type: string
           description: To date
-          example: 1970-06-26T01:03:13Z
+          example: 1986-01-28T11:49:00Z
           format: date-time
         values:
           type: array
           items:
-            example: 2009-01-22T10:40:42Z
+            example: false
           description: Values can be in Float, String, Bool, Object
           example:
-            - 2009-01-22T10:40:42Z
-            - 2009-01-22T10:40:42Z
-            - 2009-01-22T10:40:42Z
+            - false
+            - false
+            - false
       description: ArduinoSeriesRawResponse media type (default view)
       example:
-        count_values: 1469546162969823700
-        from_date: 1987-02-22T01:59:53Z
-        message: Maxime in corrupti optio esse omnis dolor.
-        query: Quis et aliquam qui dolorum.
-        resp_version: 607825916963675000
+        count_values: 3226417121431339000
+        from_date: 1988-11-09T05:13:38Z
+        message: Minus voluptatum occaecati.
+        query: Blanditiis enim eum quaerat fugit.
+        resp_version: 8883929672170843000
         series:
-          metric: Nesciunt quia earum ratione dolores cum.
-        series_limit: 3226417121431339000
+          metric: Eius ut vero animi odit est.
+        series_limit: 8233079230249179000
         sort: ASC
-        status: Minus voluptatum occaecati.
+        status: Qui impedit ipsam est iure laborum distinctio.
         times:
-          - 2009-02-05T18:41:38Z
-          - 2009-02-05T18:41:38Z
-          - 2009-02-05T18:41:38Z
-        to_date: 1970-06-26T01:03:13Z
+          - 1982-11-25T17:42:45Z
+        to_date: 1986-01-28T11:49:00Z
         values:
-          - 2009-01-22T10:40:42Z
-          - 2009-01-22T10:40:42Z
-          - 2009-01-22T10:40:42Z
+          - false
+          - false
+          - false
       required:
         - status
         - resp_version
@@ -2040,96 +1850,98 @@ components:
         view=default"
       type: object
       properties:
+        count_values:
+          type: integer
+          description: Total number of values in the array 'values'
+          example: 851851550549702700
+          format: int64
         from_date:
           type: string
           description: From date
-          example: 2003-07-25T05:02:48Z
+          example: 1999-09-13T13:37:37Z
           format: date-time
         interval:
           type: integer
           description: Resolution in seconds
-          example: 2386181605155306000
+          example: 1619240658769318100
           format: int64
+        message:
+          type: string
+          description: If the response is different than 'ok'
+          default: ""
+          example: Sunt tenetur soluta omnis aliquam eos delectus.
         query:
           type: string
           description: Query of for the data
-          example: Iusto commodi enim est autem illo.
+          example: Doloribus voluptate ut maxime in corrupti optio.
         resp_version:
           type: integer
           description: Response version
-          example: 4379231762876168000
+          example: 5675835107047086000
           format: int64
-        series:
-          type: array
-          items:
-            $ref: "#/components/schemas/BatchQueryResponseSeriesMediaV1"
-          description: Series information
-          example:
-            - aggr: Sed cum.
-              expression: Sunt nostrum error et alias.
-              metric: Sit perspiciatis qui.
+        series_limit:
+          type: integer
+          description: Max of values
+          example: 7822583224165287000
+          format: int64
         status:
           type: string
           description: Status of the response
-          example: Porro corrupti maxime at.
+          example: Eius quis et aliquam qui dolorum quam.
         times:
           type: array
           items:
             type: string
-            example: 2008-06-08T20:14:25Z
+            example: 1970-06-26T14:03:25Z
             format: date-time
           description: Timestamp in RFC3339
           example:
-            - 2008-06-08T20:14:25Z
-            - 2008-06-08T20:14:25Z
+            - 1970-06-26T14:03:25Z
+            - 1970-06-26T14:03:25Z
+            - 1970-06-26T14:03:25Z
         to_date:
           type: string
           description: To date
-          example: 1974-03-12T16:42:06Z
+          example: 1980-10-04T17:34:46Z
           format: date-time
         values:
           type: array
           items:
-            type: array
-            items:
-              type: number
-              example: 0.4277002823405778
-              format: double
-            example:
-              - 0.4277002823405778
-              - 0.4277002823405778
+            type: number
+            example: 0.7096323467348542
+            format: double
           description: Values in Float
           example:
-            - - 0.4277002823405778
-              - 0.4277002823405778
+            - 0.7096323467348542
+            - 0.7096323467348542
       description: ArduinoSeriesResponse media type (default view)
       example:
-        from_date: 2003-07-25T05:02:48Z
-        interval: 2386181605155306000
-        query: Iusto commodi enim est autem illo.
-        resp_version: 4379231762876168000
-        series:
-          - aggr: Sed cum.
-            expression: Sunt nostrum error et alias.
-            metric: Sit perspiciatis qui.
-        status: Porro corrupti maxime at.
+        count_values: 851851550549702700
+        from_date: 1999-09-13T13:37:37Z
+        interval: 1619240658769318100
+        message: Sunt tenetur soluta omnis aliquam eos delectus.
+        query: Doloribus voluptate ut maxime in corrupti optio.
+        resp_version: 5675835107047086000
+        series_limit: 7822583224165287000
+        status: Eius quis et aliquam qui dolorum quam.
         times:
-          - 2008-06-08T20:14:25Z
-          - 2008-06-08T20:14:25Z
-        to_date: 1974-03-12T16:42:06Z
+          - 1970-06-26T14:03:25Z
+          - 1970-06-26T14:03:25Z
+          - 1970-06-26T14:03:25Z
+        to_date: 1980-10-04T17:34:46Z
         values:
-          - - 0.4277002823405778
-            - 0.4277002823405778
+          - 0.7096323467348542
+          - 0.7096323467348542
       required:
         - status
         - resp_version
-        - series
         - query
         - from_date
         - to_date
         - interval
         - times
         - values
+        - count_values
     ArduinoThing:
       title: "Mediatype identifier: application/vnd.arduino.thing+json; view=default"
       type: object
@@ -2137,93 +1949,93 @@ components:
         created_at:
           type: string
           description: Creation date of the thing
-          example: 2013-10-04T18:09:31Z
+          example: 2000-12-29T07:20:28Z
           format: date-time
         deleted_at:
           type: string
           description: Delete date of the thing
-          example: 2001-11-29T02:21:49Z
+          example: 1983-11-28T14:51:48Z
           format: date-time
         device_id:
           type: string
           description: The arn of the device
-          example: 4c610979-7495-4bc1-879e-d63931eb8395
+          example: c06b2311-9a73-4b03-bfde-7558a2ee6936
           format: uuid
         href:
           type: string
           description: The api reference of this thing
-          example: Est eos.
+          example: Quisquam culpa ut quod esse commodi laborum.
         id:
           type: string
           description: The id of the thing
-          example: ece6cee6-55b9-4823-abf9-8030d9f5d6db
+          example: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: Sint qui.
+          example: Hic voluptates quia.
         properties:
           $ref: "#/components/schemas/ArduinoPropertyCollection"
         properties_count:
           type: number
           description: The number of properties of the thing
-          example: 0.4028481551341217
+          example: 0.2328691602863427
           format: double
         sketch_id:
           type: string
           description: The id of the attached sketch
-          example: 97f8a781-1439-4bc0-a85d-bcddd090955e
+          example: a8cfe40a-936f-4d61-bc2d-8b413548b081
           format: uuid
         updated_at:
           type: string
           description: Update date of the thing
-          example: 1993-08-27T15:53:53Z
+          example: 1986-03-17T17:41:35Z
           format: date-time
         user_id:
           type: string
           description: The user id of the owner
-          example: c14e6231-e37e-47bd-b3a2-428b68c3f2f4
+          example: 67543934-5379-4d1f-baa2-309e3c6daade
           format: uuid
         webhook_active:
           type: boolean
           description: Webhook uri
-          example: true
+          example: false
         webhook_uri:
           type: string
           description: Webhook uri
-          example: Et perspiciatis impedit repellat sunt magni.
+          example: In dolores sit.
       description: ArduinoThing media type (default view)
       example:
-        created_at: 2013-10-04T18:09:31Z
-        deleted_at: 2001-11-29T02:21:49Z
-        device_id: 4c610979-7495-4bc1-879e-d63931eb8395
-        href: Est eos.
-        id: ece6cee6-55b9-4823-abf9-8030d9f5d6db
-        name: Sint qui.
+        created_at: 2000-12-29T07:20:28Z
+        deleted_at: 1983-11-28T14:51:48Z
+        device_id: c06b2311-9a73-4b03-bfde-7558a2ee6936
+        href: Quisquam culpa ut quod esse commodi laborum.
+        id: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
+        name: Hic voluptates quia.
         properties:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
             updated_at: 1976-06-15T02:13:21Z
             value_updated_at: 1975-12-11T02:29:59Z
             variable_name: Nihil ut assumenda sed fugit.
-        properties_count: 0.4028481551341217
-        sketch_id: 97f8a781-1439-4bc0-a85d-bcddd090955e
-        updated_at: 1993-08-27T15:53:53Z
-        user_id: c14e6231-e37e-47bd-b3a2-428b68c3f2f4
-        webhook_active: true
-        webhook_uri: Et perspiciatis impedit repellat sunt magni.
+        properties_count: 0.2328691602863427
+        sketch_id: a8cfe40a-936f-4d61-bc2d-8b413548b081
+        updated_at: 1986-03-17T17:41:35Z
+        user_id: 67543934-5379-4d1f-baa2-309e3c6daade
+        webhook_active: false
+        webhook_uri: In dolores sit.
       required:
         - id
         - user_id
@@ -2238,66 +2050,36 @@ components:
       description: ArduinoThingCollection is the media type for an array of ArduinoThing
         (default view)
       example:
-        - created_at: 2013-10-04T18:09:31Z
-          deleted_at: 2001-11-29T02:21:49Z
-          device_id: 4c610979-7495-4bc1-879e-d63931eb8395
-          href: Est eos.
-          id: ece6cee6-55b9-4823-abf9-8030d9f5d6db
-          name: Sint qui.
+        - created_at: 2000-12-29T07:20:28Z
+          deleted_at: 1983-11-28T14:51:48Z
+          device_id: c06b2311-9a73-4b03-bfde-7558a2ee6936
+          href: Quisquam culpa ut quod esse commodi laborum.
+          id: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
+          name: Hic voluptates quia.
           properties:
             - created_at: 1989-02-10T21:50:38Z
               deleted_at: 1986-10-07T08:22:10Z
               href: Molestiae veritatis maiores fugiat consequatur error vitae.
-              id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+              id: 7da0d34e-3ffd-4afd-825a-f796afccb256
               last_value: 7384484011810122000
               max_value: 0.934796755829885
               min_value: 0.22797089832637085
               name: Veritatis voluptatem molestias repudiandae quia non et.
               permission: Eius blanditiis voluptatibus.
               persist: true
-              thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+              thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
               type: Sint quam provident magnam ex.
               update_parameter: 0.9108133227344599
               update_strategy: Odit rerum.
               updated_at: 1976-06-15T02:13:21Z
               value_updated_at: 1975-12-11T02:29:59Z
               variable_name: Nihil ut assumenda sed fugit.
-          properties_count: 0.4028481551341217
-          sketch_id: 97f8a781-1439-4bc0-a85d-bcddd090955e
-          updated_at: 1993-08-27T15:53:53Z
-          user_id: c14e6231-e37e-47bd-b3a2-428b68c3f2f4
-          webhook_active: true
-          webhook_uri: Et perspiciatis impedit repellat sunt magni.
-        - created_at: 2013-10-04T18:09:31Z
-          deleted_at: 2001-11-29T02:21:49Z
-          device_id: 4c610979-7495-4bc1-879e-d63931eb8395
-          href: Est eos.
-          id: ece6cee6-55b9-4823-abf9-8030d9f5d6db
-          name: Sint qui.
-          properties:
-            - created_at: 1989-02-10T21:50:38Z
-              deleted_at: 1986-10-07T08:22:10Z
-              href: Molestiae veritatis maiores fugiat consequatur error vitae.
-              id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
-              last_value: 7384484011810122000
-              max_value: 0.934796755829885
-              min_value: 0.22797089832637085
-              name: Veritatis voluptatem molestias repudiandae quia non et.
-              permission: Eius blanditiis voluptatibus.
-              persist: true
-              thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
-              type: Sint quam provident magnam ex.
-              update_parameter: 0.9108133227344599
-              update_strategy: Odit rerum.
-              updated_at: 1976-06-15T02:13:21Z
-              value_updated_at: 1975-12-11T02:29:59Z
-              variable_name: Nihil ut assumenda sed fugit.
-          properties_count: 0.4028481551341217
-          sketch_id: 97f8a781-1439-4bc0-a85d-bcddd090955e
-          updated_at: 1993-08-27T15:53:53Z
-          user_id: c14e6231-e37e-47bd-b3a2-428b68c3f2f4
-          webhook_active: true
-          webhook_uri: Et perspiciatis impedit repellat sunt magni.
+          properties_count: 0.2328691602863427
+          sketch_id: a8cfe40a-936f-4d61-bc2d-8b413548b081
+          updated_at: 1986-03-17T17:41:35Z
+          user_id: 67543934-5379-4d1f-baa2-309e3c6daade
+          webhook_active: false
+          webhook_uri: In dolores sit.
     ArduinoThinglayout:
       title: "Mediatype identifier: application/vnd.arduino.thinglayout+json;
         view=default"
@@ -2306,57 +2088,57 @@ components:
         created_at:
           type: string
           description: Creation date of the thing
-          example: 1973-09-03T12:23:05Z
+          example: 2007-09-17T05:48:49Z
           format: date-time
         data_retention_days:
           type: number
           description: How many days the data will be kept
-          example: 0.8153978696320985
+          example: 0.3181677016737969
           format: double
         deleted_at:
           type: string
           description: Delete date of the thing
-          example: 2002-08-24T10:08:30Z
+          example: 2003-07-10T10:46:25Z
           format: date-time
         device_id:
           type: string
           description: The arn of the device
-          example: e57c0a24-2cc6-411e-ab95-e3ec5ba7511a
+          example: ae10eaef-5023-42b2-b7bd-74ec6208ffec
           format: uuid
         href:
           type: string
           description: The api reference of this thing
-          example: Laborum temporibus.
+          example: Sint vel incidunt sunt.
         id:
           type: string
           description: The id of the thing
-          example: 47dc2f11-483e-48b2-80f1-53ef26a4f816
+          example: 46f3cad8-7569-4fda-9235-5d8162ec349c
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: Voluptates quia sint enim.
+          example: Reiciendis molestiae pariatur ex a.
         properties:
           $ref: "#/components/schemas/ArduinoPropertyCollection"
         properties_count:
           type: number
           description: The number of properties of the thing
-          example: 0.6486308179501312
+          example: 0.18704486014797067
           format: double
         sketch_id:
           type: string
           description: The id of the attached sketch
-          example: 86eb2f6d-4269-4638-b384-b592df4c03d3
+          example: a7cd0a85-6cb0-4d61-8ca8-7044d51f969c
           format: uuid
         updated_at:
           type: string
           description: Update date of the thing
-          example: 2006-08-30T13:55:47Z
+          example: 1987-09-11T06:54:45Z
           format: date-time
         user_id:
           type: string
           description: The user id of the owner
-          example: 031ec4cc-a4a1-494b-80c1-c8dd742c12c6
+          example: 7c65dab9-0c82-467d-affd-b8c0af877826
           format: uuid
         webhook_active:
           type: boolean
@@ -2365,40 +2147,57 @@ components:
         webhook_uri:
           type: string
           description: Webhook uri
-          example: Sit impedit molestiae deleniti consequatur.
+          example: Reiciendis amet consequuntur id deserunt atque.
       description: ArduinoThinglayout media type (default view)
       example:
-        created_at: 1973-09-03T12:23:05Z
-        data_retention_days: 0.8153978696320985
-        deleted_at: 2002-08-24T10:08:30Z
-        device_id: e57c0a24-2cc6-411e-ab95-e3ec5ba7511a
-        href: Laborum temporibus.
-        id: 47dc2f11-483e-48b2-80f1-53ef26a4f816
-        name: Voluptates quia sint enim.
+        created_at: 2007-09-17T05:48:49Z
+        data_retention_days: 0.3181677016737969
+        deleted_at: 2003-07-10T10:46:25Z
+        device_id: ae10eaef-5023-42b2-b7bd-74ec6208ffec
+        href: Sint vel incidunt sunt.
+        id: 46f3cad8-7569-4fda-9235-5d8162ec349c
+        name: Reiciendis molestiae pariatur ex a.
         properties:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 8e39836d-7c71-4b17-96dd-7e1d545b3bcf
+            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 86ae3b65-1ea8-4b54-bb03-1d108e26e378
+            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
             updated_at: 1976-06-15T02:13:21Z
             value_updated_at: 1975-12-11T02:29:59Z
             variable_name: Nihil ut assumenda sed fugit.
-        properties_count: 0.6486308179501312
-        sketch_id: 86eb2f6d-4269-4638-b384-b592df4c03d3
-        updated_at: 2006-08-30T13:55:47Z
-        user_id: 031ec4cc-a4a1-494b-80c1-c8dd742c12c6
+          - created_at: 1989-02-10T21:50:38Z
+            deleted_at: 1986-10-07T08:22:10Z
+            href: Molestiae veritatis maiores fugiat consequatur error vitae.
+            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+            last_value: 7384484011810122000
+            max_value: 0.934796755829885
+            min_value: 0.22797089832637085
+            name: Veritatis voluptatem molestias repudiandae quia non et.
+            permission: Eius blanditiis voluptatibus.
+            persist: true
+            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+            type: Sint quam provident magnam ex.
+            update_parameter: 0.9108133227344599
+            update_strategy: Odit rerum.
+            updated_at: 1976-06-15T02:13:21Z
+            value_updated_at: 1975-12-11T02:29:59Z
+            variable_name: Nihil ut assumenda sed fugit.
+        properties_count: 0.18704486014797067
+        sketch_id: a7cd0a85-6cb0-4d61-8ca8-7044d51f969c
+        updated_at: 1987-09-11T06:54:45Z
+        user_id: 7c65dab9-0c82-467d-affd-b8c0af877826
         webhook_active: true
-        webhook_uri: Sit impedit molestiae deleniti consequatur.
+        webhook_uri: Reiciendis amet consequuntur id deserunt atque.
       required:
         - id
         - user_id
@@ -2411,16 +2210,16 @@ components:
         from:
           type: string
           description: From timestamp
-          example: 1978-09-14T03:43:53Z
+          example: 1976-12-09T22:06:42Z
           format: date-time
         q:
           type: string
           description: Query
-          example: Amet placeat nesciunt et voluptatum magnam quo.
+          example: Quibusdam doloribus quidem qui voluptates repudiandae.
         series_limit:
           type: integer
           description: Max of values
-          example: 7325786694202090000
+          example: 4129196332609904600
           format: int64
         sort:
           type: string
@@ -2433,14 +2232,14 @@ components:
         to:
           type: string
           description: To timestamp
-          example: 2002-02-11T17:42:22Z
+          example: 1970-06-03T02:59:03Z
           format: date-time
       example:
-        from: 1978-09-14T03:43:53Z
-        q: Amet placeat nesciunt et voluptatum magnam quo.
-        series_limit: 7325786694202090000
+        from: 1976-12-09T22:06:42Z
+        q: Quibusdam doloribus quidem qui voluptates repudiandae.
+        series_limit: 4129196332609904600
         sort: DESC
-        to: 2002-02-11T17:42:22Z
+        to: 1970-06-03T02:59:03Z
       required:
         - q
     BatchQueryRawRequestsMediaV1:
@@ -2453,44 +2252,44 @@ components:
             $ref: "#/components/schemas/BatchQueryRawRequestMediaV1"
           description: Requests
           example:
-            - from: 1978-09-14T03:43:53Z
-              q: Amet placeat nesciunt et voluptatum magnam quo.
-              series_limit: 7325786694202090000
+            - from: 1976-12-09T22:06:42Z
+              q: Quibusdam doloribus quidem qui voluptates repudiandae.
+              series_limit: 4129196332609904600
               sort: DESC
-              to: 2002-02-11T17:42:22Z
-            - from: 1978-09-14T03:43:53Z
-              q: Amet placeat nesciunt et voluptatum magnam quo.
-              series_limit: 7325786694202090000
+              to: 1970-06-03T02:59:03Z
+            - from: 1976-12-09T22:06:42Z
+              q: Quibusdam doloribus quidem qui voluptates repudiandae.
+              series_limit: 4129196332609904600
               sort: DESC
-              to: 2002-02-11T17:42:22Z
-            - from: 1978-09-14T03:43:53Z
-              q: Amet placeat nesciunt et voluptatum magnam quo.
-              series_limit: 7325786694202090000
+              to: 1970-06-03T02:59:03Z
+            - from: 1976-12-09T22:06:42Z
+              q: Quibusdam doloribus quidem qui voluptates repudiandae.
+              series_limit: 4129196332609904600
               sort: DESC
-              to: 2002-02-11T17:42:22Z
+              to: 1970-06-03T02:59:03Z
         resp_version:
           type: integer
           description: Response version
-          example: 7100505736188979000
+          example: 6163656705686021000
           format: int64
       example:
         requests:
-          - from: 1978-09-14T03:43:53Z
-            q: Amet placeat nesciunt et voluptatum magnam quo.
-            series_limit: 7325786694202090000
+          - from: 1976-12-09T22:06:42Z
+            q: Quibusdam doloribus quidem qui voluptates repudiandae.
+            series_limit: 4129196332609904600
             sort: DESC
-            to: 2002-02-11T17:42:22Z
-          - from: 1978-09-14T03:43:53Z
-            q: Amet placeat nesciunt et voluptatum magnam quo.
-            series_limit: 7325786694202090000
+            to: 1970-06-03T02:59:03Z
+          - from: 1976-12-09T22:06:42Z
+            q: Quibusdam doloribus quidem qui voluptates repudiandae.
+            series_limit: 4129196332609904600
             sort: DESC
-            to: 2002-02-11T17:42:22Z
-          - from: 1978-09-14T03:43:53Z
-            q: Amet placeat nesciunt et voluptatum magnam quo.
-            series_limit: 7325786694202090000
+            to: 1970-06-03T02:59:03Z
+          - from: 1976-12-09T22:06:42Z
+            q: Quibusdam doloribus quidem qui voluptates repudiandae.
+            series_limit: 4129196332609904600
             sort: DESC
-            to: 2002-02-11T17:42:22Z
-        resp_version: 7100505736188979000
+            to: 1970-06-03T02:59:03Z
+        resp_version: 6163656705686021000
       required:
         - requests
         - resp_version
@@ -2501,9 +2300,9 @@ components:
         metric:
           type: string
           description: Metric name
-          example: Nesciunt quia earum ratione dolores cum.
+          example: Eius ut vero animi odit est.
       example:
-        metric: Nesciunt quia earum ratione dolores cum.
+        metric: Eius ut vero animi odit est.
       required:
         - metric
     BatchQueryRequestMediaV1:
@@ -2513,33 +2312,33 @@ components:
         from:
           type: string
           description: From timestamp
-          example: 1970-03-19T10:33:28Z
+          example: 1989-08-14T02:07:37Z
           format: date-time
         interval:
           type: integer
           description: Resolution in seconds
-          example: 3665453485744451000
+          example: 2779759917727765500
           format: int64
         q:
           type: string
           description: Query
-          example: Eligendi eaque quibusdam cumque.
+          example: Perferendis assumenda accusantium ut nihil asperiores.
         series_limit:
           type: integer
           description: Max of values
-          example: 6914501124159208000
+          example: 5751951289186055000
           format: int64
         to:
           type: string
           description: To timestamp
-          example: 1996-10-26T02:05:10Z
+          example: 2013-08-05T10:35:26Z
           format: date-time
       example:
-        from: 1970-03-19T10:33:28Z
-        interval: 3665453485744451000
-        q: Eligendi eaque quibusdam cumque.
-        series_limit: 6914501124159208000
-        to: 1996-10-26T02:05:10Z
+        from: 1989-08-14T02:07:37Z
+        interval: 2779759917727765500
+        q: Perferendis assumenda accusantium ut nihil asperiores.
+        series_limit: 5751951289186055000
+        to: 2013-08-05T10:35:26Z
       required:
         - q
         - from
@@ -2554,71 +2353,37 @@ components:
             $ref: "#/components/schemas/BatchQueryRequestMediaV1"
           description: Requests
           example:
-            - from: 1970-03-19T10:33:28Z
-              interval: 3665453485744451000
-              q: Eligendi eaque quibusdam cumque.
-              series_limit: 6914501124159208000
-              to: 1996-10-26T02:05:10Z
-            - from: 1970-03-19T10:33:28Z
-              interval: 3665453485744451000
-              q: Eligendi eaque quibusdam cumque.
-              series_limit: 6914501124159208000
-              to: 1996-10-26T02:05:10Z
-            - from: 1970-03-19T10:33:28Z
-              interval: 3665453485744451000
-              q: Eligendi eaque quibusdam cumque.
-              series_limit: 6914501124159208000
-              to: 1996-10-26T02:05:10Z
+            - from: 1989-08-14T02:07:37Z
+              interval: 2779759917727765500
+              q: Perferendis assumenda accusantium ut nihil asperiores.
+              series_limit: 5751951289186055000
+              to: 2013-08-05T10:35:26Z
+            - from: 1989-08-14T02:07:37Z
+              interval: 2779759917727765500
+              q: Perferendis assumenda accusantium ut nihil asperiores.
+              series_limit: 5751951289186055000
+              to: 2013-08-05T10:35:26Z
         resp_version:
           type: integer
           description: Response version
-          example: 5685087701991917000
+          example: 6837933507181999000
           format: int64
       example:
         requests:
-          - from: 1970-03-19T10:33:28Z
-            interval: 3665453485744451000
-            q: Eligendi eaque quibusdam cumque.
-            series_limit: 6914501124159208000
-            to: 1996-10-26T02:05:10Z
-          - from: 1970-03-19T10:33:28Z
-            interval: 3665453485744451000
-            q: Eligendi eaque quibusdam cumque.
-            series_limit: 6914501124159208000
-            to: 1996-10-26T02:05:10Z
-          - from: 1970-03-19T10:33:28Z
-            interval: 3665453485744451000
-            q: Eligendi eaque quibusdam cumque.
-            series_limit: 6914501124159208000
-            to: 1996-10-26T02:05:10Z
-        resp_version: 5685087701991917000
+          - from: 1989-08-14T02:07:37Z
+            interval: 2779759917727765500
+            q: Perferendis assumenda accusantium ut nihil asperiores.
+            series_limit: 5751951289186055000
+            to: 2013-08-05T10:35:26Z
+          - from: 1989-08-14T02:07:37Z
+            interval: 2779759917727765500
+            q: Perferendis assumenda accusantium ut nihil asperiores.
+            series_limit: 5751951289186055000
+            to: 2013-08-05T10:35:26Z
+        resp_version: 6837933507181999000
       required:
         - requests
         - resp_version
-    BatchQueryResponseSeriesMediaV1:
-      title: BatchQueryResponseSeriesMediaV1
-      type: object
-      properties:
-        aggr:
-          type: string
-          description: Aggregation type
-          example: Sed cum.
-        expression:
-          type: string
-          description: Query
-          example: Sunt nostrum error et alias.
-        metric:
-          type: string
-          description: Metric name
-          example: Sit perspiciatis qui.
-      example:
-        aggr: Sed cum.
-        expression: Sunt nostrum error et alias.
-        metric: Sit perspiciatis qui.
-      required:
-        - aggr
-        - metric
-        - expression
     CreateDevicesV2Payload:
       title: CreateDevicesV2Payload
       type: object
@@ -2626,39 +2391,39 @@ components:
         id:
           type: string
           description: The UUID of the device
-          example: 65e18093-a61d-4149-896c-82571bd3e58c
+          example: 38899172-0f52-43cc-8e77-72b96ca97d8d
           format: uuid
         name:
           type: string
           description: The friendly name of the device
-          example: 2m1b129suq
+          example: 842pc89wxb
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         serial:
           type: string
           description: The serial uuid of the device
-          example: noksey1ywo
+          example: vk9cejjzz3
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         type:
           type: string
           description: The type of the device
-          example: 842pc89wxb
+          example: nyb068uq00
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         user_id:
           type: string
           description: The user_id associated to the device. If absent it will be inferred
             from the authentication header
-          example: 378a2f81-eb7b-47e1-b8d7-d3a04c15714a
+          example: e3e1f65e-198e-4400-b20a-4aa09f97db62
           format: uuid
       description: DeviceV2 describes a device.
       example:
-        id: 65e18093-a61d-4149-896c-82571bd3e58c
-        name: 2m1b129suq
-        serial: noksey1ywo
-        type: 842pc89wxb
-        user_id: 378a2f81-eb7b-47e1-b8d7-d3a04c15714a
+        id: 38899172-0f52-43cc-8e77-72b96ca97d8d
+        name: 842pc89wxb
+        serial: vk9cejjzz3
+        type: nyb068uq00
+        user_id: e3e1f65e-198e-4400-b20a-4aa09f97db62
       required:
         - type
     CreateThingsV1Payload:
@@ -2668,35 +2433,35 @@ components:
         device_id:
           type: string
           description: The arn of the associated device
-          example: 6b992e26-ca0b-45df-9447-456a3d06a838
+          example: a8c661a2-1d90-4aee-98b8-026183ef868a
           format: uuid
         id:
           type: string
           description: The id of the thing
-          example: 14a86bca-4adb-45bd-a21b-c4c425e16218
+          example: f57de811-c7bb-499a-94d4-f3de4627228c
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: ez0ajvuowy
+          example: 4vlfwmzgky
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         webhook_active:
           type: boolean
           description: Webhook uri
-          example: true
+          example: false
         webhook_uri:
           type: string
           description: Webhook uri
-          example: http://glover.net/monroe
+          example: http://skilesabbott.info/myra_klocko
           format: uri
       description: ThingPayload describes a thing
       example:
-        device_id: 6b992e26-ca0b-45df-9447-456a3d06a838
-        id: 14a86bca-4adb-45bd-a21b-c4c425e16218
-        name: ez0ajvuowy
-        webhook_active: true
-        webhook_uri: http://glover.net/monroe
+        device_id: a8c661a2-1d90-4aee-98b8-026183ef868a
+        id: f57de811-c7bb-499a-94d4-f3de4627228c
+        name: 4vlfwmzgky
+        webhook_active: false
+        webhook_uri: http://skilesabbott.info/myra_klocko
       required:
         - name
     devicev2:
@@ -2706,39 +2471,39 @@ components:
         id:
           type: string
           description: The UUID of the device
-          example: 65e18093-a61d-4149-896c-82571bd3e58c
+          example: 38899172-0f52-43cc-8e77-72b96ca97d8d
           format: uuid
         name:
           type: string
           description: The friendly name of the device
-          example: 2m1b129suq
+          example: 842pc89wxb
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         serial:
           type: string
           description: The serial uuid of the device
-          example: noksey1ywo
+          example: vk9cejjzz3
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         type:
           type: string
           description: The type of the device
-          example: 842pc89wxb
+          example: nyb068uq00
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         user_id:
           type: string
           description: The user_id associated to the device. If absent it will be inferred
             from the authentication header
-          example: 378a2f81-eb7b-47e1-b8d7-d3a04c15714a
+          example: e3e1f65e-198e-4400-b20a-4aa09f97db62
           format: uuid
       description: DeviceV2 describes a device.
       example:
-        id: 65e18093-a61d-4149-896c-82571bd3e58c
-        name: 2m1b129suq
-        serial: noksey1ywo
-        type: 842pc89wxb
-        user_id: 378a2f81-eb7b-47e1-b8d7-d3a04c15714a
+        id: 38899172-0f52-43cc-8e77-72b96ca97d8d
+        name: 842pc89wxb
+        serial: vk9cejjzz3
+        type: nyb068uq00
+        user_id: e3e1f65e-198e-4400-b20a-4aa09f97db62
     error:
       title: "Mediatype identifier: application/vnd.goa.error+json; view=default"
       type: object
@@ -2783,12 +2548,12 @@ components:
         name:
           type: string
           description: The name of the property
-          example: Aspernatur eum eum voluptatem similique et non.
+          example: Est rem.
         type:
           type: string
           description: The type of the property
           default: infer
-          example: infer
+          example: hex
           enum:
             - infer
             - base64
@@ -2796,11 +2561,11 @@ components:
             - json
         value:
           description: The last value of the property
-          example: 2005-11-26T11:27:56Z
+          example: 0.43255263923965526
       example:
-        name: Aspernatur eum eum voluptatem similique et non.
-        type: infer
-        value: 2005-11-26T11:27:56Z
+        name: Est rem.
+        type: hex
+        value: 0.43255263923965526
       required:
         - name
         - value
@@ -2814,26 +2579,20 @@ components:
           items:
             $ref: "#/components/schemas/propertiesValue"
           example:
-            - name: Aspernatur eum eum voluptatem similique et non.
-              type: infer
-              value: 2005-11-26T11:27:56Z
-            - name: Aspernatur eum eum voluptatem similique et non.
-              type: infer
-              value: 2005-11-26T11:27:56Z
-            - name: Aspernatur eum eum voluptatem similique et non.
-              type: infer
-              value: 2005-11-26T11:27:56Z
+            - name: Est rem.
+              type: hex
+              value: 0.43255263923965526
+            - name: Est rem.
+              type: hex
+              value: 0.43255263923965526
       example:
         properties:
-          - name: Aspernatur eum eum voluptatem similique et non.
-            type: infer
-            value: 2005-11-26T11:27:56Z
-          - name: Aspernatur eum eum voluptatem similique et non.
-            type: infer
-            value: 2005-11-26T11:27:56Z
-          - name: Aspernatur eum eum voluptatem similique et non.
-            type: infer
-            value: 2005-11-26T11:27:56Z
+          - name: Est rem.
+            type: hex
+            value: 0.43255263923965526
+          - name: Est rem.
+            type: hex
+            value: 0.43255263923965526
       required:
         - properties
     property:
@@ -2843,21 +2602,21 @@ components:
         max_value:
           type: number
           description: Maximum value of this property
-          example: 0.7574577875902041
+          example: 0.4079389419942323
           format: double
         min_value:
           type: number
           description: Minimum value of this property
-          example: 0.3429268765056594
+          example: 0.5470164902865439
           format: double
         name:
           type: string
           description: The friendly name of the property
-          example: Enim earum.
+          example: Iusto ipsum harum consequatur in amet placeat.
         permission:
           type: string
           description: The permission of the property
-          example: READ_WRITE
+          example: READ_ONLY
           enum:
             - READ_ONLY
             - READ_WRITE
@@ -2869,7 +2628,7 @@ components:
         type:
           type: string
           description: The type of the property
-          example: KILOGRAM
+          example: FARAD
           enum:
             - ANALOG
             - CHARSTRING
@@ -2956,53 +2715,54 @@ components:
           type: number
           description: The update frequency in seconds, or the amount of the property has
             to change in order to trigger an update
-          example: 0.07906871972185099
+          example: 0.4218505192187911
           format: double
         update_strategy:
           type: string
           description: The update strategy for the property value
-          example: ON_CHANGE
+          example: TIMED
           enum:
             - ON_CHANGE
             - TIMED
         variable_name:
           type: string
           description: The  sketch variable name of the property
-          example: oh19ql6b3l
+          example: 7m0vez0ajv
           pattern: ^[a-zA-Z_][a-zA-Z0-9_]*$
           maxLength: 64
       description: PropertyPayload describes a property of a thing. No field is mandatory
       example:
-        max_value: 0.7574577875902041
-        min_value: 0.3429268765056594
-        name: Enim earum.
-        permission: READ_WRITE
+        max_value: 0.4079389419942323
+        min_value: 0.5470164902865439
+        name: Iusto ipsum harum consequatur in amet placeat.
+        permission: READ_ONLY
         persist: false
-        type: KILOGRAM
-        update_parameter: 0.07906871972185099
-        update_strategy: ON_CHANGE
-        variable_name: oh19ql6b3l
+        type: FARAD
+        update_parameter: 0.4218505192187911
+        update_strategy: TIMED
+        variable_name: 7m0vez0ajv
       required:
         - name
         - type
         - permission
         - update_strategy
-    propertyValue:
-      title: propertyValue
+    propertyStringValue:
+      title: propertyStringValue
       type: object
       properties:
         device_id:
           type: string
           description: The device who send the property
-          example: caeb4889-7e3a-498b-be79-e533f452a50e
+          example: 8b188d98-b0e6-4fea-869f-9e1df9105aba
           format: uuid
         value:
-          description: The property value
-          example: 8565216454843864000
-      description: PropertyValuePayload describes a property value
+          type: string
+          description: The property value, as string
+          example: Totam in.
+      description: PropertyStringValuePayload describes a property value
       example:
-        device_id: caeb4889-7e3a-498b-be79-e533f452a50e
-        value: 8565216454843864000
+        device_id: 8b188d98-b0e6-4fea-869f-9e1df9105aba
+        value: Totam in.
       required:
         - value
     thing:
@@ -3012,35 +2772,35 @@ components:
         device_id:
           type: string
           description: The arn of the associated device
-          example: 6b992e26-ca0b-45df-9447-456a3d06a838
+          example: a8c661a2-1d90-4aee-98b8-026183ef868a
           format: uuid
         id:
           type: string
           description: The id of the thing
-          example: 14a86bca-4adb-45bd-a21b-c4c425e16218
+          example: f57de811-c7bb-499a-94d4-f3de4627228c
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: ez0ajvuowy
+          example: 4vlfwmzgky
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         webhook_active:
           type: boolean
           description: Webhook uri
-          example: true
+          example: false
         webhook_uri:
           type: string
           description: Webhook uri
-          example: http://glover.net/monroe
+          example: http://skilesabbott.info/myra_klocko
           format: uri
       description: ThingPayload describes a thing
       example:
-        device_id: 6b992e26-ca0b-45df-9447-456a3d06a838
-        id: 14a86bca-4adb-45bd-a21b-c4c425e16218
-        name: ez0ajvuowy
-        webhook_active: true
-        webhook_uri: http://glover.net/monroe
+        device_id: a8c661a2-1d90-4aee-98b8-026183ef868a
+        id: f57de811-c7bb-499a-94d4-f3de4627228c
+        name: 4vlfwmzgky
+        webhook_active: false
+        webhook_uri: http://skilesabbott.info/myra_klocko
     thingSketch:
       title: thingSketch
       type: object
@@ -3048,13 +2808,13 @@ components:
         pass:
           type: string
           description: The wifi password
-          example: Sint necessitatibus animi.
+          example: Iure et dolore excepturi.
         ssid:
           type: string
           description: The wifi ssid to connect
-          example: Quia est ipsa eligendi.
+          example: Modi aut.
       description: ThingSketchPayload describes a sketch of a thing
       example:
-        pass: Sint necessitatibus animi.
-        ssid: Quia est ipsa eligendi.
+        pass: Iure et dolore excepturi.
+        ssid: Modi aut.
 
