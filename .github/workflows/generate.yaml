@@ -26,8 +26,8 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
-        # use a fork until merge https://github.com/DataDog/apigentools/pull/44
-        run: pip install git+https://github.com/masci/apigentools.git@oauth-token
+        # use master until 0.3.0 is released
+        run: pip install git+https://github.com/DataDog/apigentools.git@master
 
       - name: Generate clients
         env:
