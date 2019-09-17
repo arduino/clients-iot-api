@@ -28,6 +28,14 @@
                 "v2"
             ],
             "version_path_template": ""
+        },
+        "html2": {
+            "github_repo_name": "iot-api-client-docs",
+            "github_org_name": "bcmi-labs",
+            "spec_versions": [
+                "v2"
+            ],
+            "version_path_template": ""
         }
     },
     "server_base_urls": {
