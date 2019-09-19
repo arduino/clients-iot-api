@@ -27,7 +27,8 @@
             "spec_versions": [
                 "v2"
             ],
-            "version_path_template": ""
+            "version_path_template": "",
+            "upstream_templates_dir": "Javascript"
         },
         "html2": {
             "github_repo_name": "iot-api-client-docs",
@@ -35,7 +36,8 @@
             "spec_versions": [
                 "v2"
             ],
-            "version_path_template": ""
+            "version_path_template": "",
+            "upstream_templates_dir": "htmlDocs2"
         }
     },
     "server_base_urls": {
