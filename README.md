@@ -11,17 +11,20 @@ actual clients.
 
 ## Sample clients
 
-Two clients have been successfully generated with the present workflow:
+Following clients have been successfully generated with the present workflow:
 
 * [Go](https://github.com/bcmi-labs/iot-api-client-go)
 * [Python](https://github.com/bcmi-labs/iot-api-client-py)
 * [Javascript](https://github.com/bcmi-labs/iot-api-client-js)
 
-## Requirements
+## Client generation process
 
-* Python 3.6+
-* OpenAPI generator 4.0+
-* Apigentools (`pip install apigentools`)
+The workflow (see below for details) to generate the clients is fully automated
+through GitHub actions. The workflow will start every time a tag in the form of
+`X.Y` (e.g. `2.1`) is pushed to this repo. If the workflow completes successfully,
+a PR will be opened for each client in their respective git repositories. See
+the [actions page](https://github.com/bcmi-labs/clients-iot-api/actions) to
+monitor the status of a workflow.
 
 ## Workflow
 
@@ -32,6 +35,15 @@ it belongs to and release the updated clients (this last step may vary
 depending on the programming language).
 
 The operations are detailed in the following paragraphs.
+
+### Requirements
+
+To be able to run the workflow locally in a developmnent environment, you'll
+need the following:
+
+* Python 3.6+
+* OpenAPI generator 4.0+ (see [install instructions](https://openapi-generator.tech/docs/installation))
+* Apigentools (`pip install apigentools`)
 
 ### Get an updated version of the API specification
 
