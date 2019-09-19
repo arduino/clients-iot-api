@@ -71,15 +71,32 @@ CI step:
 apigentools validate
 ```
 
-### Generate the clients
+### Render upstream templates
 
-If validation succeeded, chances are that this step is as easy as running:
+This step patches the original (upstream) templates **before** the generation
+step, so that we have full control over the generated code. The step consists
+of cloning the openapi-generator repo, applying one or more patches in the form
+of patch files to it and copy the relevant templates in the folder `templates`:
 
 ```sh
-apigentools generate --builtin-templates --clone-repo
+apigentools templates -p template-patches openapi-git
 ```
 
-`apigentools` has a simple script that can be invoked for each client generated
+There are other ways to provide upstream templates other than `openapi-git` that
+might be useful to speed up development iterations, please refer to `apigentools`
+docs for more details.
+
+### Generate the clients
+
+Once templates are patched and ready to be used, this step is as easy as running:
+
+```sh
+apigentools generate --clone-repo
+```
+
+### Push generated code to each client's git repository
+
+`apigentools` has a simple command that can be invoked for each client generated
 that will push the resulting code to different repos, using different branches
 so the code can be reviewed and merged through a regular PR:
 
