@@ -1,6 +1,7 @@
 name: generate
 
 on:
+  pull_request:
   push:
     tags:
       - '[0-9].[0-9]'
@@ -29,13 +30,20 @@ jobs:
         # use master until 0.3.0 is released
         run: pip install git+https://github.com/DataDog/apigentools.git@master
 
+      - name: Validate specfile
+        run: apigentools validate
+
+      - name: Render upstream templates
+        run: apigentools templates -p template-patches openapi-git
+
       - name: Generate clients
         env:
           APIGENTOOLS_GIT_VIA_HTTPS: true
           APIGENTOOLS_GIT_VIA_HTTPS_OAUTH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
-        run: apigentools generate --builtin-templates --clone-repo
+        run: apigentools generate --clone-repo
 
       - name: Push client repos
+        if: github.event_name == 'push'
         env:
           APIGENTOOLS_GIT_VIA_HTTPS: true
           APIGENTOOLS_GIT_VIA_HTTPS_OAUTH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
