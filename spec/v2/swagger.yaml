@@ -4,818 +4,6 @@ info:
   description: iot devices and things associated to arduino users
   version: ""
 paths:
-  /v1/series/batch_query:
-    post:
-      tags:
-        - series_v1
-      summary: batch_query series_v1
-      description: Returns the batch of time-series data
-      operationId: series_v1#batch_query
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BatchQueryRequestsMediaV1"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.series.batch+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoSeriesBatch"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoSeriesBatch"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.series.batch+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-        "501":
-          description: Not Implemented
-        "503":
-          description: Service Unavailable
-          content:
-            application/vnd.arduino.series.batch+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-  /v1/series/batch_query_raw:
-    post:
-      tags:
-        - series_v1
-      summary: batch_query_raw series_v1
-      description: Returns the batch of time-series data raw
-      operationId: series_v1#batch_query_raw
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BatchQueryRawRequestsMediaV1"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.series.raw.batch+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoSeriesRawBatch"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoSeriesRawBatch"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.series.raw.batch+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-        "501":
-          description: Not Implemented
-        "503":
-          description: Service Unavailable
-          content:
-            application/vnd.arduino.series.raw.batch+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-  /v1/things:
-    get:
-      tags:
-        - things_v1
-      summary: list things_v1
-      description: Returns the list of things associated to the user
-      operationId: things_v1#list
-      parameters:
-        - name: across_user_ids
-          in: query
-          description: If true, returns all the things
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: device_id
-          in: query
-          description: The id of the device you want to filter
-          required: false
-          schema:
-            type: string
-        - name: show_deleted
-          in: query
-          description: If true, shows the soft deleted things
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thing+json; type=collection:
-              schema:
-                $ref: "#/components/schemas/ArduinoThingCollection"
-        "401":
-          description: Unauthorized
-      security:
-        - oauth2: []
-    put:
-      tags:
-        - things_v1
-      summary: create things_v1
-      description: Creates a new thing associated to the user
-      operationId: things_v1#create
-      parameters:
-        - name: force
-          in: query
-          description: If true, detach device from the other thing, and attach to this thing
-          required: false
-          schema:
-            type: boolean
-            default: false
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateThingsV1Payload"
-        description: ThingPayload describes a thing
-        required: true
-      responses:
-        "201":
-          description: Created
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "401":
-          description: Unauthorized
-        "409":
-          description: Conflict
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "412":
-          description: Precondition Failed
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-  "/v1/things/{id}":
-    get:
-      tags:
-        - things_v1
-      summary: show things_v1
-      description: Returns the thing requested by the user
-      operationId: things_v1#show
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: show_deleted
-          in: query
-          description: If true, shows the soft deleted thing
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    post:
-      tags:
-        - things_v1
-      summary: update things_v1
-      description: Updates a thing associated to the user
-      operationId: things_v1#update
-      parameters:
-        - name: force
-          in: query
-          description: If true, detach device from the other thing, and attach to this thing
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/thing"
-        description: ThingPayload describes a thing
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "400":
-          description: Bad Request
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-        "412":
-          description: Precondition Failed
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    delete:
-      tags:
-        - things_v1
-      summary: delete things_v1
-      description: Removes a thing associated to the user
-      operationId: things_v1#delete
-      parameters:
-        - name: force
-          in: query
-          description: If true, hard delete the thing
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-      security:
-        - oauth2: []
-  "/v1/things/{id}/layout":
-    get:
-      tags:
-        - things_v1
-      summary: layout things_v1
-      description: Returns the thing requested by the user, without last values data
-      operationId: things_v1#layout
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: show_deleted
-          in: query
-          description: If true, shows the soft deleted thing
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thinglayout+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThinglayout"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThinglayout"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.thinglayout+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-        "500":
-          description: Internal Server Error
-          content:
-            application/vnd.arduino.thinglayout+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-  "/v1/things/{id}/properties":
-    get:
-      tags:
-        - properties_v1
-      summary: list properties_v1
-      description: Returns the list of properties associated to the thing
-      operationId: properties_v1#list
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: show_deleted
-          in: query
-          description: If true, shows the soft deleted properties
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.property+json; type=collection:
-              schema:
-                $ref: "#/components/schemas/ArduinoPropertyCollection"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoPropertyCollection"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.property+json; type=collection:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-          content:
-            application/vnd.arduino.property+json; type=collection:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    put:
-      tags:
-        - properties_v1
-      summary: create properties_v1
-      description: Creates a new property associated to a thing
-      operationId: properties_v1#create
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-      requestBody:
-        $ref: "#/components/requestBodies/property"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-        "400":
-          description: Bad Request
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-      security:
-        - oauth2: []
-  "/v1/things/{id}/properties/{pid}":
-    get:
-      tags:
-        - properties_v1
-      summary: show properties_v1
-      description: Returns the property requested by the user
-      operationId: properties_v1#show
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: pid
-          in: path
-          description: The id of the property
-          required: true
-          schema:
-            type: string
-        - name: show_deleted
-          in: query
-          description: If true, shows the soft deleted properties
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    post:
-      tags:
-        - properties_v1
-      summary: update properties_v1
-      description: Updates a property associated to a thing
-      operationId: properties_v1#update
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: pid
-          in: path
-          description: The id of the property
-          required: true
-          schema:
-            type: string
-      requestBody:
-        $ref: "#/components/requestBodies/property"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoProperty"
-        "400":
-          description: Bad Request
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-          content:
-            application/vnd.arduino.property+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    delete:
-      tags:
-        - properties_v1
-      summary: delete properties_v1
-      description: Removes a property associated to a thing
-      operationId: properties_v1#delete
-      parameters:
-        - name: force
-          in: query
-          description: If true, hard delete the property
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: pid
-          in: path
-          description: The id of the property
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-      security:
-        - oauth2: []
-  "/v1/things/{id}/properties/{pid}/send":
-    put:
-      tags:
-        - properties_v1
-      summary: send properties_v1
-      description: Publish a property value to MQTT, as string
-      operationId: properties_v1#send
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: pid
-          in: path
-          description: The id of the property
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/propertyStringValue"
-        description: PropertyStringValuePayload describes a property value
-        required: true
-      responses:
-        "200":
-          description: OK
-        "400":
-          description: Bad Request
-          content:
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-          content:
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-      security:
-        - oauth2: []
-  "/v1/things/{id}/sketch":
-    put:
-      tags:
-        - things_v1
-      summary: createSketch things_v1
-      description: Creates a new sketch thing associated to the thing
-      operationId: things_v1#createSketch
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/thingSketch"
-        description: ThingSketchPayload describes a sketch of a thing
-        required: true
-      responses:
-        "201":
-          description: Created
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "400":
-          description: Bad Request
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-        "412":
-          description: Precondition Failed
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
-    delete:
-      tags:
-        - things_v1
-      summary: deleteSketch things_v1
-      operationId: things_v1#deleteSketch
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-      security:
-        - oauth2: []
-  "/v1/things/{id}/sketch/{sketchId}":
-    put:
-      tags:
-        - things_v1
-      summary: updateSketch things_v1
-      description: Update an existing thing sketch
-      operationId: things_v1#updateSketch
-      parameters:
-        - name: id
-          in: path
-          description: The id of the thing
-          required: true
-          schema:
-            type: string
-        - name: sketchId
-          in: path
-          description: The id of the sketch
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/ArduinoThing"
-        "401":
-          description: Unauthorized
-        "412":
-          description: Precondition Failed
-          content:
-            application/vnd.arduino.thing+json:
-              schema:
-                $ref: "#/components/schemas/error"
-            application/vnd.goa.error+json:
-              schema:
-                $ref: "#/components/schemas/error"
-      security:
-        - oauth2: []
   /v2/devices:
     get:
       tags:
@@ -1066,6 +254,812 @@ paths:
           description: Unauthorized
       security:
         - oauth2: []
+  /v2/series/batch_query:
+    post:
+      tags:
+        - series_v2
+      summary: batch_query series_v2
+      description: Returns the batch of time-series data
+      operationId: series_v2#batch_query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchQueryRequestsMediaV1"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesBatch"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesBatch"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+        "501":
+          description: Not Implemented
+        "503":
+          description: Service Unavailable
+          content:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+  /v2/series/batch_query_raw:
+    post:
+      tags:
+        - series_v2
+      summary: batch_query_raw series_v2
+      description: Returns the batch of time-series data raw
+      operationId: series_v2#batch_query_raw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchQueryRawRequestsMediaV1"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesRawBatch"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesRawBatch"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+        "501":
+          description: Not Implemented
+        "503":
+          description: Service Unavailable
+          content:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+  /v2/series/batch_query_raw/lastvalue:
+    post:
+      tags:
+        - series_v2
+      summary: batch_query_raw_last_value series_v2
+      description: Returns the batch of time-series data raw
+      operationId: series_v2#batch_query_raw_last_value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchLastValueRequestsMediaV1"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesRawBatchLastvalue"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoSeriesRawBatchLastvalue"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+        "501":
+          description: Not Implemented
+        "503":
+          description: Service Unavailable
+          content:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+  /v2/things:
+    get:
+      tags:
+        - things_v2
+      summary: list things_v2
+      description: Returns the list of things associated to the user
+      operationId: things_v2#list
+      parameters:
+        - name: across_user_ids
+          in: query
+          description: If true, returns all the things
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: device_id
+          in: query
+          description: The id of the device you want to filter
+          required: false
+          schema:
+            type: string
+        - name: show_deleted
+          in: query
+          description: If true, shows the soft deleted things
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: "#/components/schemas/ArduinoThingCollection"
+        "401":
+          description: Unauthorized
+      security:
+        - oauth2: []
+    put:
+      tags:
+        - things_v2
+      summary: create things_v2
+      description: Creates a new thing associated to the user
+      operationId: things_v2#create
+      parameters:
+        - name: force
+          in: query
+          description: If true, detach device from the other thing, and attach to this thing
+          required: false
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateThingsV2Payload"
+        description: ThingPayload describes a thing
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "401":
+          description: Unauthorized
+        "409":
+          description: Conflict
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "412":
+          description: Precondition Failed
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+  "/v2/things/{id}":
+    get:
+      tags:
+        - things_v2
+      summary: show things_v2
+      description: Returns the thing requested by the user
+      operationId: things_v2#show
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: show_deleted
+          in: query
+          description: If true, shows the soft deleted thing
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    post:
+      tags:
+        - things_v2
+      summary: update things_v2
+      description: Updates a thing associated to the user
+      operationId: things_v2#update
+      parameters:
+        - name: force
+          in: query
+          description: If true, detach device from the other thing, and attach to this thing
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/thing"
+        description: ThingPayload describes a thing
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "400":
+          description: Bad Request
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "412":
+          description: Precondition Failed
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    delete:
+      tags:
+        - things_v2
+      summary: delete things_v2
+      description: Removes a thing associated to the user
+      operationId: things_v2#delete
+      parameters:
+        - name: force
+          in: query
+          description: If true, hard delete the thing
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      security:
+        - oauth2: []
+  "/v2/things/{id}/properties":
+    get:
+      tags:
+        - properties_v2
+      summary: list properties_v2
+      description: Returns the list of properties associated to the thing
+      operationId: properties_v2#list
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: show_deleted
+          in: query
+          description: If true, shows the soft deleted properties
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: "#/components/schemas/ArduinoPropertyCollection"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoPropertyCollection"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+          content:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    put:
+      tags:
+        - properties_v2
+      summary: create properties_v2
+      description: Creates a new property associated to a thing
+      operationId: properties_v2#create
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/property"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+        "400":
+          description: Bad Request
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+      security:
+        - oauth2: []
+  "/v2/things/{id}/properties/{pid}":
+    get:
+      tags:
+        - properties_v2
+      summary: show properties_v2
+      description: Returns the property requested by the user
+      operationId: properties_v2#show
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: The id of the property
+          required: true
+          schema:
+            type: string
+        - name: show_deleted
+          in: query
+          description: If true, shows the soft deleted properties
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    post:
+      tags:
+        - properties_v2
+      summary: update properties_v2
+      description: Updates a property associated to a thing
+      operationId: properties_v2#update
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: The id of the property
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/property"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoProperty"
+        "400":
+          description: Bad Request
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+          content:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    delete:
+      tags:
+        - properties_v2
+      summary: delete properties_v2
+      description: Removes a property associated to a thing
+      operationId: properties_v2#delete
+      parameters:
+        - name: force
+          in: query
+          description: If true, hard delete the property
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: The id of the property
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+      security:
+        - oauth2: []
+  "/v2/things/{id}/properties/{pid}/publish":
+    put:
+      tags:
+        - properties_v2
+      summary: publish properties_v2
+      description: Publish a property value to MQTT
+      operationId: properties_v2#publish
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: The id of the property
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/propertyValue"
+        description: PropertyValuePayload describes a property value
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+      security:
+        - oauth2: []
+  "/v2/things/{id}/sketch":
+    put:
+      tags:
+        - things_v2
+      summary: createSketch things_v2
+      description: Creates a new sketch thing associated to the thing
+      operationId: things_v2#createSketch
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/thingSketch"
+        description: ThingSketchPayload describes a sketch of a thing
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "400":
+          description: Bad Request
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+        "412":
+          description: Precondition Failed
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
+    delete:
+      tags:
+        - things_v2
+      summary: deleteSketch things_v2
+      operationId: things_v2#deleteSketch
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      security:
+        - oauth2: []
+  "/v2/things/{id}/sketch/{sketchId}":
+    put:
+      tags:
+        - things_v2
+      summary: updateSketch things_v2
+      description: Update an existing thing sketch
+      operationId: things_v2#updateSketch
+      parameters:
+        - name: id
+          in: path
+          description: The id of the thing
+          required: true
+          schema:
+            type: string
+        - name: sketchId
+          in: path
+          description: The id of the sketch
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/ArduinoThing"
+        "401":
+          description: Unauthorized
+        "412":
+          description: Precondition Failed
+          content:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: "#/components/schemas/error"
+            application/vnd.goa.error+json:
+              schema:
+                $ref: "#/components/schemas/error"
+      security:
+        - oauth2: []
 servers:
   - url: http://localhost:8000/iot
 components:
@@ -1104,7 +1098,7 @@ components:
         id:
           type: string
           description: The arn of the device
-          example: 974237ff-1909-4898-af46-800e7fbac7a3
+          example: b3001b29-0226-4d92-9fb0-dd0ce69dda7b
           format: uuid
         metadata:
           type: object
@@ -1127,7 +1121,7 @@ components:
         user_id:
           type: string
           description: The id of the user
-          example: a1191c06-d4d3-49a7-b377-31b07f41f3c6
+          example: b79ea5b2-930f-4d1b-9761-38f8e83a3ae6
           format: uuid
         webhooks:
           $ref: "#/components/schemas/ArduinoDevicev2WebhookCollection"
@@ -1135,22 +1129,22 @@ components:
       example:
         created_at: 1994-09-07T13:31:11Z
         href: Nam soluta libero rem aut sed facere.
-        id: 974237ff-1909-4898-af46-800e7fbac7a3
+        id: b3001b29-0226-4d92-9fb0-dd0ce69dda7b
         metadata:
           Quo voluptatum omnis quae quia quidem velit.: false
         name: Voluptatibus fugiat ratione ut praesentium cumque autem.
         serial: Aperiam qui et cumque magnam dolorem.
         type: Voluptatem repellat et explicabo.
-        user_id: a1191c06-d4d3-49a7-b377-31b07f41f3c6
+        user_id: b79ea5b2-930f-4d1b-9761-38f8e83a3ae6
         webhooks:
           - active: true
-            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+            id: 95bbb69f-0724-4664-848c-cc106b9880d1
             uri: http://beckereichmann.name/reina
           - active: true
-            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+            id: 95bbb69f-0724-4664-848c-cc106b9880d1
             uri: http://beckereichmann.name/reina
           - active: true
-            id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+            id: 95bbb69f-0724-4664-848c-cc106b9880d1
             uri: http://beckereichmann.name/reina
       required:
         - id
@@ -1170,22 +1164,22 @@ components:
       example:
         - created_at: 1994-09-07T13:31:11Z
           href: Nam soluta libero rem aut sed facere.
-          id: 974237ff-1909-4898-af46-800e7fbac7a3
+          id: b3001b29-0226-4d92-9fb0-dd0ce69dda7b
           metadata:
             Quo voluptatum omnis quae quia quidem velit.: false
           name: Voluptatibus fugiat ratione ut praesentium cumque autem.
           serial: Aperiam qui et cumque magnam dolorem.
           type: Voluptatem repellat et explicabo.
-          user_id: a1191c06-d4d3-49a7-b377-31b07f41f3c6
+          user_id: b79ea5b2-930f-4d1b-9761-38f8e83a3ae6
           webhooks:
             - active: true
-              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+              id: 95bbb69f-0724-4664-848c-cc106b9880d1
               uri: http://beckereichmann.name/reina
             - active: true
-              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+              id: 95bbb69f-0724-4664-848c-cc106b9880d1
               uri: http://beckereichmann.name/reina
             - active: true
-              id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+              id: 95bbb69f-0724-4664-848c-cc106b9880d1
               uri: http://beckereichmann.name/reina
     ArduinoDevicev2Webhook:
       title: "Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
@@ -1200,7 +1194,7 @@ components:
         id:
           type: string
           description: The uuid of the webhook
-          example: 878a75f9-edb3-4b68-a170-1c5a6c420206
+          example: 95bbb69f-0724-4664-848c-cc106b9880d1
           format: uuid
         uri:
           type: string
@@ -1211,7 +1205,7 @@ components:
         view)
       example:
         active: true
-        id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+        id: 95bbb69f-0724-4664-848c-cc106b9880d1
         uri: http://beckereichmann.name/reina
       required:
         - id
@@ -1226,7 +1220,7 @@ components:
         ArduinoDevicev2Webhook (default view)
       example:
         - active: true
-          id: 878a75f9-edb3-4b68-a170-1c5a6c420206
+          id: 95bbb69f-0724-4664-848c-cc106b9880d1
           uri: http://beckereichmann.name/reina
     ArduinoDevicev2properties:
       title: "Mediatype identifier: application/vnd.arduino.devicev2properties+json;
@@ -1241,55 +1235,38 @@ components:
         deviceId:
           type: string
           description: The device of the property
-          example: 7b003e5c-ad74-47eb-99db-1e3975e0e9be
+          example: 93af603b-726b-4b0a-9a12-77d1343f9218
           format: uuid
         properties:
           $ref: "#/components/schemas/ArduinoPropertyCollection"
         user_id:
           type: string
           description: The user id of the owner
-          example: 893523cc-80bc-4616-b32c-8b02bb228c88
+          example: 982cfcfc-ed11-419c-876a-753c6629d12a
           format: uuid
       description: ArduinoDevicev2properties media type (default view)
       example:
         data_retention_days: 0.8510933658457186
-        deviceId: 7b003e5c-ad74-47eb-99db-1e3975e0e9be
+        deviceId: 93af603b-726b-4b0a-9a12-77d1343f9218
         properties:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+            id: f107703c-b170-47fa-a504-ece3412cc5be
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+            thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
             updated_at: 1976-06-15T02:13:21Z
             value_updated_at: 1975-12-11T02:29:59Z
             variable_name: Nihil ut assumenda sed fugit.
-          - created_at: 1989-02-10T21:50:38Z
-            deleted_at: 1986-10-07T08:22:10Z
-            href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
-            last_value: 7384484011810122000
-            max_value: 0.934796755829885
-            min_value: 0.22797089832637085
-            name: Veritatis voluptatem molestias repudiandae quia non et.
-            permission: Eius blanditiis voluptatibus.
-            persist: true
-            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
-            type: Sint quam provident magnam ex.
-            update_parameter: 0.9108133227344599
-            update_strategy: Odit rerum.
-            updated_at: 1976-06-15T02:13:21Z
-            value_updated_at: 1975-12-11T02:29:59Z
-            variable_name: Nihil ut assumenda sed fugit.
-        user_id: 893523cc-80bc-4616-b32c-8b02bb228c88
+        user_id: 982cfcfc-ed11-419c-876a-753c6629d12a
       required:
         - deviceId
         - user_id
@@ -1424,21 +1401,6 @@ components:
               sf: 0.763900217608657
               snr: 0.035072020695238175
               time: 0.8941566755879066
-        - created_at: 1971-04-18T03:22:50Z
-          value:
-            payload: Blanditiis et accusantium ipsum rerum.
-            seqno: 7418648063896745000
-            statistics:
-              adr: 0.13561737572509147
-              channel: 0.3902353259273426
-              duplicate: 0.5028846468947827
-              freq: 0.7126670896862375
-              modBW: 0.863865814062173
-              rssi: 0.5253658020227948
-              seqno: 0.13888126585007018
-              sf: 0.763900217608657
-              snr: 0.035072020695238175
-              time: 0.8941566755879066
     ArduinoDevicev2propertyvalues:
       title: "Mediatype identifier:
         application/vnd.arduino.devicev2propertyvalues+json; view=default"
@@ -1493,6 +1455,21 @@ components:
                 sf: 0.763900217608657
                 snr: 0.035072020695238175
                 time: 0.8941566755879066
+          - created_at: 1971-04-18T03:22:50Z
+            value:
+              payload: Blanditiis et accusantium ipsum rerum.
+              seqno: 7418648063896745000
+              statistics:
+                adr: 0.13561737572509147
+                channel: 0.3902353259273426
+                duplicate: 0.5028846468947827
+                freq: 0.7126670896862375
+                modBW: 0.863865814062173
+                rssi: 0.5253658020227948
+                seqno: 0.13888126585007018
+                sf: 0.763900217608657
+                snr: 0.035072020695238175
+                time: 0.8941566755879066
       required:
         - id
         - last_evaluated_key
@@ -1520,7 +1497,7 @@ components:
         id:
           type: string
           description: The id of the property
-          example: 7da0d34e-3ffd-4afd-825a-f796afccb256
+          example: f107703c-b170-47fa-a504-ece3412cc5be
           format: uuid
         last_value:
           description: Last value of this property
@@ -1550,7 +1527,7 @@ components:
         thing_id:
           type: string
           description: The id of the thing
-          example: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+          example: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
           format: uuid
         type:
           type: string
@@ -1585,14 +1562,14 @@ components:
         created_at: 1989-02-10T21:50:38Z
         deleted_at: 1986-10-07T08:22:10Z
         href: Molestiae veritatis maiores fugiat consequatur error vitae.
-        id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+        id: f107703c-b170-47fa-a504-ece3412cc5be
         last_value: 7384484011810122000
         max_value: 0.934796755829885
         min_value: 0.22797089832637085
         name: Veritatis voluptatem molestias repudiandae quia non et.
         permission: Eius blanditiis voluptatibus.
         persist: true
-        thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+        thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
         type: Sint quam provident magnam ex.
         update_parameter: 0.9108133227344599
         update_strategy: Odit rerum.
@@ -1619,14 +1596,48 @@ components:
         - created_at: 1989-02-10T21:50:38Z
           deleted_at: 1986-10-07T08:22:10Z
           href: Molestiae veritatis maiores fugiat consequatur error vitae.
-          id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+          id: f107703c-b170-47fa-a504-ece3412cc5be
           last_value: 7384484011810122000
           max_value: 0.934796755829885
           min_value: 0.22797089832637085
           name: Veritatis voluptatem molestias repudiandae quia non et.
           permission: Eius blanditiis voluptatibus.
           persist: true
-          thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+          thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+          type: Sint quam provident magnam ex.
+          update_parameter: 0.9108133227344599
+          update_strategy: Odit rerum.
+          updated_at: 1976-06-15T02:13:21Z
+          value_updated_at: 1975-12-11T02:29:59Z
+          variable_name: Nihil ut assumenda sed fugit.
+        - created_at: 1989-02-10T21:50:38Z
+          deleted_at: 1986-10-07T08:22:10Z
+          href: Molestiae veritatis maiores fugiat consequatur error vitae.
+          id: f107703c-b170-47fa-a504-ece3412cc5be
+          last_value: 7384484011810122000
+          max_value: 0.934796755829885
+          min_value: 0.22797089832637085
+          name: Veritatis voluptatem molestias repudiandae quia non et.
+          permission: Eius blanditiis voluptatibus.
+          persist: true
+          thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+          type: Sint quam provident magnam ex.
+          update_parameter: 0.9108133227344599
+          update_strategy: Odit rerum.
+          updated_at: 1976-06-15T02:13:21Z
+          value_updated_at: 1975-12-11T02:29:59Z
+          variable_name: Nihil ut assumenda sed fugit.
+        - created_at: 1989-02-10T21:50:38Z
+          deleted_at: 1986-10-07T08:22:10Z
+          href: Molestiae veritatis maiores fugiat consequatur error vitae.
+          id: f107703c-b170-47fa-a504-ece3412cc5be
+          last_value: 7384484011810122000
+          max_value: 0.934796755829885
+          min_value: 0.22797089832637085
+          name: Veritatis voluptatem molestias repudiandae quia non et.
+          permission: Eius blanditiis voluptatibus.
+          persist: true
+          thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
           type: Sint quam provident magnam ex.
           update_parameter: 0.9108133227344599
           update_strategy: Odit rerum.
@@ -1745,6 +1756,122 @@ components:
       required:
         - responses
         - resp_version
+    ArduinoSeriesRawBatchLastvalue:
+      title: "Mediatype identifier:
+        application/vnd.arduino.series.raw.batch.lastvalue+json; view=default"
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArduinoSeriesRawLastValueResponse"
+          description: Responses of the request
+          example:
+            - count_values: 3446443929356168000
+              property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+              thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+              times:
+                - 1989-12-20T02:26:23Z
+              values:
+                - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+            - count_values: 3446443929356168000
+              property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+              thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+              times:
+                - 1989-12-20T02:26:23Z
+              values:
+                - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+            - count_values: 3446443929356168000
+              property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+              thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+              times:
+                - 1989-12-20T02:26:23Z
+              values:
+                - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+        status:
+          type: string
+          description: Status of the response
+          example: Minus adipisci sed.
+      description: ArduinoSeriesRawBatchLastvalue media type (default view)
+      example:
+        responses:
+          - count_values: 3446443929356168000
+            property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+            thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+            times:
+              - 1989-12-20T02:26:23Z
+            values:
+              - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+          - count_values: 3446443929356168000
+            property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+            thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+            times:
+              - 1989-12-20T02:26:23Z
+            values:
+              - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+          - count_values: 3446443929356168000
+            property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+            thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+            times:
+              - 1989-12-20T02:26:23Z
+            values:
+              - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+        status: Minus adipisci sed.
+      required:
+        - status
+        - responses
+    ArduinoSeriesRawLastValueResponse:
+      title: "Mediatype identifier:
+        application/vnd.arduino.series.raw.last.value.response+json;
+        view=default"
+      type: object
+      properties:
+        count_values:
+          type: integer
+          description: Total number of values in the array 'values'
+          example: 3446443929356168000
+          format: int64
+        property_id:
+          type: string
+          description: Property id
+          example: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+          format: uuid
+        thing_id:
+          type: string
+          description: Thing id
+          example: 4af8d410-257d-4c3e-861b-fee43c560926
+          format: uuid
+        times:
+          type: array
+          items:
+            type: string
+            example: 1989-12-20T02:26:23Z
+            format: date-time
+          description: Timestamp in RFC3339
+          example:
+            - 1989-12-20T02:26:23Z
+        values:
+          type: array
+          items:
+            example: b297f707-638a-47b3-85cc-8f9d8eba0a1f
+          description: Values can be in Float, String, Bool, Object
+          example:
+            - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+      description: ArduinoSeriesRawLastValueResponse media type (default view)
+      example:
+        count_values: 3446443929356168000
+        property_id: 2be022d2-0d74-4d3c-b801-0cf04d7acbaa
+        thing_id: 4af8d410-257d-4c3e-861b-fee43c560926
+        times:
+          - 1989-12-20T02:26:23Z
+        values:
+          - b297f707-638a-47b3-85cc-8f9d8eba0a1f
+      required:
+        - thing_id
+        - property_id
+        - count_values
+        - values
+        - times
     ArduinoSeriesRawResponse:
       title: "Mediatype identifier: application/vnd.arduino.series.raw.response+json;
         view=default"
@@ -1949,52 +2076,52 @@ components:
         created_at:
           type: string
           description: Creation date of the thing
-          example: 2000-12-29T07:20:28Z
+          example: 1996-08-08T19:57:38Z
           format: date-time
         deleted_at:
           type: string
           description: Delete date of the thing
-          example: 1983-11-28T14:51:48Z
+          example: 1990-10-20T07:21:28Z
           format: date-time
         device_id:
           type: string
           description: The arn of the device
-          example: c06b2311-9a73-4b03-bfde-7558a2ee6936
+          example: 1ca0e199-407c-4f5f-914d-ee6cd6b8c580
           format: uuid
         href:
           type: string
           description: The api reference of this thing
-          example: Quisquam culpa ut quod esse commodi laborum.
+          example: Enim perspiciatis.
         id:
           type: string
           description: The id of the thing
-          example: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
+          example: 84f2478b-00de-436e-b01e-b600b2a69d21
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: Hic voluptates quia.
+          example: Recusandae in dolores sit impedit.
         properties:
           $ref: "#/components/schemas/ArduinoPropertyCollection"
         properties_count:
           type: number
           description: The number of properties of the thing
-          example: 0.2328691602863427
+          example: 0.5358556143241109
           format: double
         sketch_id:
           type: string
           description: The id of the attached sketch
-          example: a8cfe40a-936f-4d61-bc2d-8b413548b081
+          example: 384d49c6-d7b2-4ddb-836a-d426906300a7
           format: uuid
         updated_at:
           type: string
           description: Update date of the thing
-          example: 1986-03-17T17:41:35Z
+          example: 1971-06-05T01:14:12Z
           format: date-time
         user_id:
           type: string
           description: The user id of the owner
-          example: 67543934-5379-4d1f-baa2-309e3c6daade
+          example: 849fa638-b404-439f-9d25-20fa59d9050a
           format: uuid
         webhook_active:
           type: boolean
@@ -2003,39 +2130,73 @@ components:
         webhook_uri:
           type: string
           description: Webhook uri
-          example: In dolores sit.
+          example: Sint vel incidunt sunt.
       description: ArduinoThing media type (default view)
       example:
-        created_at: 2000-12-29T07:20:28Z
-        deleted_at: 1983-11-28T14:51:48Z
-        device_id: c06b2311-9a73-4b03-bfde-7558a2ee6936
-        href: Quisquam culpa ut quod esse commodi laborum.
-        id: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
-        name: Hic voluptates quia.
+        created_at: 1996-08-08T19:57:38Z
+        deleted_at: 1990-10-20T07:21:28Z
+        device_id: 1ca0e199-407c-4f5f-914d-ee6cd6b8c580
+        href: Enim perspiciatis.
+        id: 84f2478b-00de-436e-b01e-b600b2a69d21
+        name: Recusandae in dolores sit impedit.
         properties:
           - created_at: 1989-02-10T21:50:38Z
             deleted_at: 1986-10-07T08:22:10Z
             href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+            id: f107703c-b170-47fa-a504-ece3412cc5be
             last_value: 7384484011810122000
             max_value: 0.934796755829885
             min_value: 0.22797089832637085
             name: Veritatis voluptatem molestias repudiandae quia non et.
             permission: Eius blanditiis voluptatibus.
             persist: true
-            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+            thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
             type: Sint quam provident magnam ex.
             update_parameter: 0.9108133227344599
             update_strategy: Odit rerum.
             updated_at: 1976-06-15T02:13:21Z
             value_updated_at: 1975-12-11T02:29:59Z
             variable_name: Nihil ut assumenda sed fugit.
-        properties_count: 0.2328691602863427
-        sketch_id: a8cfe40a-936f-4d61-bc2d-8b413548b081
-        updated_at: 1986-03-17T17:41:35Z
-        user_id: 67543934-5379-4d1f-baa2-309e3c6daade
+          - created_at: 1989-02-10T21:50:38Z
+            deleted_at: 1986-10-07T08:22:10Z
+            href: Molestiae veritatis maiores fugiat consequatur error vitae.
+            id: f107703c-b170-47fa-a504-ece3412cc5be
+            last_value: 7384484011810122000
+            max_value: 0.934796755829885
+            min_value: 0.22797089832637085
+            name: Veritatis voluptatem molestias repudiandae quia non et.
+            permission: Eius blanditiis voluptatibus.
+            persist: true
+            thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+            type: Sint quam provident magnam ex.
+            update_parameter: 0.9108133227344599
+            update_strategy: Odit rerum.
+            updated_at: 1976-06-15T02:13:21Z
+            value_updated_at: 1975-12-11T02:29:59Z
+            variable_name: Nihil ut assumenda sed fugit.
+          - created_at: 1989-02-10T21:50:38Z
+            deleted_at: 1986-10-07T08:22:10Z
+            href: Molestiae veritatis maiores fugiat consequatur error vitae.
+            id: f107703c-b170-47fa-a504-ece3412cc5be
+            last_value: 7384484011810122000
+            max_value: 0.934796755829885
+            min_value: 0.22797089832637085
+            name: Veritatis voluptatem molestias repudiandae quia non et.
+            permission: Eius blanditiis voluptatibus.
+            persist: true
+            thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+            type: Sint quam provident magnam ex.
+            update_parameter: 0.9108133227344599
+            update_strategy: Odit rerum.
+            updated_at: 1976-06-15T02:13:21Z
+            value_updated_at: 1975-12-11T02:29:59Z
+            variable_name: Nihil ut assumenda sed fugit.
+        properties_count: 0.5358556143241109
+        sketch_id: 384d49c6-d7b2-4ddb-836a-d426906300a7
+        updated_at: 1971-06-05T01:14:12Z
+        user_id: 849fa638-b404-439f-9d25-20fa59d9050a
         webhook_active: false
-        webhook_uri: In dolores sit.
+        webhook_uri: Sint vel incidunt sunt.
       required:
         - id
         - user_id
@@ -2050,159 +2211,108 @@ components:
       description: ArduinoThingCollection is the media type for an array of ArduinoThing
         (default view)
       example:
-        - created_at: 2000-12-29T07:20:28Z
-          deleted_at: 1983-11-28T14:51:48Z
-          device_id: c06b2311-9a73-4b03-bfde-7558a2ee6936
-          href: Quisquam culpa ut quod esse commodi laborum.
-          id: 4b7c66c9-fdac-4fea-81a5-9792ca63e78e
-          name: Hic voluptates quia.
+        - created_at: 1996-08-08T19:57:38Z
+          deleted_at: 1990-10-20T07:21:28Z
+          device_id: 1ca0e199-407c-4f5f-914d-ee6cd6b8c580
+          href: Enim perspiciatis.
+          id: 84f2478b-00de-436e-b01e-b600b2a69d21
+          name: Recusandae in dolores sit impedit.
           properties:
             - created_at: 1989-02-10T21:50:38Z
               deleted_at: 1986-10-07T08:22:10Z
               href: Molestiae veritatis maiores fugiat consequatur error vitae.
-              id: 7da0d34e-3ffd-4afd-825a-f796afccb256
+              id: f107703c-b170-47fa-a504-ece3412cc5be
               last_value: 7384484011810122000
               max_value: 0.934796755829885
               min_value: 0.22797089832637085
               name: Veritatis voluptatem molestias repudiandae quia non et.
               permission: Eius blanditiis voluptatibus.
               persist: true
-              thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
+              thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
               type: Sint quam provident magnam ex.
               update_parameter: 0.9108133227344599
               update_strategy: Odit rerum.
               updated_at: 1976-06-15T02:13:21Z
               value_updated_at: 1975-12-11T02:29:59Z
               variable_name: Nihil ut assumenda sed fugit.
-          properties_count: 0.2328691602863427
-          sketch_id: a8cfe40a-936f-4d61-bc2d-8b413548b081
-          updated_at: 1986-03-17T17:41:35Z
-          user_id: 67543934-5379-4d1f-baa2-309e3c6daade
+            - created_at: 1989-02-10T21:50:38Z
+              deleted_at: 1986-10-07T08:22:10Z
+              href: Molestiae veritatis maiores fugiat consequatur error vitae.
+              id: f107703c-b170-47fa-a504-ece3412cc5be
+              last_value: 7384484011810122000
+              max_value: 0.934796755829885
+              min_value: 0.22797089832637085
+              name: Veritatis voluptatem molestias repudiandae quia non et.
+              permission: Eius blanditiis voluptatibus.
+              persist: true
+              thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+              type: Sint quam provident magnam ex.
+              update_parameter: 0.9108133227344599
+              update_strategy: Odit rerum.
+              updated_at: 1976-06-15T02:13:21Z
+              value_updated_at: 1975-12-11T02:29:59Z
+              variable_name: Nihil ut assumenda sed fugit.
+            - created_at: 1989-02-10T21:50:38Z
+              deleted_at: 1986-10-07T08:22:10Z
+              href: Molestiae veritatis maiores fugiat consequatur error vitae.
+              id: f107703c-b170-47fa-a504-ece3412cc5be
+              last_value: 7384484011810122000
+              max_value: 0.934796755829885
+              min_value: 0.22797089832637085
+              name: Veritatis voluptatem molestias repudiandae quia non et.
+              permission: Eius blanditiis voluptatibus.
+              persist: true
+              thing_id: dca063c5-4f38-46a6-b02a-a52a9dc77eb9
+              type: Sint quam provident magnam ex.
+              update_parameter: 0.9108133227344599
+              update_strategy: Odit rerum.
+              updated_at: 1976-06-15T02:13:21Z
+              value_updated_at: 1975-12-11T02:29:59Z
+              variable_name: Nihil ut assumenda sed fugit.
+          properties_count: 0.5358556143241109
+          sketch_id: 384d49c6-d7b2-4ddb-836a-d426906300a7
+          updated_at: 1971-06-05T01:14:12Z
+          user_id: 849fa638-b404-439f-9d25-20fa59d9050a
           webhook_active: false
-          webhook_uri: In dolores sit.
-    ArduinoThinglayout:
-      title: "Mediatype identifier: application/vnd.arduino.thinglayout+json;
-        view=default"
+          webhook_uri: Sint vel incidunt sunt.
+    BatchLastValueRequestsMediaV1:
+      title: BatchLastValueRequestsMediaV1
       type: object
       properties:
-        created_at:
-          type: string
-          description: Creation date of the thing
-          example: 2007-09-17T05:48:49Z
-          format: date-time
-        data_retention_days:
-          type: number
-          description: How many days the data will be kept
-          example: 0.3181677016737969
-          format: double
-        deleted_at:
-          type: string
-          description: Delete date of the thing
-          example: 2003-07-10T10:46:25Z
-          format: date-time
-        device_id:
-          type: string
-          description: The arn of the device
-          example: ae10eaef-5023-42b2-b7bd-74ec6208ffec
-          format: uuid
-        href:
-          type: string
-          description: The api reference of this thing
-          example: Sint vel incidunt sunt.
-        id:
-          type: string
-          description: The id of the thing
-          example: 46f3cad8-7569-4fda-9235-5d8162ec349c
-          format: uuid
-        name:
-          type: string
-          description: The friendly name of the thing
-          example: Reiciendis molestiae pariatur ex a.
-        properties:
-          $ref: "#/components/schemas/ArduinoPropertyCollection"
-        properties_count:
-          type: number
-          description: The number of properties of the thing
-          example: 0.18704486014797067
-          format: double
-        sketch_id:
-          type: string
-          description: The id of the attached sketch
-          example: a7cd0a85-6cb0-4d61-8ca8-7044d51f969c
-          format: uuid
-        updated_at:
-          type: string
-          description: Update date of the thing
-          example: 1987-09-11T06:54:45Z
-          format: date-time
-        user_id:
-          type: string
-          description: The user id of the owner
-          example: 7c65dab9-0c82-467d-affd-b8c0af877826
-          format: uuid
-        webhook_active:
-          type: boolean
-          description: Webhook uri
-          example: true
-        webhook_uri:
-          type: string
-          description: Webhook uri
-          example: Reiciendis amet consequuntur id deserunt atque.
-      description: ArduinoThinglayout media type (default view)
+        requests:
+          type: array
+          items:
+            $ref: "#/components/schemas/BatchQueryRawLastValueRequestMediaV1"
+          description: Requests
+          example:
+            - property_id: 63715088-d2b5-4b91-b06f-3bfb1b813555
+              thing_id: afcf2f51-5a24-479e-9a3c-e8bbe3d1fa13
       example:
-        created_at: 2007-09-17T05:48:49Z
-        data_retention_days: 0.3181677016737969
-        deleted_at: 2003-07-10T10:46:25Z
-        device_id: ae10eaef-5023-42b2-b7bd-74ec6208ffec
-        href: Sint vel incidunt sunt.
-        id: 46f3cad8-7569-4fda-9235-5d8162ec349c
-        name: Reiciendis molestiae pariatur ex a.
-        properties:
-          - created_at: 1989-02-10T21:50:38Z
-            deleted_at: 1986-10-07T08:22:10Z
-            href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
-            last_value: 7384484011810122000
-            max_value: 0.934796755829885
-            min_value: 0.22797089832637085
-            name: Veritatis voluptatem molestias repudiandae quia non et.
-            permission: Eius blanditiis voluptatibus.
-            persist: true
-            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
-            type: Sint quam provident magnam ex.
-            update_parameter: 0.9108133227344599
-            update_strategy: Odit rerum.
-            updated_at: 1976-06-15T02:13:21Z
-            value_updated_at: 1975-12-11T02:29:59Z
-            variable_name: Nihil ut assumenda sed fugit.
-          - created_at: 1989-02-10T21:50:38Z
-            deleted_at: 1986-10-07T08:22:10Z
-            href: Molestiae veritatis maiores fugiat consequatur error vitae.
-            id: 7da0d34e-3ffd-4afd-825a-f796afccb256
-            last_value: 7384484011810122000
-            max_value: 0.934796755829885
-            min_value: 0.22797089832637085
-            name: Veritatis voluptatem molestias repudiandae quia non et.
-            permission: Eius blanditiis voluptatibus.
-            persist: true
-            thing_id: 6bd21de0-760d-419d-b0bd-2c282fef43fb
-            type: Sint quam provident magnam ex.
-            update_parameter: 0.9108133227344599
-            update_strategy: Odit rerum.
-            updated_at: 1976-06-15T02:13:21Z
-            value_updated_at: 1975-12-11T02:29:59Z
-            variable_name: Nihil ut assumenda sed fugit.
-        properties_count: 0.18704486014797067
-        sketch_id: a7cd0a85-6cb0-4d61-8ca8-7044d51f969c
-        updated_at: 1987-09-11T06:54:45Z
-        user_id: 7c65dab9-0c82-467d-affd-b8c0af877826
-        webhook_active: true
-        webhook_uri: Reiciendis amet consequuntur id deserunt atque.
+        requests:
+          - property_id: 63715088-d2b5-4b91-b06f-3bfb1b813555
+            thing_id: afcf2f51-5a24-479e-9a3c-e8bbe3d1fa13
       required:
-        - id
-        - user_id
-        - name
-        - href
+        - requests
+    BatchQueryRawLastValueRequestMediaV1:
+      title: BatchQueryRawLastValueRequestMediaV1
+      type: object
+      properties:
+        property_id:
+          type: string
+          description: Property id
+          example: 63715088-d2b5-4b91-b06f-3bfb1b813555
+          format: uuid
+        thing_id:
+          type: string
+          description: Thing id
+          example: afcf2f51-5a24-479e-9a3c-e8bbe3d1fa13
+          format: uuid
+      example:
+        property_id: 63715088-d2b5-4b91-b06f-3bfb1b813555
+        thing_id: afcf2f51-5a24-479e-9a3c-e8bbe3d1fa13
+      required:
+        - thing_id
+        - property_id
     BatchQueryRawRequestMediaV1:
       title: BatchQueryRawRequestMediaV1
       type: object
@@ -2210,36 +2320,36 @@ components:
         from:
           type: string
           description: From timestamp
-          example: 1976-12-09T22:06:42Z
+          example: 1992-07-30T22:02:50Z
           format: date-time
         q:
           type: string
           description: Query
-          example: Quibusdam doloribus quidem qui voluptates repudiandae.
+          example: Doloremque quibusdam doloribus.
         series_limit:
           type: integer
           description: Max of values
-          example: 4129196332609904600
+          example: 785550034178255100
           format: int64
         sort:
           type: string
           description: Sorting
           default: DESC
-          example: DESC
+          example: ASC
           enum:
             - ASC
             - DESC
         to:
           type: string
           description: To timestamp
-          example: 1970-06-03T02:59:03Z
+          example: 1987-01-01T02:00:22Z
           format: date-time
       example:
-        from: 1976-12-09T22:06:42Z
-        q: Quibusdam doloribus quidem qui voluptates repudiandae.
-        series_limit: 4129196332609904600
-        sort: DESC
-        to: 1970-06-03T02:59:03Z
+        from: 1992-07-30T22:02:50Z
+        q: Doloremque quibusdam doloribus.
+        series_limit: 785550034178255100
+        sort: ASC
+        to: 1987-01-01T02:00:22Z
       required:
         - q
     BatchQueryRawRequestsMediaV1:
@@ -2252,44 +2362,34 @@ components:
             $ref: "#/components/schemas/BatchQueryRawRequestMediaV1"
           description: Requests
           example:
-            - from: 1976-12-09T22:06:42Z
-              q: Quibusdam doloribus quidem qui voluptates repudiandae.
-              series_limit: 4129196332609904600
-              sort: DESC
-              to: 1970-06-03T02:59:03Z
-            - from: 1976-12-09T22:06:42Z
-              q: Quibusdam doloribus quidem qui voluptates repudiandae.
-              series_limit: 4129196332609904600
-              sort: DESC
-              to: 1970-06-03T02:59:03Z
-            - from: 1976-12-09T22:06:42Z
-              q: Quibusdam doloribus quidem qui voluptates repudiandae.
-              series_limit: 4129196332609904600
-              sort: DESC
-              to: 1970-06-03T02:59:03Z
+            - from: 1992-07-30T22:02:50Z
+              q: Doloremque quibusdam doloribus.
+              series_limit: 785550034178255100
+              sort: ASC
+              to: 1987-01-01T02:00:22Z
+            - from: 1992-07-30T22:02:50Z
+              q: Doloremque quibusdam doloribus.
+              series_limit: 785550034178255100
+              sort: ASC
+              to: 1987-01-01T02:00:22Z
         resp_version:
           type: integer
           description: Response version
-          example: 6163656705686021000
+          example: 689977076942724500
           format: int64
       example:
         requests:
-          - from: 1976-12-09T22:06:42Z
-            q: Quibusdam doloribus quidem qui voluptates repudiandae.
-            series_limit: 4129196332609904600
-            sort: DESC
-            to: 1970-06-03T02:59:03Z
-          - from: 1976-12-09T22:06:42Z
-            q: Quibusdam doloribus quidem qui voluptates repudiandae.
-            series_limit: 4129196332609904600
-            sort: DESC
-            to: 1970-06-03T02:59:03Z
-          - from: 1976-12-09T22:06:42Z
-            q: Quibusdam doloribus quidem qui voluptates repudiandae.
-            series_limit: 4129196332609904600
-            sort: DESC
-            to: 1970-06-03T02:59:03Z
-        resp_version: 6163656705686021000
+          - from: 1992-07-30T22:02:50Z
+            q: Doloremque quibusdam doloribus.
+            series_limit: 785550034178255100
+            sort: ASC
+            to: 1987-01-01T02:00:22Z
+          - from: 1992-07-30T22:02:50Z
+            q: Doloremque quibusdam doloribus.
+            series_limit: 785550034178255100
+            sort: ASC
+            to: 1987-01-01T02:00:22Z
+        resp_version: 689977076942724500
       required:
         - requests
         - resp_version
@@ -2312,33 +2412,33 @@ components:
         from:
           type: string
           description: From timestamp
-          example: 1989-08-14T02:07:37Z
+          example: 2002-10-01T18:48:54Z
           format: date-time
         interval:
           type: integer
           description: Resolution in seconds
-          example: 2779759917727765500
+          example: 5612543483505391000
           format: int64
         q:
           type: string
           description: Query
-          example: Perferendis assumenda accusantium ut nihil asperiores.
+          example: Ut nihil.
         series_limit:
           type: integer
           description: Max of values
-          example: 5751951289186055000
+          example: 6393854859798431000
           format: int64
         to:
           type: string
           description: To timestamp
-          example: 2013-08-05T10:35:26Z
+          example: 2003-11-19T16:29:01Z
           format: date-time
       example:
-        from: 1989-08-14T02:07:37Z
-        interval: 2779759917727765500
-        q: Perferendis assumenda accusantium ut nihil asperiores.
-        series_limit: 5751951289186055000
-        to: 2013-08-05T10:35:26Z
+        from: 2002-10-01T18:48:54Z
+        interval: 5612543483505391000
+        q: Ut nihil.
+        series_limit: 6393854859798431000
+        to: 2003-11-19T16:29:01Z
       required:
         - q
         - from
@@ -2353,34 +2453,44 @@ components:
             $ref: "#/components/schemas/BatchQueryRequestMediaV1"
           description: Requests
           example:
-            - from: 1989-08-14T02:07:37Z
-              interval: 2779759917727765500
-              q: Perferendis assumenda accusantium ut nihil asperiores.
-              series_limit: 5751951289186055000
-              to: 2013-08-05T10:35:26Z
-            - from: 1989-08-14T02:07:37Z
-              interval: 2779759917727765500
-              q: Perferendis assumenda accusantium ut nihil asperiores.
-              series_limit: 5751951289186055000
-              to: 2013-08-05T10:35:26Z
+            - from: 2002-10-01T18:48:54Z
+              interval: 5612543483505391000
+              q: Ut nihil.
+              series_limit: 6393854859798431000
+              to: 2003-11-19T16:29:01Z
+            - from: 2002-10-01T18:48:54Z
+              interval: 5612543483505391000
+              q: Ut nihil.
+              series_limit: 6393854859798431000
+              to: 2003-11-19T16:29:01Z
+            - from: 2002-10-01T18:48:54Z
+              interval: 5612543483505391000
+              q: Ut nihil.
+              series_limit: 6393854859798431000
+              to: 2003-11-19T16:29:01Z
         resp_version:
           type: integer
           description: Response version
-          example: 6837933507181999000
+          example: 6095309048300083000
           format: int64
       example:
         requests:
-          - from: 1989-08-14T02:07:37Z
-            interval: 2779759917727765500
-            q: Perferendis assumenda accusantium ut nihil asperiores.
-            series_limit: 5751951289186055000
-            to: 2013-08-05T10:35:26Z
-          - from: 1989-08-14T02:07:37Z
-            interval: 2779759917727765500
-            q: Perferendis assumenda accusantium ut nihil asperiores.
-            series_limit: 5751951289186055000
-            to: 2013-08-05T10:35:26Z
-        resp_version: 6837933507181999000
+          - from: 2002-10-01T18:48:54Z
+            interval: 5612543483505391000
+            q: Ut nihil.
+            series_limit: 6393854859798431000
+            to: 2003-11-19T16:29:01Z
+          - from: 2002-10-01T18:48:54Z
+            interval: 5612543483505391000
+            q: Ut nihil.
+            series_limit: 6393854859798431000
+            to: 2003-11-19T16:29:01Z
+          - from: 2002-10-01T18:48:54Z
+            interval: 5612543483505391000
+            q: Ut nihil.
+            series_limit: 6393854859798431000
+            to: 2003-11-19T16:29:01Z
+        resp_version: 6095309048300083000
       required:
         - requests
         - resp_version
@@ -2391,77 +2501,77 @@ components:
         id:
           type: string
           description: The UUID of the device
-          example: 38899172-0f52-43cc-8e77-72b96ca97d8d
+          example: 31f07f13-7477-404e-9f88-bcd93a23dbb0
           format: uuid
         name:
           type: string
           description: The friendly name of the device
-          example: 842pc89wxb
+          example: 9cejjzz3hn
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         serial:
           type: string
           description: The serial uuid of the device
-          example: vk9cejjzz3
+          example: b068uq00ks
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         type:
           type: string
           description: The type of the device
-          example: nyb068uq00
+          example: w0rbkookyt
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         user_id:
           type: string
           description: The user_id associated to the device. If absent it will be inferred
             from the authentication header
-          example: e3e1f65e-198e-4400-b20a-4aa09f97db62
+          example: b2bf3423-1448-41e6-85f3-025ff8718f58
           format: uuid
       description: DeviceV2 describes a device.
       example:
-        id: 38899172-0f52-43cc-8e77-72b96ca97d8d
-        name: 842pc89wxb
-        serial: vk9cejjzz3
-        type: nyb068uq00
-        user_id: e3e1f65e-198e-4400-b20a-4aa09f97db62
+        id: 31f07f13-7477-404e-9f88-bcd93a23dbb0
+        name: 9cejjzz3hn
+        serial: b068uq00ks
+        type: w0rbkookyt
+        user_id: b2bf3423-1448-41e6-85f3-025ff8718f58
       required:
         - type
-    CreateThingsV1Payload:
-      title: CreateThingsV1Payload
+    CreateThingsV2Payload:
+      title: CreateThingsV2Payload
       type: object
       properties:
         device_id:
           type: string
           description: The arn of the associated device
-          example: a8c661a2-1d90-4aee-98b8-026183ef868a
+          example: e7a873b5-f0ac-4bbd-9e67-165ae7992ee6
           format: uuid
         id:
           type: string
           description: The id of the thing
-          example: f57de811-c7bb-499a-94d4-f3de4627228c
+          example: 2b38ffaf-db9c-4b8e-a6ba-72a98ad2b859
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: 4vlfwmzgky
+          example: fje4vlfwmz
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         webhook_active:
           type: boolean
           description: Webhook uri
-          example: false
+          example: true
         webhook_uri:
           type: string
           description: Webhook uri
-          example: http://skilesabbott.info/myra_klocko
+          example: http://west.net/neil.wuckert
           format: uri
       description: ThingPayload describes a thing
       example:
-        device_id: a8c661a2-1d90-4aee-98b8-026183ef868a
-        id: f57de811-c7bb-499a-94d4-f3de4627228c
-        name: 4vlfwmzgky
-        webhook_active: false
-        webhook_uri: http://skilesabbott.info/myra_klocko
+        device_id: e7a873b5-f0ac-4bbd-9e67-165ae7992ee6
+        id: 2b38ffaf-db9c-4b8e-a6ba-72a98ad2b859
+        name: fje4vlfwmz
+        webhook_active: true
+        webhook_uri: http://west.net/neil.wuckert
       required:
         - name
     devicev2:
@@ -2471,39 +2581,39 @@ components:
         id:
           type: string
           description: The UUID of the device
-          example: 38899172-0f52-43cc-8e77-72b96ca97d8d
+          example: 31f07f13-7477-404e-9f88-bcd93a23dbb0
           format: uuid
         name:
           type: string
           description: The friendly name of the device
-          example: 842pc89wxb
+          example: 9cejjzz3hn
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         serial:
           type: string
           description: The serial uuid of the device
-          example: vk9cejjzz3
+          example: b068uq00ks
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         type:
           type: string
           description: The type of the device
-          example: nyb068uq00
+          example: w0rbkookyt
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         user_id:
           type: string
           description: The user_id associated to the device. If absent it will be inferred
             from the authentication header
-          example: e3e1f65e-198e-4400-b20a-4aa09f97db62
+          example: b2bf3423-1448-41e6-85f3-025ff8718f58
           format: uuid
       description: DeviceV2 describes a device.
       example:
-        id: 38899172-0f52-43cc-8e77-72b96ca97d8d
-        name: 842pc89wxb
-        serial: vk9cejjzz3
-        type: nyb068uq00
-        user_id: e3e1f65e-198e-4400-b20a-4aa09f97db62
+        id: 31f07f13-7477-404e-9f88-bcd93a23dbb0
+        name: 9cejjzz3hn
+        serial: b068uq00ks
+        type: w0rbkookyt
+        user_id: b2bf3423-1448-41e6-85f3-025ff8718f58
     error:
       title: "Mediatype identifier: application/vnd.goa.error+json; view=default"
       type: object
@@ -2548,12 +2658,12 @@ components:
         name:
           type: string
           description: The name of the property
-          example: Est rem.
+          example: Qui dicta qui in dolore soluta reiciendis.
         type:
           type: string
           description: The type of the property
           default: infer
-          example: hex
+          example: json
           enum:
             - infer
             - base64
@@ -2561,11 +2671,11 @@ components:
             - json
         value:
           description: The last value of the property
-          example: 0.43255263923965526
+          example: 0.17477107288756727
       example:
-        name: Est rem.
-        type: hex
-        value: 0.43255263923965526
+        name: Qui dicta qui in dolore soluta reiciendis.
+        type: json
+        value: 0.17477107288756727
       required:
         - name
         - value
@@ -2579,20 +2689,26 @@ components:
           items:
             $ref: "#/components/schemas/propertiesValue"
           example:
-            - name: Est rem.
-              type: hex
-              value: 0.43255263923965526
-            - name: Est rem.
-              type: hex
-              value: 0.43255263923965526
+            - name: Qui dicta qui in dolore soluta reiciendis.
+              type: json
+              value: 0.17477107288756727
+            - name: Qui dicta qui in dolore soluta reiciendis.
+              type: json
+              value: 0.17477107288756727
+            - name: Qui dicta qui in dolore soluta reiciendis.
+              type: json
+              value: 0.17477107288756727
       example:
         properties:
-          - name: Est rem.
-            type: hex
-            value: 0.43255263923965526
-          - name: Est rem.
-            type: hex
-            value: 0.43255263923965526
+          - name: Qui dicta qui in dolore soluta reiciendis.
+            type: json
+            value: 0.17477107288756727
+          - name: Qui dicta qui in dolore soluta reiciendis.
+            type: json
+            value: 0.17477107288756727
+          - name: Qui dicta qui in dolore soluta reiciendis.
+            type: json
+            value: 0.17477107288756727
       required:
         - properties
     property:
@@ -2602,21 +2718,21 @@ components:
         max_value:
           type: number
           description: Maximum value of this property
-          example: 0.4079389419942323
+          example: 0.47757927788576215
           format: double
         min_value:
           type: number
           description: Minimum value of this property
-          example: 0.5470164902865439
+          example: 0.1926071192979542
           format: double
         name:
           type: string
           description: The friendly name of the property
-          example: Iusto ipsum harum consequatur in amet placeat.
+          example: Magnam quo consequatur.
         permission:
           type: string
           description: The permission of the property
-          example: READ_ONLY
+          example: READ_WRITE
           enum:
             - READ_ONLY
             - READ_WRITE
@@ -2624,11 +2740,11 @@ components:
           type: boolean
           description: If true, data will persist into a timeseries database
           default: false
-          example: false
+          example: true
         type:
           type: string
           description: The type of the property
-          example: FARAD
+          example: GENERIC_COMPLEX_PROPERTY
           enum:
             - ANALOG
             - CHARSTRING
@@ -2715,54 +2831,53 @@ components:
           type: number
           description: The update frequency in seconds, or the amount of the property has
             to change in order to trigger an update
-          example: 0.4218505192187911
+          example: 0.3069002277200649
           format: double
         update_strategy:
           type: string
           description: The update strategy for the property value
-          example: TIMED
+          example: ON_CHANGE
           enum:
             - ON_CHANGE
             - TIMED
         variable_name:
           type: string
           description: The  sketch variable name of the property
-          example: 7m0vez0ajv
+          example: 0ajvuowy6s
           pattern: ^[a-zA-Z_][a-zA-Z0-9_]*$
           maxLength: 64
       description: PropertyPayload describes a property of a thing. No field is mandatory
       example:
-        max_value: 0.4079389419942323
-        min_value: 0.5470164902865439
-        name: Iusto ipsum harum consequatur in amet placeat.
-        permission: READ_ONLY
-        persist: false
-        type: FARAD
-        update_parameter: 0.4218505192187911
-        update_strategy: TIMED
-        variable_name: 7m0vez0ajv
+        max_value: 0.47757927788576215
+        min_value: 0.1926071192979542
+        name: Magnam quo consequatur.
+        permission: READ_WRITE
+        persist: true
+        type: GENERIC_COMPLEX_PROPERTY
+        update_parameter: 0.3069002277200649
+        update_strategy: ON_CHANGE
+        variable_name: 0ajvuowy6s
       required:
         - name
         - type
         - permission
         - update_strategy
-    propertyStringValue:
-      title: propertyStringValue
+    propertyValue:
+      title: propertyValue
       type: object
       properties:
         device_id:
           type: string
           description: The device who send the property
-          example: 8b188d98-b0e6-4fea-869f-9e1df9105aba
+          example: 091242ad-6bda-4a77-bde6-c9b43d3488c3
           format: uuid
         value:
-          type: string
-          description: The property value, as string
-          example: Totam in.
-      description: PropertyStringValuePayload describes a property value
+          description: The property value
+          example: 0.30138217417885704
+      description: PropertyValuePayload describes a property value
       example:
-        device_id: 8b188d98-b0e6-4fea-869f-9e1df9105aba
-        value: Totam in.
+        device_id: 091242ad-6bda-4a77-bde6-c9b43d3488c3
+        value: 0.30138217417885704
       required:
         - value
     thing:
@@ -2772,35 +2887,35 @@ components:
         device_id:
           type: string
           description: The arn of the associated device
-          example: a8c661a2-1d90-4aee-98b8-026183ef868a
+          example: e7a873b5-f0ac-4bbd-9e67-165ae7992ee6
           format: uuid
         id:
           type: string
           description: The id of the thing
-          example: f57de811-c7bb-499a-94d4-f3de4627228c
+          example: 2b38ffaf-db9c-4b8e-a6ba-72a98ad2b859
           format: uuid
         name:
           type: string
           description: The friendly name of the thing
-          example: 4vlfwmzgky
+          example: fje4vlfwmz
           pattern: "[a-zA-Z0-9_.@-]+"
           maxLength: 64
         webhook_active:
           type: boolean
           description: Webhook uri
-          example: false
+          example: true
         webhook_uri:
           type: string
           description: Webhook uri
-          example: http://skilesabbott.info/myra_klocko
+          example: http://west.net/neil.wuckert
           format: uri
       description: ThingPayload describes a thing
       example:
-        device_id: a8c661a2-1d90-4aee-98b8-026183ef868a
-        id: f57de811-c7bb-499a-94d4-f3de4627228c
-        name: 4vlfwmzgky
-        webhook_active: false
-        webhook_uri: http://skilesabbott.info/myra_klocko
+        device_id: e7a873b5-f0ac-4bbd-9e67-165ae7992ee6
+        id: 2b38ffaf-db9c-4b8e-a6ba-72a98ad2b859
+        name: fje4vlfwmz
+        webhook_active: true
+        webhook_uri: http://west.net/neil.wuckert
     thingSketch:
       title: thingSketch
       type: object
@@ -2808,13 +2923,13 @@ components:
         pass:
           type: string
           description: The wifi password
-          example: Iure et dolore excepturi.
+          example: Omnis occaecati aut iure.
         ssid:
           type: string
           description: The wifi ssid to connect
-          example: Modi aut.
+          example: Dolore excepturi rem.
       description: ThingSketchPayload describes a sketch of a thing
       example:
-        pass: Iure et dolore excepturi.
-        ssid: Modi aut.
+        pass: Omnis occaecati aut iure.
+        ssid: Dolore excepturi rem.
 
