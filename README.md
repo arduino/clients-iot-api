@@ -91,7 +91,15 @@ docs for more details.
 Once templates are patched and ready to be used, this step is as easy as running:
 
 ```sh
-apigentools generate --clone-repo
+apigentools generate
+```
+
+The previous command is fine for local development but in case the generated code 
+has to be pushed upstream to each client's repository, run the previous command as 
+follows:
+
+```sh
+ apigentools generate --clone-repo
 ```
 
 ### Push generated code to each client's git repository
