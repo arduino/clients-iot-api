@@ -14,8 +14,8 @@
             ]
         },
         "python": {
-            "github_repo_name": "iot-api-client-py",
-            "github_org_name": "bcmi-labs",
+            "github_repo_name": "iot-client-py",
+            "github_org_name": "arduino",
             "spec_versions": [
                 "v2"
             ],

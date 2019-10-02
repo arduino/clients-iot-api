@@ -1,5 +1,5 @@
 {
-    "packageName": "iot_api_client",
-    "projectName": "iot_api",
-    "packageVersion": "0.0.1"
+    "packageName": "arduino_iot_rest",
+    "projectName": "arduino-iot-client",
+    "packageVersion": "1.0.0-beta1"
 }
