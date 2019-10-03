@@ -9,6 +9,15 @@ that let us keep the spec files and the configuration bits in one single repo
 (this one) without duplicating the boilerplate on each git repo hosting the
 actual clients.
 
+## [IMPORTANT] Client generation process
+
+The process to generate the clients explained in paragraphs below is fully
+automated through GitHub actions. The workflow will start every time a tag in the form of `vX.Y` (e.g. `v2.1`) is pushed to this repo. If the workflow completes
+successfully, a PR will be opened for each client in their respective git
+repositories. See the
+[actions page](https://github.com/bcmi-labs/clients-iot-apiactions) to
+monitor the status of a workflow.
+
 ## Sample clients
 
 Following clients have been successfully generated with the present workflow:
@@ -17,16 +26,7 @@ Following clients have been successfully generated with the present workflow:
 * [Python](https://github.com/bcmi-labs/iot-api-client-py)
 * [Javascript](https://github.com/bcmi-labs/iot-api-client-js)
 
-## Client generation process
-
-The workflow (see below for details) to generate the clients is fully automated
-through GitHub actions. The workflow will start every time a tag in the form of
-`X.Y` (e.g. `2.1`) is pushed to this repo. If the workflow completes successfully,
-a PR will be opened for each client in their respective git repositories. See
-the [actions page](https://github.com/bcmi-labs/clients-iot-api/actions) to
-monitor the status of a workflow.
-
-## Workflow
+## Generation process
 
 Apart from the initial setup (the procedures needed to setup this git repo),
 the ideal workflow consists in updating this repo every time the API service
@@ -94,8 +94,8 @@ Once templates are patched and ready to be used, this step is as easy as running
 apigentools generate
 ```
 
-The previous command is fine for local development but in case the generated code 
-has to be pushed upstream to each client's repository, run the previous command as 
+The previous command is fine for local development but in case the generated code
+has to be pushed upstream to each client's repository, run the previous command as
 follows:
 
 ```sh
