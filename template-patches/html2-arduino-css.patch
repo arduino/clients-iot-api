@@ -1,8 +1,26 @@
+diff --git a/htmlDocs2/fonts.mustache b/htmlDocs2/fonts.mustache
+index 957dd2145f..4e21f4593a 100644
+--- a/htmlDocs2/fonts.mustache
++++ b/htmlDocs2/fonts.mustache
+@@ -1 +1 @@
+-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+\ No newline at end of file
++@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+\ No newline at end of file
 diff --git a/htmlDocs2/styles.mustache b/htmlDocs2/styles.mustache
-index 395aca4f83..98aa82b921 100644
+index 395aca4f83..cebb130e4d 100644
 --- a/htmlDocs2/styles.mustache
 +++ b/htmlDocs2/styles.mustache
-@@ -11,7 +11,7 @@ body {
+@@ -2,20 +2,16 @@
+  * Content
+  * ------------------------------------------------------------------------------------------ */
+ 
+-
+-* {
+-  font-family: 'Source Code Pro', sans-serif;
+-}
+ body {
+   min-width: 980px;
  }
  
  .app-desc {
@@ -11,7 +29,20 @@ index 395aca4f83..98aa82b921 100644
  }
  
  body, p, a, div, th, td, li {
-@@ -35,7 +35,7 @@ td.code {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   text-shadow: none !important;
+@@ -23,7 +19,6 @@ body, p, a, div, th, td, li {
+ 
+ td.code {
+   font-size: 14px;
+-  font-family: "Source Code Pro", monospace;
+   font-style: normal;
+   font-weight: 400;
+ }
+@@ -35,11 +30,11 @@ td.code {
  }
  
  p {
@@ -20,7 +51,21 @@ index 395aca4f83..98aa82b921 100644
  }
  
  h1 {
-@@ -57,7 +57,7 @@ h2 {
+-  font-family: "Source Sans Pro Semibold", sans-serif;
++  font-family: "Open Sans", sans-serif;
+   font-weight: normal;
+   font-size: 44px;
+   line-height: 50px;
+@@ -48,7 +43,7 @@ h1 {
+ }
+ 
+ h2 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: normal;
+   font-size: 24px;
+   line-height: 40px;
+@@ -57,12 +52,12 @@ h2 {
  }
  
  section {
@@ -29,7 +74,57 @@ index 395aca4f83..98aa82b921 100644
    padding: 30px 0;
  }
  
-@@ -129,7 +129,7 @@ td {
+ section h1 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 700;
+   font-size: 32px;
+   line-height: 40px;
+@@ -76,14 +71,14 @@ article {
+ }
+ 
+ article h1 {
+-  font-family: "Source Sans Pro Bold", sans-serif;
++  font-family: "Open Sans", sans-serif;
+   font-weight: 600;
+   font-size: 24px;
+   line-height: 26px;
+ }
+ 
+ article h2 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 24px;
+@@ -91,7 +86,7 @@ article h2 {
+ }
+ 
+ article h3 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 18px;
+@@ -99,7 +94,7 @@ article h3 {
+ }
+ 
+ article h4 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 16px;
+@@ -115,7 +110,7 @@ table {
+ th {
+   background-color: #f5f5f5;
+   text-align: left;
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 700;
+   padding: 4px 8px;
+   border: #e0e0e0 1px solid;
+@@ -129,7 +124,7 @@ td {
  
  #generator .content {
    color: #b0b0b0;
@@ -38,7 +133,7 @@ index 395aca4f83..98aa82b921 100644
    padding: 10px 0;
  }
  
-@@ -147,7 +147,7 @@ td {
+@@ -147,12 +142,12 @@ td {
   * ------------------------------------------------------------------------------------------ */
  
  #apidoc .apidoc {
@@ -47,7 +142,22 @@ index 395aca4f83..98aa82b921 100644
    padding: 30px 0;
  }
  
-@@ -174,9 +174,9 @@ td {
+ #apidoc h1 {
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 700;
+   font-size: 32px;
+   line-height: 40px;
+@@ -162,7 +157,7 @@ td {
+ }
+ 
+ #apidoc h2 {
+-  font-family: "Source Sans Pro Bold", sans-serif;
++  font-family: "Open Sans", sans-serif;
+   font-weight: 600;
+   font-size: 22px;
+   line-height: 26px;
+@@ -174,9 +169,9 @@ td {
   * ------------------------------------------------------------------------------------------ */
  pre {
    background-color: #292b36;
@@ -58,7 +168,13 @@ index 395aca4f83..98aa82b921 100644
    position: relative;
    margin: 10px 0 20px 0;
  }
-@@ -203,7 +203,6 @@ pre.language-html:before {
+@@ -198,12 +193,11 @@ pre.language-html:before {
+   position: absolute;
+   top: -30px;
+   left: 0;
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
    font-size: 15px;
    display: inline-block;
    padding: 2px 5px;
@@ -66,8 +182,29 @@ index 395aca4f83..98aa82b921 100644
    text-transform: uppercase;
    background-color: #3387CC;
    color: #ffffff;
-@@ -285,15 +284,19 @@ pre code.sample-request-response-json {
-   font-family: "Source Sans Pro", sans-serif;
+@@ -237,7 +231,6 @@ pre.language-api .pun {
+ pre code {
+   display: block;
+   font-size: 14px;
+-  font-family: "Source Code Pro", monospace;
+   font-style: normal;
+   font-weight: 400;
+ }
+@@ -273,7 +266,7 @@ pre code.sample-request-response-json {
+   border: 0;
+   border-left: transparent 4px solid;
+   border-right: transparent 4px solid;
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+ }
+@@ -282,18 +275,22 @@ pre code.sample-request-response-json {
+   padding: 5px 15px;
+   border: 1px solid #e5e5e5;
+   width: 190px;
+-  font-family: "Source Sans Pro", sans-serif;
++  font-family: 'Open Sans', sans-serif;
    font-weight: 700;
    font-size: 16px;
 -  background-color: #4c8eca;
@@ -88,7 +225,7 @@ index 395aca4f83..98aa82b921 100644
  
  00427D
  
-@@ -302,8 +305,13 @@ pre code.sample-request-response-json {
+@@ -302,8 +299,13 @@ pre code.sample-request-response-json {
    z-index: 2;
  }
  
@@ -103,7 +240,7 @@ index 395aca4f83..98aa82b921 100644
  }
  
  .sidenav > li.has-modifications a {
-@@ -314,6 +322,10 @@ pre code.sample-request-response-json {
+@@ -314,6 +316,10 @@ pre code.sample-request-response-json {
    border-left: #e5e5e5 4px solid;
  }
  
@@ -114,7 +251,7 @@ index 395aca4f83..98aa82b921 100644
  /* ------------------------------------------------------------------------------------------
   * Tabs
   * ------------------------------------------------------------------------------------------ */
-@@ -321,6 +333,11 @@ ul.nav-tabs {
+@@ -321,6 +327,11 @@ ul.nav-tabs {
    margin: 0;
  }
  
@@ -126,7 +263,7 @@ index 395aca4f83..98aa82b921 100644
  /* ------------------------------------------------------------------------------------------
   * Print
   * ------------------------------------------------------------------------------------------ */
-@@ -356,8 +373,7 @@ ul.nav-tabs {
+@@ -356,8 +367,7 @@ ul.nav-tabs {
      background-color: #ffffff;
      color: #000000;
      padding: 10px;
@@ -136,7 +273,7 @@ index 395aca4f83..98aa82b921 100644
      position: relative;
      margin: 10px 0 20px 0;
    }
-@@ -366,8 +382,7 @@ ul.nav-tabs {
+@@ -366,8 +376,7 @@ ul.nav-tabs {
  
  .doc-chapter {
    display: none;
@@ -146,7 +283,7 @@ index 395aca4f83..98aa82b921 100644
    padding: 10px;
    margin-bottom: 20px;
  }
-@@ -486,7 +501,7 @@ ul.nav-tabs {
+@@ -486,7 +495,7 @@ ul.nav-tabs {
  }
  .json-schema-view.json-schema-view-dark .toggle-handle, .json-schema-view.json-schema-view-dark .toggle-handle:hover, json-schema-view[json-schema-view-dark] .toggle-handle, json-schema-view[json-schema-view-dark] .toggle-handle:hover {
    text-decoration: none;
@@ -155,7 +292,7 @@ index 395aca4f83..98aa82b921 100644
  }
  .json-schema-view.json-schema-view-dark .description, json-schema-view[json-schema-view-dark] .description {
    color: gray;
-@@ -494,10 +509,10 @@ ul.nav-tabs {
+@@ -494,10 +503,10 @@ ul.nav-tabs {
  }
  .json-schema-view.json-schema-view-dark .title, .json-schema-view.json-schema-view-dark .title:hover, json-schema-view[json-schema-view-dark] .title, json-schema-view[json-schema-view-dark] .title:hover {
    text-decoration: none;
@@ -168,7 +305,7 @@ index 395aca4f83..98aa82b921 100644
  }
  .json-schema-view.json-schema-view-dark .property, json-schema-view[json-schema-view-dark] .property {
    font-size: 0;
-@@ -534,5 +549,5 @@ ul.nav-tabs {
+@@ -534,5 +543,5 @@ ul.nav-tabs {
    transform: rotate(-90deg)
  }
  .exampleStyle {
