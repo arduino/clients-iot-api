@@ -1,6 +1,4 @@
 {
-    "gitUserId": "bcmi-labs",
-    "gitRepoId": "iot-api-client-go",
     "packageName": "iot",
     "packageVersion": "0.0.1",
     "usePromises": true
