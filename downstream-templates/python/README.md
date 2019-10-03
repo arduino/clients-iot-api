@@ -38,7 +38,7 @@ token = oauth.fetch_token(
     token_url=token_url,
     client_id=YOUR_CLIENT_ID,
     client_secret=YOUR_CLIENT_SECRET,
-    audience="https://api.arduino.cc",
+    audience="https://api2.arduino.cc/iot",
 )
 
 print(token.get("access_token"))
