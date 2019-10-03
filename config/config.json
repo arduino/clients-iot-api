@@ -22,8 +22,8 @@
             "version_path_template": ""
         },
         "javascript": {
-            "github_repo_name": "iot-api-client-js",
-            "github_org_name": "bcmi-labs",
+            "github_repo_name": "iot-client-js",
+            "github_org_name": "arduino",
             "spec_versions": [
                 "v2"
             ],
