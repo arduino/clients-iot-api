@@ -1,5 +1,5 @@
 {
-    "projectName": "arduino-iot-client",
+    "projectName": "@arduino/arduino-iot-client",
     "projectVersion": "1.0.0-beta1",
     "packageVersion": "1.0.0-beta1",
     "usePromises": true,
