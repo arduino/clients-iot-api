@@ -22,7 +22,7 @@ monitor the status of a workflow.
 
 Following clients have been successfully generated with the present workflow:
 
-* [Go](https://github.com/bcmi-labs/iot-api-client-go)
+* [Go](https://github.com/arduino/iot-client-go)
 * [Python](https://github.com/arduino/iot-client-py)
 * [Javascript](https://github.com/arduino/iot-client-js)
 

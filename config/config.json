@@ -2,8 +2,8 @@
     "codegen_exec": "openapi-generator",
     "languages": {
         "go": {
-            "github_repo_name": "iot-api-client-go",
-            "github_org_name": "bcmi-labs",
+            "github_repo_name": "iot-client-go",
+            "github_org_name": "arduino",
             "spec_versions": [
                 "v2"
             ],
