@@ -1,8 +1,8 @@
 {
     "projectName": "@arduino/arduino-iot-client",
     "moduleName": "ArduinoIotClient",
-    "projectVersion": "1.0.0-beta1",
-    "packageVersion": "1.0.0-beta1",
+    "projectVersion": "1.0.0-beta2",
+    "packageVersion": "1.0.0-beta2",
     "usePromises": true,
     "licenseName":"GPLv3"
 }
