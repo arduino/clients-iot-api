@@ -47,6 +47,7 @@ jobs:
           APIGENTOOLS_GIT_VIA_HTTPS: true
           APIGENTOOLS_GIT_VIA_HTTPS_OAUTH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
         run: |
+          rm -rf generated/iot-client-js/docs/
           git config --global user.email "arduinobot@arduino.cc"
           git config --global user.name "ArduinoBot"
           apigentools push
