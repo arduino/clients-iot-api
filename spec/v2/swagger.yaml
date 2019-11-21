@@ -15,16 +15,16 @@ components:
         created_at: "1994-09-07T13:31:11Z"
         fqbn: Nam soluta libero rem aut sed facere.
         href: Magni quo voluptatum.
-        id: d3511ecc-e6d3-4a85-b92f-38c20c2b214a
+        id: b731b082-b161-4b6a-8ddc-665f9ede61eb
         metadata:
-          Quia quidem velit inventore similique quas voluptatibus.: 84926052-e28a-407d-9bfc-cd7fc2890122
+          Quia quidem velit inventore similique quas voluptatibus.: 58180a77-f8ea-4b87-bc65-5f11b693146a
         name: Ut praesentium.
         serial: Autem facere.
         type: Qui et cumque magnam dolorem aut voluptatem.
-        user_id: 0453ebcd-b9cc-480a-aae1-53863d041006
+        user_id: 405f5b94-cb0e-497b-89ea-d608bde169b7
         webhooks:
         - active: true
-          id: e2622852-5813-4a7e-89e4-71624cda0f80
+          id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
           uri: http://strackefriesen.net/lexi
       properties:
         created_at:
@@ -42,14 +42,14 @@ components:
           type: string
         id:
           description: The arn of the device
-          example: d3511ecc-e6d3-4a85-b92f-38c20c2b214a
+          example: b731b082-b161-4b6a-8ddc-665f9ede61eb
           format: uuid
           type: string
         metadata:
           additionalProperties: true
           description: The metadata of the device
           example:
-            Quia quidem velit inventore similique quas voluptatibus.: 84926052-e28a-407d-9bfc-cd7fc2890122
+            Quia quidem velit inventore similique quas voluptatibus.: 58180a77-f8ea-4b87-bc65-5f11b693146a
           type: object
         name:
           description: The friendly name of the device
@@ -65,7 +65,7 @@ components:
           type: string
         user_id:
           description: The id of the user
-          example: 0453ebcd-b9cc-480a-aae1-53863d041006
+          example: 405f5b94-cb0e-497b-89ea-d608bde169b7
           format: uuid
           type: string
         webhooks:
@@ -86,44 +86,44 @@ components:
       - created_at: "1994-09-07T13:31:11Z"
         fqbn: Nam soluta libero rem aut sed facere.
         href: Magni quo voluptatum.
-        id: d3511ecc-e6d3-4a85-b92f-38c20c2b214a
+        id: b731b082-b161-4b6a-8ddc-665f9ede61eb
         metadata:
-          Quia quidem velit inventore similique quas voluptatibus.: 84926052-e28a-407d-9bfc-cd7fc2890122
+          Quia quidem velit inventore similique quas voluptatibus.: 58180a77-f8ea-4b87-bc65-5f11b693146a
         name: Ut praesentium.
         serial: Autem facere.
         type: Qui et cumque magnam dolorem aut voluptatem.
-        user_id: 0453ebcd-b9cc-480a-aae1-53863d041006
+        user_id: 405f5b94-cb0e-497b-89ea-d608bde169b7
         webhooks:
         - active: true
-          id: e2622852-5813-4a7e-89e4-71624cda0f80
+          id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
           uri: http://strackefriesen.net/lexi
       - created_at: "1994-09-07T13:31:11Z"
         fqbn: Nam soluta libero rem aut sed facere.
         href: Magni quo voluptatum.
-        id: d3511ecc-e6d3-4a85-b92f-38c20c2b214a
+        id: b731b082-b161-4b6a-8ddc-665f9ede61eb
         metadata:
-          Quia quidem velit inventore similique quas voluptatibus.: 84926052-e28a-407d-9bfc-cd7fc2890122
+          Quia quidem velit inventore similique quas voluptatibus.: 58180a77-f8ea-4b87-bc65-5f11b693146a
         name: Ut praesentium.
         serial: Autem facere.
         type: Qui et cumque magnam dolorem aut voluptatem.
-        user_id: 0453ebcd-b9cc-480a-aae1-53863d041006
+        user_id: 405f5b94-cb0e-497b-89ea-d608bde169b7
         webhooks:
         - active: true
-          id: e2622852-5813-4a7e-89e4-71624cda0f80
+          id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
           uri: http://strackefriesen.net/lexi
       - created_at: "1994-09-07T13:31:11Z"
         fqbn: Nam soluta libero rem aut sed facere.
         href: Magni quo voluptatum.
-        id: d3511ecc-e6d3-4a85-b92f-38c20c2b214a
+        id: b731b082-b161-4b6a-8ddc-665f9ede61eb
         metadata:
-          Quia quidem velit inventore similique quas voluptatibus.: 84926052-e28a-407d-9bfc-cd7fc2890122
+          Quia quidem velit inventore similique quas voluptatibus.: 58180a77-f8ea-4b87-bc65-5f11b693146a
         name: Ut praesentium.
         serial: Autem facere.
         type: Qui et cumque magnam dolorem aut voluptatem.
-        user_id: 0453ebcd-b9cc-480a-aae1-53863d041006
+        user_id: 405f5b94-cb0e-497b-89ea-d608bde169b7
         webhooks:
         - active: true
-          id: e2622852-5813-4a7e-89e4-71624cda0f80
+          id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
           uri: http://strackefriesen.net/lexi
       items:
         $ref: '#/components/schemas/ArduinoDevicev2'
@@ -135,7 +135,7 @@ components:
         view)
       example:
         active: true
-        id: e2622852-5813-4a7e-89e4-71624cda0f80
+        id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
         uri: http://strackefriesen.net/lexi
       properties:
         active:
@@ -145,7 +145,7 @@ components:
           type: boolean
         id:
           description: The uuid of the webhook
-          example: e2622852-5813-4a7e-89e4-71624cda0f80
+          example: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
           format: uuid
           type: string
         uri:
@@ -164,13 +164,13 @@ components:
         of ArduinoDevicev2Webhook (default view)
       example:
       - active: true
-        id: e2622852-5813-4a7e-89e4-71624cda0f80
+        id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
         uri: http://strackefriesen.net/lexi
       - active: true
-        id: e2622852-5813-4a7e-89e4-71624cda0f80
+        id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
         uri: http://strackefriesen.net/lexi
       - active: true
-        id: e2622852-5813-4a7e-89e4-71624cda0f80
+        id: 656bd3e3-7951-49fa-87a0-96cca9c7fe15
         uri: http://strackefriesen.net/lexi
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Webhook'
@@ -181,19 +181,19 @@ components:
       description: ArduinoDevicev2properties media type (default view)
       example:
         data_retention_days: 0.6375912763333929
-        deviceId: 3ba9be5e-f9fe-4905-801f-217079ea6794
+        deviceId: 8df68419-2055-410b-a84d-a2046d2835aa
         properties:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -203,14 +203,14 @@ components:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -220,21 +220,21 @@ components:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
           updated_at: "1998-07-22T03:50:55Z"
           value_updated_at: "2005-05-05T07:41:55Z"
           variable_name: Voluptatibus dolores earum sint.
-        user_id: 532d3c82-d85f-4150-833d-4440b38d9276
+        user_id: 9cbbbded-95f6-4889-a7b7-27b22f54b065
       properties:
         data_retention_days:
           description: How many days the data will be kept
@@ -243,14 +243,14 @@ components:
           type: number
         deviceId:
           description: The device of the property
-          example: 3ba9be5e-f9fe-4905-801f-217079ea6794
+          example: 8df68419-2055-410b-a84d-a2046d2835aa
           format: uuid
           type: string
         properties:
           $ref: '#/components/schemas/ArduinoPropertyCollection'
         user_id:
           description: The user id of the owner
-          example: 532d3c82-d85f-4150-833d-4440b38d9276
+          example: 9cbbbded-95f6-4889-a7b7-27b22f54b065
           format: uuid
           type: string
       required:
@@ -469,14 +469,14 @@ components:
         created_at: "2014-10-18T19:31:16Z"
         deleted_at: "1988-02-15T18:46:53Z"
         href: Natus qui sit repellendus facere dolores neque.
-        id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+        id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
         last_value: "1986-10-07T08:22:10Z"
         max_value: 0.8832861571907745
         min_value: 0.4639307001329301
         name: Maiores fugiat.
         permission: Error vitae voluptatem corrupti ex qui.
         persist: false
-        thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+        thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
         type: Voluptatem molestias.
         update_parameter: 0.5680962795214051
         update_strategy: Non et.
@@ -500,7 +500,7 @@ components:
           type: string
         id:
           description: The id of the property
-          example: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          example: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           format: uuid
           type: string
         last_value:
@@ -530,7 +530,7 @@ components:
           type: boolean
         thing_id:
           description: The id of the thing
-          example: 449a7feb-b10d-449a-8e02-19df9784c653
+          example: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           format: uuid
           type: string
         type:
@@ -578,14 +578,14 @@ components:
       - created_at: "2014-10-18T19:31:16Z"
         deleted_at: "1988-02-15T18:46:53Z"
         href: Natus qui sit repellendus facere dolores neque.
-        id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+        id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
         last_value: "1986-10-07T08:22:10Z"
         max_value: 0.8832861571907745
         min_value: 0.4639307001329301
         name: Maiores fugiat.
         permission: Error vitae voluptatem corrupti ex qui.
         persist: false
-        thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+        thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
         type: Voluptatem molestias.
         update_parameter: 0.5680962795214051
         update_strategy: Non et.
@@ -595,177 +595,6 @@ components:
       items:
         $ref: '#/components/schemas/ArduinoProperty'
       title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection;
-        view=default'
-      type: array
-    ArduinoRules:
-      description: ArduinoRules media type (default view)
-      example:
-        active: false
-        cron: Et alias quod sit.
-        id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-        next_running_time: "1989-02-09T21:38:17Z"
-        rule_json:
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        used_property_names:
-        - Minus voluptatum occaecati.
-        - Minus voluptatum occaecati.
-        - Minus voluptatum occaecati.
-      properties:
-        active:
-          description: If the rule is active or not
-          example: false
-          type: boolean
-        cron:
-          description: The cron expression of the rules
-          example: Et alias quod sit.
-          type: string
-        id:
-          description: The id of the rule
-          example: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-          format: uuid
-          type: string
-        next_running_time:
-          description: If will be trigger only one time here there is the time
-          example: "1989-02-09T21:38:17Z"
-          format: date-time
-          type: string
-        rule_json:
-          description: A sequence of simple or compose rules that run together
-          example:
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          items:
-            $ref: '#/components/schemas/easyRuleJSONValue'
-          type: array
-        used_property_names:
-          description: The name of the properties used in the rules
-          example:
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          items:
-            example: Minus voluptatum occaecati.
-            type: string
-          type: array
-      required:
-      - id
-      - rule_json
-      - used_property_names
-      - active
-      title: 'Mediatype identifier: application/vnd.arduino.rules+json; view=default'
-      type: object
-    ArduinoRulesCollection:
-      description: ArduinoRulesCollection is the media type for an array of ArduinoRules
-        (default view)
-      example:
-      - active: false
-        cron: Et alias quod sit.
-        id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-        next_running_time: "1989-02-09T21:38:17Z"
-        rule_json:
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        - actions:
-          - Corrupti maxime at sunt tenetur soluta.
-          actions_info:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          condition: Esse omnis dolor eius.
-          description: Et aliquam qui dolorum.
-          name: Sit nesciunt quia earum ratione dolores cum.
-          priority: 3226417121431339000
-        used_property_names:
-        - Minus voluptatum occaecati.
-        - Minus voluptatum occaecati.
-        - Minus voluptatum occaecati.
-      items:
-        $ref: '#/components/schemas/ArduinoRules'
-      title: 'Mediatype identifier: application/vnd.arduino.rules+json; type=collection;
         view=default'
       type: array
     ArduinoSeriesBatch:
@@ -904,8 +733,8 @@ components:
       example:
         responses:
         - count_values: 3715618409162593000
-          property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-          thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+          property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+          thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
           times:
           - "1993-02-25T17:13:22Z"
           - "1993-02-25T17:13:22Z"
@@ -915,8 +744,8 @@ components:
           - true
           - true
         - count_values: 3715618409162593000
-          property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-          thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+          property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+          thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
           times:
           - "1993-02-25T17:13:22Z"
           - "1993-02-25T17:13:22Z"
@@ -926,8 +755,8 @@ components:
           - true
           - true
         - count_values: 3715618409162593000
-          property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-          thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+          property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+          thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
           times:
           - "1993-02-25T17:13:22Z"
           - "1993-02-25T17:13:22Z"
@@ -942,8 +771,8 @@ components:
           description: Responses of the request
           example:
           - count_values: 3715618409162593000
-            property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-            thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+            property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+            thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
             times:
             - "1993-02-25T17:13:22Z"
             - "1993-02-25T17:13:22Z"
@@ -953,8 +782,8 @@ components:
             - true
             - true
           - count_values: 3715618409162593000
-            property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-            thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+            property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+            thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
             times:
             - "1993-02-25T17:13:22Z"
             - "1993-02-25T17:13:22Z"
@@ -964,8 +793,8 @@ components:
             - true
             - true
           - count_values: 3715618409162593000
-            property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-            thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+            property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+            thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
             times:
             - "1993-02-25T17:13:22Z"
             - "1993-02-25T17:13:22Z"
@@ -991,8 +820,8 @@ components:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
       example:
         count_values: 3715618409162593000
-        property_id: cd0c9433-47ea-4a1a-b415-6317241dfa5b
-        thing_id: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+        property_id: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
+        thing_id: f4482825-0f3c-4054-b948-2f93e7c76453
         times:
         - "1993-02-25T17:13:22Z"
         - "1993-02-25T17:13:22Z"
@@ -1009,12 +838,12 @@ components:
           type: integer
         property_id:
           description: Property id
-          example: cd0c9433-47ea-4a1a-b415-6317241dfa5b
+          example: 1b5fdd00-971f-4bec-976c-218e9c2e77c0
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: 397f8b22-c84b-491e-a78a-eee1e1dea27e
+          example: f4482825-0f3c-4054-b948-2f93e7c76453
           format: uuid
           type: string
         times:
@@ -1240,22 +1069,22 @@ components:
       example:
         created_at: "1991-03-15T21:45:55Z"
         deleted_at: "2003-05-14T04:18:14Z"
-        device_id: 601a4f1b-8c46-4f75-9de8-620be658e832
+        device_id: c13f2a2c-6910-454f-96a4-059ad44b1cf5
         href: Sit praesentium.
-        id: ef710d8e-0e25-4fc6-8008-b360d4ea1dff
+        id: 7d58396a-fbbc-4432-a0a5-a43b50ad212c
         name: Porro illum omnis nobis odio.
         properties:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -1265,14 +1094,14 @@ components:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -1280,94 +1109,9 @@ components:
           value_updated_at: "2005-05-05T07:41:55Z"
           variable_name: Voluptatibus dolores earum sint.
         properties_count: 6917429322414498000
-        rules:
-        - active: false
-          cron: Et alias quod sit.
-          id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-          next_running_time: "1989-02-09T21:38:17Z"
-          rule_json:
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          used_property_names:
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-        - active: false
-          cron: Et alias quod sit.
-          id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-          next_running_time: "1989-02-09T21:38:17Z"
-          rule_json:
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          used_property_names:
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-        sketch_id: 1ff3bde9-1f11-4171-b31f-dd1611006799
+        sketch_id: 1d1d5bdc-2522-47e8-b4ed-278aff247d37
         updated_at: "1981-12-08T16:46:26Z"
-        user_id: e467ff23-7d73-49ef-86e8-09824d9f7855
+        user_id: fa70d464-c224-4a19-a298-9c5c7fb6196e
         webhook_active: true
         webhook_uri: Et nostrum.
       properties:
@@ -1383,7 +1127,7 @@ components:
           type: string
         device_id:
           description: The arn of the device
-          example: 601a4f1b-8c46-4f75-9de8-620be658e832
+          example: c13f2a2c-6910-454f-96a4-059ad44b1cf5
           format: uuid
           type: string
         href:
@@ -1392,7 +1136,7 @@ components:
           type: string
         id:
           description: The id of the thing
-          example: ef710d8e-0e25-4fc6-8008-b360d4ea1dff
+          example: 7d58396a-fbbc-4432-a0a5-a43b50ad212c
           format: uuid
           type: string
         name:
@@ -1406,11 +1150,9 @@ components:
           example: 6917429322414498000
           format: int64
           type: integer
-        rules:
-          $ref: '#/components/schemas/ArduinoRulesCollection'
         sketch_id:
           description: The id of the attached sketch
-          example: 1ff3bde9-1f11-4171-b31f-dd1611006799
+          example: 1d1d5bdc-2522-47e8-b4ed-278aff247d37
           format: uuid
           type: string
         updated_at:
@@ -1420,7 +1162,7 @@ components:
           type: string
         user_id:
           description: The user id of the owner
-          example: e467ff23-7d73-49ef-86e8-09824d9f7855
+          example: fa70d464-c224-4a19-a298-9c5c7fb6196e
           format: uuid
           type: string
         webhook_active:
@@ -1444,22 +1186,22 @@ components:
       example:
       - created_at: "1991-03-15T21:45:55Z"
         deleted_at: "2003-05-14T04:18:14Z"
-        device_id: 601a4f1b-8c46-4f75-9de8-620be658e832
+        device_id: c13f2a2c-6910-454f-96a4-059ad44b1cf5
         href: Sit praesentium.
-        id: ef710d8e-0e25-4fc6-8008-b360d4ea1dff
+        id: 7d58396a-fbbc-4432-a0a5-a43b50ad212c
         name: Porro illum omnis nobis odio.
         properties:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -1469,14 +1211,14 @@ components:
         - created_at: "2014-10-18T19:31:16Z"
           deleted_at: "1988-02-15T18:46:53Z"
           href: Natus qui sit repellendus facere dolores neque.
-          id: 4eb03e48-1df0-4f83-9f31-f622ada9ebc8
+          id: c64aa5aa-766a-4ab4-9b33-d8941e8a8026
           last_value: "1986-10-07T08:22:10Z"
           max_value: 0.8832861571907745
           min_value: 0.4639307001329301
           name: Maiores fugiat.
           permission: Error vitae voluptatem corrupti ex qui.
           persist: false
-          thing_id: 449a7feb-b10d-449a-8e02-19df9784c653
+          thing_id: 2332a4bc-1b95-48d8-87a6-ea8c21a9ca18
           type: Voluptatem molestias.
           update_parameter: 0.5680962795214051
           update_strategy: Non et.
@@ -1484,94 +1226,9 @@ components:
           value_updated_at: "2005-05-05T07:41:55Z"
           variable_name: Voluptatibus dolores earum sint.
         properties_count: 6917429322414498000
-        rules:
-        - active: false
-          cron: Et alias quod sit.
-          id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-          next_running_time: "1989-02-09T21:38:17Z"
-          rule_json:
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          used_property_names:
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-        - active: false
-          cron: Et alias quod sit.
-          id: 38bea22b-7c2f-481d-ae48-8dc305cfbe04
-          next_running_time: "1989-02-09T21:38:17Z"
-          rule_json:
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          - actions:
-            - Corrupti maxime at sunt tenetur soluta.
-            actions_info:
-            - method: Eos delectus.
-              parameters:
-              - Voluptate ut maxime in corrupti.
-              - Voluptate ut maxime in corrupti.
-            condition: Esse omnis dolor eius.
-            description: Et aliquam qui dolorum.
-            name: Sit nesciunt quia earum ratione dolores cum.
-            priority: 3226417121431339000
-          used_property_names:
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-          - Minus voluptatum occaecati.
-        sketch_id: 1ff3bde9-1f11-4171-b31f-dd1611006799
+        sketch_id: 1d1d5bdc-2522-47e8-b4ed-278aff247d37
         updated_at: "1981-12-08T16:46:26Z"
-        user_id: e467ff23-7d73-49ef-86e8-09824d9f7855
+        user_id: fa70d464-c224-4a19-a298-9c5c7fb6196e
         webhook_active: true
         webhook_uri: Et nostrum.
       items:
@@ -1582,18 +1239,18 @@ components:
     BatchLastValueRequestsMediaV1:
       example:
         requests:
-        - property_id: 31aab304-c564-493a-aeb5-ac27c1b6f04f
-          thing_id: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
-        - property_id: 31aab304-c564-493a-aeb5-ac27c1b6f04f
-          thing_id: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
+        - property_id: 9c17868e-dc3e-4b2f-900c-2c7823833484
+          thing_id: e8bc7607-22f4-4ce5-902c-13516e9bae65
+        - property_id: 9c17868e-dc3e-4b2f-900c-2c7823833484
+          thing_id: e8bc7607-22f4-4ce5-902c-13516e9bae65
       properties:
         requests:
           description: Requests
           example:
-          - property_id: 31aab304-c564-493a-aeb5-ac27c1b6f04f
-            thing_id: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
-          - property_id: 31aab304-c564-493a-aeb5-ac27c1b6f04f
-            thing_id: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
+          - property_id: 9c17868e-dc3e-4b2f-900c-2c7823833484
+            thing_id: e8bc7607-22f4-4ce5-902c-13516e9bae65
+          - property_id: 9c17868e-dc3e-4b2f-900c-2c7823833484
+            thing_id: e8bc7607-22f4-4ce5-902c-13516e9bae65
           items:
             $ref: '#/components/schemas/BatchQueryRawLastValueRequestMediaV1'
           type: array
@@ -1603,17 +1260,17 @@ components:
       type: object
     BatchQueryRawLastValueRequestMediaV1:
       example:
-        property_id: 31aab304-c564-493a-aeb5-ac27c1b6f04f
-        thing_id: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
+        property_id: 9c17868e-dc3e-4b2f-900c-2c7823833484
+        thing_id: e8bc7607-22f4-4ce5-902c-13516e9bae65
       properties:
         property_id:
           description: Property id
-          example: 31aab304-c564-493a-aeb5-ac27c1b6f04f
+          example: 9c17868e-dc3e-4b2f-900c-2c7823833484
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: df76d7f9-76f6-4b7a-9bd2-1713b1ce17d6
+          example: e8bc7607-22f4-4ce5-902c-13516e9bae65
           format: uuid
           type: string
       required:
@@ -1786,11 +1443,11 @@ components:
       description: DeviceV2 describes a device.
       example:
         fqbn: Velit similique sapiente enim quia.
-        id: 7ae22602-a194-483a-a016-e20c70787e8b
+        id: 92d283ca-d644-44ce-a70f-f7584709272d
         name: fb6bsr9jl6
         serial: en6trcwydb
         type: mkrnb1500
-        user_id: 175c1bea-f309-47f5-a61b-5c992c0a9ca1
+        user_id: 6e4d687a-a353-4d96-8d40-273dee295053
       properties:
         fqbn:
           description: The fully qualified board name
@@ -1798,7 +1455,7 @@ components:
           type: string
         id:
           description: The UUID of the device
-          example: 7ae22602-a194-483a-a016-e20c70787e8b
+          example: 92d283ca-d644-44ce-a70f-f7584709272d
           format: uuid
           type: string
         name:
@@ -1830,7 +1487,7 @@ components:
         user_id:
           description: The user_id associated to the device. If absent it will be
             inferred from the authentication header
-          example: 175c1bea-f309-47f5-a61b-5c992c0a9ca1
+          example: 6e4d687a-a353-4d96-8d40-273dee295053
           format: uuid
           type: string
       required:
@@ -1840,20 +1497,20 @@ components:
     CreateThingsV2Payload:
       description: ThingPayload describes a thing
       example:
-        device_id: 97d15830-c54b-4d3b-a59d-b1c55b15c8d7
-        id: a2a6bd1d-fbfc-40af-9ae5-3b45e2d9ff00
+        device_id: 58f9491c-3b30-4657-9b82-c9e82c47a92f
+        id: 3402751e-8907-4fa3-a028-a26f04fca216
         name: tf8gzqq6r4
         webhook_active: false
         webhook_uri: http://beer.com/dion
       properties:
         device_id:
           description: The arn of the associated device
-          example: 97d15830-c54b-4d3b-a59d-b1c55b15c8d7
+          example: 58f9491c-3b30-4657-9b82-c9e82c47a92f
           format: uuid
           type: string
         id:
           description: The id of the thing
-          example: a2a6bd1d-fbfc-40af-9ae5-3b45e2d9ff00
+          example: 3402751e-8907-4fa3-a028-a26f04fca216
           format: uuid
           type: string
         name:
@@ -1879,11 +1536,11 @@ components:
       description: DeviceV2 describes a device.
       example:
         fqbn: Velit similique sapiente enim quia.
-        id: 7ae22602-a194-483a-a016-e20c70787e8b
+        id: 92d283ca-d644-44ce-a70f-f7584709272d
         name: fb6bsr9jl6
         serial: en6trcwydb
         type: mkrnb1500
-        user_id: 175c1bea-f309-47f5-a61b-5c992c0a9ca1
+        user_id: 6e4d687a-a353-4d96-8d40-273dee295053
       properties:
         fqbn:
           description: The fully qualified board name
@@ -1891,7 +1548,7 @@ components:
           type: string
         id:
           description: The UUID of the device
-          example: 7ae22602-a194-483a-a016-e20c70787e8b
+          example: 92d283ca-d644-44ce-a70f-f7584709272d
           format: uuid
           type: string
         name:
@@ -1923,89 +1580,10 @@ components:
         user_id:
           description: The user_id associated to the device. If absent it will be
             inferred from the authentication header
-          example: 175c1bea-f309-47f5-a61b-5c992c0a9ca1
+          example: 6e4d687a-a353-4d96-8d40-273dee295053
           format: uuid
           type: string
       title: devicev2
-      type: object
-    easyRuleJSONActionValue:
-      example:
-        method: Eos delectus.
-        parameters:
-        - Voluptate ut maxime in corrupti.
-        - Voluptate ut maxime in corrupti.
-      properties:
-        method:
-          example: Eos delectus.
-          type: string
-        parameters:
-          example:
-          - Voluptate ut maxime in corrupti.
-          - Voluptate ut maxime in corrupti.
-          items:
-            example: Voluptate ut maxime in corrupti.
-            type: string
-          type: array
-      required:
-      - method
-      - parameters
-      title: easyRuleJSONActionValue
-      type: object
-    easyRuleJSONValue:
-      example:
-        actions:
-        - Corrupti maxime at sunt tenetur soluta.
-        actions_info:
-        - method: Eos delectus.
-          parameters:
-          - Voluptate ut maxime in corrupti.
-          - Voluptate ut maxime in corrupti.
-        condition: Esse omnis dolor eius.
-        description: Et aliquam qui dolorum.
-        name: Sit nesciunt quia earum ratione dolores cum.
-        priority: 3226417121431339000
-      properties:
-        actions:
-          description: The actions of the rule
-          example:
-          - Corrupti maxime at sunt tenetur soluta.
-          items:
-            example: Corrupti maxime at sunt tenetur soluta.
-            type: string
-          type: array
-        actions_info:
-          description: The actions info of the rule
-          example:
-          - method: Eos delectus.
-            parameters:
-            - Voluptate ut maxime in corrupti.
-            - Voluptate ut maxime in corrupti.
-          items:
-            $ref: '#/components/schemas/easyRuleJSONActionValue'
-          type: array
-        condition:
-          description: The condition of the rule
-          example: Esse omnis dolor eius.
-          type: string
-        description:
-          description: The description of the rule
-          example: Et aliquam qui dolorum.
-          type: string
-        name:
-          description: The name of the rule
-          example: Sit nesciunt quia earum ratione dolores cum.
-          type: string
-        priority:
-          description: The priority of the rule
-          example: 3226417121431339000
-          format: int64
-          type: integer
-      required:
-      - name
-      - description
-      - condition
-      - priority
-      title: easyRuleJSONValue
       type: object
     error:
       description: Error response media type (default view)
@@ -2261,12 +1839,12 @@ components:
     propertyValue:
       description: PropertyValuePayload describes a property value
       example:
-        device_id: c4e109d8-840e-47dd-a595-0438c93d8ab9
+        device_id: 89b4be6e-06a6-4252-9022-068ea0319c79
         value: false
       properties:
         device_id:
           description: The device who send the property
-          example: c4e109d8-840e-47dd-a595-0438c93d8ab9
+          example: 89b4be6e-06a6-4252-9022-068ea0319c79
           format: uuid
           type: string
         value:
@@ -2279,20 +1857,20 @@ components:
     thing:
       description: ThingPayload describes a thing
       example:
-        device_id: 97d15830-c54b-4d3b-a59d-b1c55b15c8d7
-        id: a2a6bd1d-fbfc-40af-9ae5-3b45e2d9ff00
+        device_id: 58f9491c-3b30-4657-9b82-c9e82c47a92f
+        id: 3402751e-8907-4fa3-a028-a26f04fca216
         name: tf8gzqq6r4
         webhook_active: false
         webhook_uri: http://beer.com/dion
       properties:
         device_id:
           description: The arn of the associated device
-          example: 97d15830-c54b-4d3b-a59d-b1c55b15c8d7
+          example: 58f9491c-3b30-4657-9b82-c9e82c47a92f
           format: uuid
           type: string
         id:
           description: The id of the thing
-          example: a2a6bd1d-fbfc-40af-9ae5-3b45e2d9ff00
+          example: 3402751e-8907-4fa3-a028-a26f04fca216
           format: uuid
           type: string
         name:
@@ -2695,6 +2273,8 @@ paths:
         in: query
         name: ids
         schema:
+          items:
+            type: string
           type: array
       - description: If true, shows the soft deleted things
         in: query
