@@ -12,7 +12,7 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://login.arduino.cc/oauth/token
+          tokenUrl: https://api2.arduino.cc/iot/v1/clients/token
           scopes:
             iot:devices: Read and write my devices
             iot:things: Read and write my things
