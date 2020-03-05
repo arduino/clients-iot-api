@@ -9,6 +9,9 @@ that let us keep the spec files and the configuration bits in one single repo
 (this one) without duplicating the boilerplate on each git repo hosting the
 actual clients.
 
+There is a [blog post](https://blog.arduino.cc/2020/03/05/how-to-deal-with-api-clients-the-lazy-way-from-code-generation-to-release-management/)
+describing the system architecture.
+
 ## [IMPORTANT] Client generation process
 
 The process to generate the clients explained in paragraphs below is fully
