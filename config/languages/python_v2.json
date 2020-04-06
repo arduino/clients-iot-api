@@ -1,6 +1,6 @@
 {
     "packageName": "arduino_iot_rest",
     "projectName": "arduino-iot-client",
-    "packageVersion": "1.2.0",
+    "packageVersion": "1.2.1",
     "generateSourceCodeOnly": true
 }
