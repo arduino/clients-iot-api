@@ -39,7 +39,7 @@ jobs:
         env:
           APIGENTOOLS_GIT_VIA_HTTPS: true
           APIGENTOOLS_GIT_VIA_HTTPS_OAUTH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
-        run: apigentools generate
+        run: apigentools generate --clone-repo
 
       - name: Push client repos
         if: github.event_name == 'push'

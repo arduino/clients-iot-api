@@ -1,19 +1,25 @@
-minimum_apigentools_version: 1.0.0
 languages:
   go:
     generation:
       default:
+        commands:
+          - commandline:
+            - function: openapi_generator_generate
+            - --type-mappings
+            - object=interface{}
+            description: Generate go code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - "766"
+            - "{{version_output_dir}}"
+            description: Chmod stuff
         templates:
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates
             templates_dir: go # directory with templates for this language
             system: true
-        commands:
-          - commandline:
-            - function: openapi_generator_generate # expands to the default generation command
-            - --type-mappings
-            - object=interface{}
     downstream_templates:
       downstream-templates/go/README.md: README.md
     github_org_name: arduino
@@ -25,19 +31,27 @@ languages:
   html2:
     generation:
       default:
+        commands:
+          - commandline:
+            - function: openapi_generator_generate
+            description: Generate doc using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - "766"
+            - "{{version_output_dir}}"
+            description: Chmod stuff
         templates:
           patches:
-            #- template-patches/html2-arduino-css.patch
-            #- template-patches/html2-download-links.patch
-            #- template-patches/html2-set-package-name.patch
-            #- template-patches/html2-unused-languages.patch
+            - template-patches/html2-arduino-css.patch
+            - template-patches/html2-download-links.patch
+            - template-patches/html2-set-package-name.patch
+            - template-patches/html2-unused-languages.patch
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates
             templates_dir: htmlDocs2 # directory with templates for this language
             system: true
-    #downstream_templates:
-      #downstream-templates/html2/README.md: README.md
     github_org_name: arduino
     github_repo_name: iot-client-docs
     library_version: '1.2.1'
@@ -47,6 +61,16 @@ languages:
   javascript:
     generation:
       default:
+        commands:
+          - commandline:
+            - function: openapi_generator_generate
+            description: Generate js code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - "766"
+            - "{{version_output_dir}}"
+            description: Chmod stuff
         templates:
           source:
             type: openapi-git
@@ -64,6 +88,16 @@ languages:
   python:
     generation:
       default:
+        commands:
+          - commandline:
+            - function: openapi_generator_generate
+            description: Generate py code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - "766"
+            - "{{version_output_dir}}"
+            description: Chmod stuff
         templates:
           source:
             type: openapi-git
