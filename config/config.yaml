@@ -1,0 +1,85 @@
+minimum_apigentools_version: 1.0.0
+languages:
+  go:
+    generation:
+      default:
+        templates:
+          source:
+            type: openapi-git
+            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            templates_dir: go # directory with templates for this language
+            system: true
+        commands:
+          - commandline:
+            - function: openapi_generator_generate # expands to the default generation command
+            - --type-mappings
+            - object=interface{}
+    downstream_templates:
+      downstream-templates/go/README.md: README.md
+    github_org_name: arduino
+    github_repo_name: iot-client-go
+    library_version: '1.2.1'
+    spec_versions:
+      - v2
+    version_path_template: ''
+  html2:
+    generation:
+      default:
+        templates:
+          patches:
+            #- template-patches/html2-arduino-css.patch
+            #- template-patches/html2-download-links.patch
+            #- template-patches/html2-set-package-name.patch
+            #- template-patches/html2-unused-languages.patch
+          source:
+            type: openapi-git
+            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            templates_dir: htmlDocs2 # directory with templates for this language
+            system: true
+    #downstream_templates:
+      #downstream-templates/html2/README.md: README.md
+    github_org_name: arduino
+    github_repo_name: iot-client-docs
+    library_version: '1.2.1'
+    spec_versions:
+      - v2
+    version_path_template: ''
+  javascript:
+    generation:
+      default:
+        templates:
+          source:
+            type: openapi-git
+            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            templates_dir: Javascript/es6 # directory with templates for this language
+            system: true
+    downstream_templates:
+      downstream-templates/javascript/README.md: README.md
+    github_org_name: arduino
+    github_repo_name: iot-client-js
+    library_version: '1.2.1'
+    spec_versions:
+      - v2
+    version_path_template: ''
+  python:
+    generation:
+      default:
+        templates:
+          source:
+            type: openapi-git
+            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            templates_dir: python # directory with templates for this language
+            system: true
+    downstream_templates:
+      downstream-templates/python/README.md: README.md
+    github_org_name: arduino
+    github_repo_name: iot-client-py
+    library_version: '1.2.1'
+    spec_versions:
+      - v2
+    version_path_template: ''
+spec_sections:
+  v2:
+    - swagger.yaml
+spec_versions:
+  - v2
