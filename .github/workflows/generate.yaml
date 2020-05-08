@@ -32,9 +32,6 @@ jobs:
       - name: Validate specfile
         run: apigentools validate
 
-      - name: Render upstream templates
-        run: apigentools templates
-
       - name: Generate clients
         env:
           APIGENTOOLS_GIT_VIA_HTTPS: true
