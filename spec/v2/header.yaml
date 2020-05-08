@@ -1,6 +1,2 @@
-info:
-  contact: {}
-  description: Collection of all public API endpoints.
-  title: Iot API
-  version: '2.0'
-openapi: 3.0.0
+servers:
+  - url: https://api2.arduino.cc/iot

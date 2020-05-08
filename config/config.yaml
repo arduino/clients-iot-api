@@ -32,7 +32,6 @@ languages:
         templates:
           patches:
             - template-patches/html2-arduino-css.patch
-            - template-patches/html2-download-links.patch
             - template-patches/html2-set-package-name.patch
             - template-patches/html2-unused-languages.patch
           source:
@@ -91,5 +90,7 @@ languages:
 spec_sections:
   v2:
     - swagger.yaml
+    - header.yaml
+    - shared.yaml
 spec_versions:
   - v2
