@@ -1,0 +1,26 @@
+diff --git a/htmlDocs2/index.mustache b/htmlDocs2/index.mustache
+index 7b1af30..12eb503 100644
+--- a/htmlDocs2/index.mustache
++++ b/htmlDocs2/index.mustache
+@@ -201,6 +201,21 @@
+             <div id="app-description" class="app-desc">
+                 {{{appDescription}}}
+             </div>
++
++            <div id="create-auth-token" class="app-desc">
++              <h2 id="create-auth-token">Create Auth Token</h2>
++                <pre class="prettyprint"><code class="language-bsh">
++curl --request POST \
++  --url 'https://api2.arduino.cc/iot/v1/clients/token' \
++  --header 'content-type: application/x-www-form-urlencoded' \
++  --data 'grant_type=client_credentials' \
++  --data 'client_id=YOUR_CLIENT_ID' \
++  --data 'client_secret=YOUR_SECRET_ID' \
++  --data 'audience=https://api2.arduino.cc/iot'
++                </code></pre>
++            </div>
++
++
+           </div>
+         </div>
+         <div id="sections">
