@@ -1,5 +1,7 @@
 components:
   responses:
+    BadRequest:
+      description: Bad Request
     NotFound:
       description: Not Found
     NotImplemented:
@@ -9,6 +11,58 @@ components:
     Unauthorized:
       description: Unauthorized
   schemas:
+    ArduinoCompressedv2:
+      description: compressed contains the info from which to generate the certificate
+        (default view)
+      example:
+        authority_key_identifier: Facere qui ipsam soluta autem quo.
+        not_after: "1986-06-24T05:15:59Z"
+        not_before: "1990-06-18T03:07:07Z"
+        serial: Rerum reiciendis nesciunt amet libero est vitae.
+        signature: Similique voluptatem tenetur sit voluptatem.
+        signature_asn1_x: Aut architecto expedita consequatur nam qui atque.
+        signature_asn1_y: Distinctio occaecati laudantium quis distinctio blanditiis
+          quos.
+      properties:
+        authority_key_identifier:
+          description: The Authority Key Identifier of the certificate
+          example: Facere qui ipsam soluta autem quo.
+          type: string
+        not_after:
+          description: The ending date of the certificate
+          example: "1986-06-24T05:15:59Z"
+          format: date-time
+          type: string
+        not_before:
+          description: The starting date of the certificate
+          example: "1990-06-18T03:07:07Z"
+          format: date-time
+          type: string
+        serial:
+          description: The serial number of the certificate
+          example: Rerum reiciendis nesciunt amet libero est vitae.
+          type: string
+        signature:
+          description: The signature of the certificate
+          example: Similique voluptatem tenetur sit voluptatem.
+          type: string
+        signature_asn1_x:
+          description: The ASN1 X component of certificate signature
+          example: Aut architecto expedita consequatur nam qui atque.
+          type: string
+        signature_asn1_y:
+          description: The ASN1 Y component of certificate signature
+          example: Distinctio occaecati laudantium quis distinctio blanditiis quos.
+          type: string
+      required:
+      - serial
+      - not_before
+      - not_after
+      - signature
+      - signature_asn1_x
+      - signature_asn1_y
+      title: 'Mediatype identifier: application/vnd.arduino.compressedv2; view=default'
+      type: object
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
       example:
@@ -16,29 +70,29 @@ components:
         events:
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         fqbn: Aut culpa eum rerum laudantium recusandae ut.
         href: Sunt maiores deserunt soluta expedita autem.
-        id: bbb24d18-acf8-4aaf-8476-195e7320ff8a
+        id: 333cc9a2-8284-46ae-b662-219f89172ce1
         last_activity_at: "1973-11-29T23:17:26Z"
         metadata:
           Qui a qui quas corrupti voluptatum et.: "2010-01-16T04:33:48Z"
         name: Dolorum explicabo commodi.
         serial: Aut aut fuga est reprehenderit quam.
         type: Occaecati sint excepturi et numquam ipsa quod.
-        user_id: 4e000df7-669b-45ee-97f3-d29878808cf9
+        user_id: 65355b8c-229f-4da9-99e7-c11f9041b343
         webhooks:
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
       properties:
         created_at:
@@ -58,7 +112,7 @@ components:
           type: string
         id:
           description: The arn of the device
-          example: bbb24d18-acf8-4aaf-8476-195e7320ff8a
+          example: 333cc9a2-8284-46ae-b662-219f89172ce1
           format: uuid
           type: string
         last_activity_at:
@@ -86,7 +140,7 @@ components:
           type: string
         user_id:
           description: The id of the user
-          example: 4e000df7-669b-45ee-97f3-d29878808cf9
+          example: 65355b8c-229f-4da9-99e7-c11f9041b343
           format: uuid
           type: string
         webhooks:
@@ -100,6 +154,133 @@ components:
       - serial
       title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; view=default'
       type: object
+    ArduinoDevicev2Cert:
+      description: DeviceCertV2 describes a certificate associated to the device (default
+        view)
+      example:
+        ca: Voluptatem placeat velit voluptatem delectus nesciunt.
+        compressed:
+          authority_key_identifier: Facere qui ipsam soluta autem quo.
+          not_after: "1986-06-24T05:15:59Z"
+          not_before: "1990-06-18T03:07:07Z"
+          serial: Rerum reiciendis nesciunt amet libero est vitae.
+          signature: Similique voluptatem tenetur sit voluptatem.
+          signature_asn1_x: Aut architecto expedita consequatur nam qui atque.
+          signature_asn1_y: Distinctio occaecati laudantium quis distinctio blanditiis
+            quos.
+        der: Vel laboriosam reprehenderit consequatur.
+        device_id: 7b13122d-616d-4a75-8db7-5dd4f9178fe5
+        enabled: false
+        href: Qui sit repellendus facere dolores neque.
+        id: 9f88db03-0de6-4671-94e2-036437ee16d2
+        pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+          CERTIFICATE-----"
+      properties:
+        ca:
+          description: The Certification Authority used to sign the certificate
+          example: Voluptatem placeat velit voluptatem delectus nesciunt.
+          type: string
+        compressed:
+          $ref: '#/components/schemas/ArduinoCompressedv2'
+        der:
+          description: The certificate in DER format
+          example: Vel laboriosam reprehenderit consequatur.
+          type: string
+        device_id:
+          description: The unique identifier of the device
+          example: 7b13122d-616d-4a75-8db7-5dd4f9178fe5
+          format: uuid
+          type: string
+        enabled:
+          default: true
+          description: Whether the certificate is enabled
+          example: false
+          type: boolean
+        href:
+          description: The api reference of this cert
+          example: Qui sit repellendus facere dolores neque.
+          type: string
+        id:
+          description: The unique identifier of the key
+          example: 9f88db03-0de6-4671-94e2-036437ee16d2
+          format: uuid
+          type: string
+        pem:
+          description: The certificate in pem format
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+            CERTIFICATE-----"
+          maxLength: 512
+          type: string
+      required:
+      - id
+      - device_id
+      - enabled
+      - pem
+      - der
+      - compressed
+      - href
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; view=default'
+      type: object
+    ArduinoDevicev2CertCollection:
+      description: ArduinoDevicev2CertCollection is the media type for an array of
+        ArduinoDevicev2Cert (default view)
+      example:
+      - ca: Voluptatem placeat velit voluptatem delectus nesciunt.
+        compressed:
+          authority_key_identifier: Facere qui ipsam soluta autem quo.
+          not_after: "1986-06-24T05:15:59Z"
+          not_before: "1990-06-18T03:07:07Z"
+          serial: Rerum reiciendis nesciunt amet libero est vitae.
+          signature: Similique voluptatem tenetur sit voluptatem.
+          signature_asn1_x: Aut architecto expedita consequatur nam qui atque.
+          signature_asn1_y: Distinctio occaecati laudantium quis distinctio blanditiis
+            quos.
+        der: Vel laboriosam reprehenderit consequatur.
+        device_id: 7b13122d-616d-4a75-8db7-5dd4f9178fe5
+        enabled: false
+        href: Qui sit repellendus facere dolores neque.
+        id: 9f88db03-0de6-4671-94e2-036437ee16d2
+        pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+          CERTIFICATE-----"
+      - ca: Voluptatem placeat velit voluptatem delectus nesciunt.
+        compressed:
+          authority_key_identifier: Facere qui ipsam soluta autem quo.
+          not_after: "1986-06-24T05:15:59Z"
+          not_before: "1990-06-18T03:07:07Z"
+          serial: Rerum reiciendis nesciunt amet libero est vitae.
+          signature: Similique voluptatem tenetur sit voluptatem.
+          signature_asn1_x: Aut architecto expedita consequatur nam qui atque.
+          signature_asn1_y: Distinctio occaecati laudantium quis distinctio blanditiis
+            quos.
+        der: Vel laboriosam reprehenderit consequatur.
+        device_id: 7b13122d-616d-4a75-8db7-5dd4f9178fe5
+        enabled: false
+        href: Qui sit repellendus facere dolores neque.
+        id: 9f88db03-0de6-4671-94e2-036437ee16d2
+        pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+          CERTIFICATE-----"
+      - ca: Voluptatem placeat velit voluptatem delectus nesciunt.
+        compressed:
+          authority_key_identifier: Facere qui ipsam soluta autem quo.
+          not_after: "1986-06-24T05:15:59Z"
+          not_before: "1990-06-18T03:07:07Z"
+          serial: Rerum reiciendis nesciunt amet libero est vitae.
+          signature: Similique voluptatem tenetur sit voluptatem.
+          signature_asn1_x: Aut architecto expedita consequatur nam qui atque.
+          signature_asn1_y: Distinctio occaecati laudantium quis distinctio blanditiis
+            quos.
+        der: Vel laboriosam reprehenderit consequatur.
+        device_id: 7b13122d-616d-4a75-8db7-5dd4f9178fe5
+        enabled: false
+        href: Qui sit repellendus facere dolores neque.
+        id: 9f88db03-0de6-4671-94e2-036437ee16d2
+        pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+          CERTIFICATE-----"
+      items:
+        $ref: '#/components/schemas/ArduinoDevicev2Cert'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; type=collection;
+        view=default'
+      type: array
     ArduinoDevicev2Collection:
       description: ArduinoDevicev2Collection is the media type for an array of ArduinoDevicev2
         (default view)
@@ -108,85 +289,85 @@ components:
         events:
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         fqbn: Aut culpa eum rerum laudantium recusandae ut.
         href: Sunt maiores deserunt soluta expedita autem.
-        id: bbb24d18-acf8-4aaf-8476-195e7320ff8a
+        id: 333cc9a2-8284-46ae-b662-219f89172ce1
         last_activity_at: "1973-11-29T23:17:26Z"
         metadata:
           Qui a qui quas corrupti voluptatum et.: "2010-01-16T04:33:48Z"
         name: Dolorum explicabo commodi.
         serial: Aut aut fuga est reprehenderit quam.
         type: Occaecati sint excepturi et numquam ipsa quod.
-        user_id: 4e000df7-669b-45ee-97f3-d29878808cf9
+        user_id: 65355b8c-229f-4da9-99e7-c11f9041b343
         webhooks:
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
       - created_at: "2008-12-26T18:12:41Z"
         events:
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         fqbn: Aut culpa eum rerum laudantium recusandae ut.
         href: Sunt maiores deserunt soluta expedita autem.
-        id: bbb24d18-acf8-4aaf-8476-195e7320ff8a
+        id: 333cc9a2-8284-46ae-b662-219f89172ce1
         last_activity_at: "1973-11-29T23:17:26Z"
         metadata:
           Qui a qui quas corrupti voluptatum et.: "2010-01-16T04:33:48Z"
         name: Dolorum explicabo commodi.
         serial: Aut aut fuga est reprehenderit quam.
         type: Occaecati sint excepturi et numquam ipsa quod.
-        user_id: 4e000df7-669b-45ee-97f3-d29878808cf9
+        user_id: 65355b8c-229f-4da9-99e7-c11f9041b343
         webhooks:
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
       - created_at: "2008-12-26T18:12:41Z"
         events:
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         fqbn: Aut culpa eum rerum laudantium recusandae ut.
         href: Sunt maiores deserunt soluta expedita autem.
-        id: bbb24d18-acf8-4aaf-8476-195e7320ff8a
+        id: 333cc9a2-8284-46ae-b662-219f89172ce1
         last_activity_at: "1973-11-29T23:17:26Z"
         metadata:
           Qui a qui quas corrupti voluptatum et.: "2010-01-16T04:33:48Z"
         name: Dolorum explicabo commodi.
         serial: Aut aut fuga est reprehenderit quam.
         type: Occaecati sint excepturi et numquam ipsa quod.
-        user_id: 4e000df7-669b-45ee-97f3-d29878808cf9
+        user_id: 65355b8c-229f-4da9-99e7-c11f9041b343
         webhooks:
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
         - active: false
-          id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           uri: http://buckridge.net/marianne
       items:
         $ref: '#/components/schemas/ArduinoDevicev2'
@@ -199,20 +380,20 @@ components:
         events:
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
         - name: Doloribus molestias voluptas.
           updated_at: "1976-02-22T00:37:10Z"
-          value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
-        id: 67fd68d1-5e0f-4b0c-aa36-8511b5a37272
+          value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
+        id: 1fc543f3-679a-4336-962b-e3bcf5dbb840
       properties:
         events:
           $ref: '#/components/schemas/ArduinoDevicev2SimplePropertiesCollection'
         id:
           description: The device of the property
-          example: 67fd68d1-5e0f-4b0c-aa36-8511b5a37272
+          example: 1fc543f3-679a-4336-962b-e3bcf5dbb840
           format: uuid
           type: string
       required:
@@ -221,12 +402,31 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json;
         view=default'
       type: object
+    ArduinoDevicev2Pass:
+      description: DeviceCertV2 describes a password associated to a device (default
+        view)
+      example:
+        set: false
+        suggested_password: Veritatis maiores fugiat consequatur.
+      properties:
+        set:
+          description: Whether the password is set or not
+          example: false
+          type: boolean
+        suggested_password:
+          description: A random suggested password
+          example: Veritatis maiores fugiat consequatur.
+          type: string
+      required:
+      - set
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.pass+json; view=default'
+      type: object
     ArduinoDevicev2SimpleProperties:
       description: ArduinoDevicev2SimpleProperties media type (default view)
       example:
         name: Doloribus molestias voluptas.
         updated_at: "1976-02-22T00:37:10Z"
-        value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+        value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
       properties:
         name:
           description: The name of the property
@@ -239,7 +439,7 @@ components:
           type: string
         value:
           description: Value of the property
-          example: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+          example: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
       required:
       - name
       - value
@@ -253,10 +453,13 @@ components:
       example:
       - name: Doloribus molestias voluptas.
         updated_at: "1976-02-22T00:37:10Z"
-        value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+        value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
       - name: Doloribus molestias voluptas.
         updated_at: "1976-02-22T00:37:10Z"
-        value: 778bf55a-f2e5-4651-858c-cd9268b14e4b
+        value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
+      - name: Doloribus molestias voluptas.
+        updated_at: "1976-02-22T00:37:10Z"
+        value: 1c918595-dc89-4fcc-9ab6-467d80ec61d0
       items:
         $ref: '#/components/schemas/ArduinoDevicev2SimpleProperties'
       title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
@@ -267,7 +470,7 @@ components:
         view)
       example:
         active: false
-        id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+        id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
         uri: http://buckridge.net/marianne
       properties:
         active:
@@ -277,7 +480,7 @@ components:
           type: boolean
         id:
           description: The uuid of the webhook
-          example: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+          example: cd266628-d0a0-4b04-a83c-71d7cd5d3826
           format: uuid
           type: string
         uri:
@@ -296,13 +499,10 @@ components:
         of ArduinoDevicev2Webhook (default view)
       example:
       - active: false
-        id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+        id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
         uri: http://buckridge.net/marianne
       - active: false
-        id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
-        uri: http://buckridge.net/marianne
-      - active: false
-        id: 0c7d5a3b-1a2b-4c95-b463-cc39b45768a3
+        id: cd266628-d0a0-4b04-a83c-71d7cd5d3826
         uri: http://buckridge.net/marianne
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Webhook'
@@ -313,12 +513,12 @@ components:
       description: ArduinoDevicev2properties media type (default view)
       example:
         data_retention_days: 0.017158929834861936
-        deviceId: f8f18106-9606-4cd7-85ed-fc325b239a99
+        deviceId: f9fb4714-ff80-4ecd-82ff-fe1c11e7e5dc
         properties:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -326,7 +526,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -336,7 +536,7 @@ components:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -344,14 +544,14 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
           updated_at: "2008-03-01T22:44:57Z"
           value_updated_at: "1987-10-31T19:31:50Z"
           variable_name: Et cum.
-        user_id: 364745f3-eeab-4c1c-81da-3b06ce11a91c
+        user_id: 8bdb85c5-f835-403f-bfb9-39cfcc756d0a
       properties:
         data_retention_days:
           description: How many days the data will be kept
@@ -360,14 +560,14 @@ components:
           type: number
         deviceId:
           description: The device of the property
-          example: f8f18106-9606-4cd7-85ed-fc325b239a99
+          example: f9fb4714-ff80-4ecd-82ff-fe1c11e7e5dc
           format: uuid
           type: string
         properties:
           $ref: '#/components/schemas/ArduinoPropertyCollection'
         user_id:
           description: The user id of the owner
-          example: 364745f3-eeab-4c1c-81da-3b06ce11a91c
+          example: 8bdb85c5-f835-403f-bfb9-39cfcc756d0a
           format: uuid
           type: string
       required:
@@ -601,7 +801,7 @@ components:
         created_at: "1985-05-30T05:51:02Z"
         deleted_at: "1985-04-10T14:48:40Z"
         href: Voluptas velit debitis numquam.
-        id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+        id: cbb8f125-d55c-40ee-94ca-a7be329158a4
         last_value: true
         max_value: 0.2270274660573602
         min_value: 0.3458223821124346
@@ -609,7 +809,7 @@ components:
         permission: Consequuntur aliquid ut quo.
         persist: true
         tag: 0.553350863446863
-        thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+        thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
         type: Delectus commodi voluptatem veritatis.
         update_parameter: 0.838673975109447
         update_strategy: Ut aut consectetur doloribus.
@@ -633,7 +833,7 @@ components:
           type: string
         id:
           description: The id of the property
-          example: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          example: cbb8f125-d55c-40ee-94ca-a7be329158a4
           format: uuid
           type: string
         last_value:
@@ -668,7 +868,7 @@ components:
           type: number
         thing_id:
           description: The id of the thing
-          example: aea08897-d326-46ba-8ba5-1a5f532ed338
+          example: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           format: uuid
           type: string
         type:
@@ -716,7 +916,7 @@ components:
       - created_at: "1985-05-30T05:51:02Z"
         deleted_at: "1985-04-10T14:48:40Z"
         href: Voluptas velit debitis numquam.
-        id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+        id: cbb8f125-d55c-40ee-94ca-a7be329158a4
         last_value: true
         max_value: 0.2270274660573602
         min_value: 0.3458223821124346
@@ -724,7 +924,7 @@ components:
         permission: Consequuntur aliquid ut quo.
         persist: true
         tag: 0.553350863446863
-        thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+        thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
         type: Delectus commodi voluptatem veritatis.
         update_parameter: 0.838673975109447
         update_strategy: Ut aut consectetur doloribus.
@@ -734,7 +934,7 @@ components:
       - created_at: "1985-05-30T05:51:02Z"
         deleted_at: "1985-04-10T14:48:40Z"
         href: Voluptas velit debitis numquam.
-        id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+        id: cbb8f125-d55c-40ee-94ca-a7be329158a4
         last_value: true
         max_value: 0.2270274660573602
         min_value: 0.3458223821124346
@@ -742,7 +942,7 @@ components:
         permission: Consequuntur aliquid ut quo.
         persist: true
         tag: 0.553350863446863
-        thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+        thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
         type: Delectus commodi voluptatem veritatis.
         update_parameter: 0.838673975109447
         update_strategy: Ut aut consectetur doloribus.
@@ -752,7 +952,7 @@ components:
       - created_at: "1985-05-30T05:51:02Z"
         deleted_at: "1985-04-10T14:48:40Z"
         href: Voluptas velit debitis numquam.
-        id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+        id: cbb8f125-d55c-40ee-94ca-a7be329158a4
         last_value: true
         max_value: 0.2270274660573602
         min_value: 0.3458223821124346
@@ -760,7 +960,7 @@ components:
         permission: Consequuntur aliquid ut quo.
         persist: true
         tag: 0.553350863446863
-        thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+        thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
         type: Delectus commodi voluptatem veritatis.
         update_parameter: 0.838673975109447
         update_strategy: Ut aut consectetur doloribus.
@@ -978,8 +1178,8 @@ components:
       example:
         responses:
         - count_values: 2465565181916336000
-          property_id: 4896d7e5-5438-49ad-8013-dc568712f988
-          thing_id: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+          property_id: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
+          thing_id: 4469469a-4372-405f-965a-9160429b7033
           times:
           - "1983-06-16T19:24:06Z"
           - "1983-06-16T19:24:06Z"
@@ -988,8 +1188,8 @@ components:
           - 0.42961546196471234
           - 0.42961546196471234
         - count_values: 2465565181916336000
-          property_id: 4896d7e5-5438-49ad-8013-dc568712f988
-          thing_id: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+          property_id: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
+          thing_id: 4469469a-4372-405f-965a-9160429b7033
           times:
           - "1983-06-16T19:24:06Z"
           - "1983-06-16T19:24:06Z"
@@ -1003,8 +1203,8 @@ components:
           description: Responses of the request
           example:
           - count_values: 2465565181916336000
-            property_id: 4896d7e5-5438-49ad-8013-dc568712f988
-            thing_id: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+            property_id: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
+            thing_id: 4469469a-4372-405f-965a-9160429b7033
             times:
             - "1983-06-16T19:24:06Z"
             - "1983-06-16T19:24:06Z"
@@ -1013,8 +1213,8 @@ components:
             - 0.42961546196471234
             - 0.42961546196471234
           - count_values: 2465565181916336000
-            property_id: 4896d7e5-5438-49ad-8013-dc568712f988
-            thing_id: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+            property_id: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
+            thing_id: 4469469a-4372-405f-965a-9160429b7033
             times:
             - "1983-06-16T19:24:06Z"
             - "1983-06-16T19:24:06Z"
@@ -1039,8 +1239,8 @@ components:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
       example:
         count_values: 2465565181916336000
-        property_id: 4896d7e5-5438-49ad-8013-dc568712f988
-        thing_id: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+        property_id: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
+        thing_id: 4469469a-4372-405f-965a-9160429b7033
         times:
         - "1983-06-16T19:24:06Z"
         - "1983-06-16T19:24:06Z"
@@ -1056,12 +1256,12 @@ components:
           type: integer
         property_id:
           description: Property id
-          example: 4896d7e5-5438-49ad-8013-dc568712f988
+          example: 51ac57bf-0fa4-48bd-8475-207c613d8ad6
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: 702f6fbf-f24f-4666-99d6-2c68d70c6a56
+          example: 4469469a-4372-405f-965a-9160429b7033
           format: uuid
           type: string
         times:
@@ -1292,15 +1492,15 @@ components:
       example:
         created_at: "1971-10-10T12:31:48Z"
         deleted_at: "2006-06-04T05:28:18Z"
-        device_id: ae45beee-d62c-4935-ab82-0ff909069a06
+        device_id: 25e961d8-a987-4848-91f1-e6eaf54c44c0
         href: Et non.
-        id: eff25351-70c9-47e5-899c-d163ffa6a9ad
+        id: 0b841d8c-1a2f-4117-8c03-0e88420b48ff
         name: Assumenda voluptatibus dolorem nesciunt exercitationem doloribus optio.
         properties:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1308,7 +1508,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1318,7 +1518,7 @@ components:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1326,7 +1526,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1334,9 +1534,9 @@ components:
           value_updated_at: "1987-10-31T19:31:50Z"
           variable_name: Et cum.
         properties_count: 8966289354163655000
-        sketch_id: 84a13d83-40f4-4d5f-af54-b9c96da8481e
+        sketch_id: 46a96080-e627-4e71-ac8e-9aa8a8a33fa1
         updated_at: "1982-01-19T16:54:24Z"
-        user_id: b6ac0498-6c88-45dc-9483-80b348f137d3
+        user_id: d4e451e4-6661-4035-8986-0b92f405020f
         webhook_active: true
         webhook_uri: Necessitatibus in consequatur occaecati est.
       properties:
@@ -1352,7 +1552,7 @@ components:
           type: string
         device_id:
           description: The arn of the device
-          example: ae45beee-d62c-4935-ab82-0ff909069a06
+          example: 25e961d8-a987-4848-91f1-e6eaf54c44c0
           format: uuid
           type: string
         href:
@@ -1361,7 +1561,7 @@ components:
           type: string
         id:
           description: The id of the thing
-          example: eff25351-70c9-47e5-899c-d163ffa6a9ad
+          example: 0b841d8c-1a2f-4117-8c03-0e88420b48ff
           format: uuid
           type: string
         name:
@@ -1378,7 +1578,7 @@ components:
           type: integer
         sketch_id:
           description: The id of the attached sketch
-          example: 84a13d83-40f4-4d5f-af54-b9c96da8481e
+          example: 46a96080-e627-4e71-ac8e-9aa8a8a33fa1
           format: uuid
           type: string
         updated_at:
@@ -1388,7 +1588,7 @@ components:
           type: string
         user_id:
           description: The user id of the owner
-          example: b6ac0498-6c88-45dc-9483-80b348f137d3
+          example: d4e451e4-6661-4035-8986-0b92f405020f
           format: uuid
           type: string
         webhook_active:
@@ -1412,15 +1612,15 @@ components:
       example:
       - created_at: "1971-10-10T12:31:48Z"
         deleted_at: "2006-06-04T05:28:18Z"
-        device_id: ae45beee-d62c-4935-ab82-0ff909069a06
+        device_id: 25e961d8-a987-4848-91f1-e6eaf54c44c0
         href: Et non.
-        id: eff25351-70c9-47e5-899c-d163ffa6a9ad
+        id: 0b841d8c-1a2f-4117-8c03-0e88420b48ff
         name: Assumenda voluptatibus dolorem nesciunt exercitationem doloribus optio.
         properties:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1428,7 +1628,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1438,7 +1638,7 @@ components:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1446,7 +1646,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1454,22 +1654,22 @@ components:
           value_updated_at: "1987-10-31T19:31:50Z"
           variable_name: Et cum.
         properties_count: 8966289354163655000
-        sketch_id: 84a13d83-40f4-4d5f-af54-b9c96da8481e
+        sketch_id: 46a96080-e627-4e71-ac8e-9aa8a8a33fa1
         updated_at: "1982-01-19T16:54:24Z"
-        user_id: b6ac0498-6c88-45dc-9483-80b348f137d3
+        user_id: d4e451e4-6661-4035-8986-0b92f405020f
         webhook_active: true
         webhook_uri: Necessitatibus in consequatur occaecati est.
       - created_at: "1971-10-10T12:31:48Z"
         deleted_at: "2006-06-04T05:28:18Z"
-        device_id: ae45beee-d62c-4935-ab82-0ff909069a06
+        device_id: 25e961d8-a987-4848-91f1-e6eaf54c44c0
         href: Et non.
-        id: eff25351-70c9-47e5-899c-d163ffa6a9ad
+        id: 0b841d8c-1a2f-4117-8c03-0e88420b48ff
         name: Assumenda voluptatibus dolorem nesciunt exercitationem doloribus optio.
         properties:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1477,7 +1677,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1487,7 +1687,7 @@ components:
         - created_at: "1985-05-30T05:51:02Z"
           deleted_at: "1985-04-10T14:48:40Z"
           href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
+          id: cbb8f125-d55c-40ee-94ca-a7be329158a4
           last_value: true
           max_value: 0.2270274660573602
           min_value: 0.3458223821124346
@@ -1495,7 +1695,7 @@ components:
           permission: Consequuntur aliquid ut quo.
           persist: true
           tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
+          thing_id: 48df4f34-34ac-41ab-8e52-d05bb7a96473
           type: Delectus commodi voluptatem veritatis.
           update_parameter: 0.838673975109447
           update_strategy: Ut aut consectetur doloribus.
@@ -1503,58 +1703,9 @@ components:
           value_updated_at: "1987-10-31T19:31:50Z"
           variable_name: Et cum.
         properties_count: 8966289354163655000
-        sketch_id: 84a13d83-40f4-4d5f-af54-b9c96da8481e
+        sketch_id: 46a96080-e627-4e71-ac8e-9aa8a8a33fa1
         updated_at: "1982-01-19T16:54:24Z"
-        user_id: b6ac0498-6c88-45dc-9483-80b348f137d3
-        webhook_active: true
-        webhook_uri: Necessitatibus in consequatur occaecati est.
-      - created_at: "1971-10-10T12:31:48Z"
-        deleted_at: "2006-06-04T05:28:18Z"
-        device_id: ae45beee-d62c-4935-ab82-0ff909069a06
-        href: Et non.
-        id: eff25351-70c9-47e5-899c-d163ffa6a9ad
-        name: Assumenda voluptatibus dolorem nesciunt exercitationem doloribus optio.
-        properties:
-        - created_at: "1985-05-30T05:51:02Z"
-          deleted_at: "1985-04-10T14:48:40Z"
-          href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
-          last_value: true
-          max_value: 0.2270274660573602
-          min_value: 0.3458223821124346
-          name: Dolorem aut eveniet distinctio quia.
-          permission: Consequuntur aliquid ut quo.
-          persist: true
-          tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
-          type: Delectus commodi voluptatem veritatis.
-          update_parameter: 0.838673975109447
-          update_strategy: Ut aut consectetur doloribus.
-          updated_at: "2008-03-01T22:44:57Z"
-          value_updated_at: "1987-10-31T19:31:50Z"
-          variable_name: Et cum.
-        - created_at: "1985-05-30T05:51:02Z"
-          deleted_at: "1985-04-10T14:48:40Z"
-          href: Voluptas velit debitis numquam.
-          id: 75f42904-cdc8-4290-8616-f84015e5e7d9
-          last_value: true
-          max_value: 0.2270274660573602
-          min_value: 0.3458223821124346
-          name: Dolorem aut eveniet distinctio quia.
-          permission: Consequuntur aliquid ut quo.
-          persist: true
-          tag: 0.553350863446863
-          thing_id: aea08897-d326-46ba-8ba5-1a5f532ed338
-          type: Delectus commodi voluptatem veritatis.
-          update_parameter: 0.838673975109447
-          update_strategy: Ut aut consectetur doloribus.
-          updated_at: "2008-03-01T22:44:57Z"
-          value_updated_at: "1987-10-31T19:31:50Z"
-          variable_name: Et cum.
-        properties_count: 8966289354163655000
-        sketch_id: 84a13d83-40f4-4d5f-af54-b9c96da8481e
-        updated_at: "1982-01-19T16:54:24Z"
-        user_id: b6ac0498-6c88-45dc-9483-80b348f137d3
+        user_id: d4e451e4-6661-4035-8986-0b92f405020f
         webhook_active: true
         webhook_uri: Necessitatibus in consequatur occaecati est.
       items:
@@ -1565,22 +1716,22 @@ components:
     BatchLastValueRequestsMediaV1:
       example:
         requests:
-        - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-          thing_id: e94744e6-a293-417a-9796-484ee45b400e
-        - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-          thing_id: e94744e6-a293-417a-9796-484ee45b400e
-        - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-          thing_id: e94744e6-a293-417a-9796-484ee45b400e
+        - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+          thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
+        - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+          thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
+        - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+          thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
       properties:
         requests:
           description: Requests
           example:
-          - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-            thing_id: e94744e6-a293-417a-9796-484ee45b400e
-          - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-            thing_id: e94744e6-a293-417a-9796-484ee45b400e
-          - property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-            thing_id: e94744e6-a293-417a-9796-484ee45b400e
+          - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+            thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
+          - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+            thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
+          - property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+            thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
           items:
             $ref: '#/components/schemas/BatchQueryRawLastValueRequestMediaV1'
           type: array
@@ -1590,17 +1741,17 @@ components:
       type: object
     BatchQueryRawLastValueRequestMediaV1:
       example:
-        property_id: 6a027c79-e597-493b-95a4-3beb37ee31df
-        thing_id: e94744e6-a293-417a-9796-484ee45b400e
+        property_id: 2aa8538f-72af-469c-a601-0c2539c4f980
+        thing_id: d046ac17-e40f-4dc5-868b-acfdd889f94a
       properties:
         property_id:
           description: Property id
-          example: 6a027c79-e597-493b-95a4-3beb37ee31df
+          example: 2aa8538f-72af-469c-a601-0c2539c4f980
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: e94744e6-a293-417a-9796-484ee45b400e
+          example: d046ac17-e40f-4dc5-868b-acfdd889f94a
           format: uuid
           type: string
       required:
@@ -1789,6 +1940,44 @@ components:
       - resp_version
       title: BatchQueryRequestsMediaV1
       type: object
+    CheckDevicesV2PassPayload:
+      example:
+        password: Excepturi rem modi.
+      properties:
+        password:
+          description: The password for the device
+          example: Excepturi rem modi.
+          type: string
+      required:
+      - password
+      title: CheckDevicesV2PassPayload
+      type: object
+    CreateDevicesV2CertsPayload:
+      example:
+        ca: Quos numquam.
+        csr: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+          CERTIFICATE-----\n\t\t\t"
+        enabled: false
+      properties:
+        ca:
+          description: The Certification Authority you want to use
+          example: Quos numquam.
+          type: string
+        csr:
+          description: The certificate request in pem format
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+            CERTIFICATE-----\n\t\t\t"
+          maxLength: 1024
+          type: string
+        enabled:
+          description: Whether the certificate is enabled
+          example: false
+          type: boolean
+      required:
+      - enabled
+      - csr
+      title: CreateDevicesV2CertsPayload
+      type: object
     CreateDevicesV2Payload:
       description: DeviceV2 describes a device.
       example:
@@ -1796,7 +1985,7 @@ components:
         name: fje4vlfwmz
         serial: kybchbwb1v
         type: mkrnb1500
-        user_id: e9f496d1-6cef-4109-8b65-9e888affd922
+        user_id: f77fbf83-54c3-46ad-91a2-b6079279d4fa
       properties:
         fqbn:
           description: The fully qualified board name
@@ -1831,7 +2020,7 @@ components:
         user_id:
           description: The user_id associated to the device. If absent it will be
             inferred from the authentication header
-          example: e9f496d1-6cef-4109-8b65-9e888affd922
+          example: f77fbf83-54c3-46ad-91a2-b6079279d4fa
           format: uuid
           type: string
       required:
@@ -1841,20 +2030,20 @@ components:
     CreateThingsV2Payload:
       description: ThingPayload describes a thing
       example:
-        device_id: ce1b68a5-ade2-4d6a-b678-0bd76e79b238
-        id: 2bfbf35a-f788-4c85-a693-6ec8917736f9
+        device_id: 38eaa38b-19b0-401c-8734-bb6e0ab50ca1
+        id: 018a66e3-7d30-4db6-ae7c-9f6974aead47
         name: 1t2r7qwgou
         webhook_active: true
         webhook_uri: http://durgan.net/winona
       properties:
         device_id:
           description: The arn of the associated device
-          example: ce1b68a5-ade2-4d6a-b678-0bd76e79b238
+          example: 38eaa38b-19b0-401c-8734-bb6e0ab50ca1
           format: uuid
           type: string
         id:
           description: The id of the thing
-          example: 2bfbf35a-f788-4c85-a693-6ec8917736f9
+          example: 018a66e3-7d30-4db6-ae7c-9f6974aead47
           format: uuid
           type: string
         name:
@@ -1883,7 +2072,7 @@ components:
         name: fje4vlfwmz
         serial: kybchbwb1v
         type: mkrnb1500
-        user_id: e9f496d1-6cef-4109-8b65-9e888affd922
+        user_id: f77fbf83-54c3-46ad-91a2-b6079279d4fa
       properties:
         fqbn:
           description: The fully qualified board name
@@ -1918,10 +2107,43 @@ components:
         user_id:
           description: The user_id associated to the device. If absent it will be
             inferred from the authentication header
-          example: e9f496d1-6cef-4109-8b65-9e888affd922
+          example: f77fbf83-54c3-46ad-91a2-b6079279d4fa
           format: uuid
           type: string
       title: devicev2
+      type: object
+    devicev2.cert:
+      example:
+        ca: Quos numquam.
+        csr: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+          CERTIFICATE-----\n\t\t\t"
+        enabled: false
+      properties:
+        ca:
+          description: The Certification Authority you want to use
+          example: Quos numquam.
+          type: string
+        csr:
+          description: The certificate request in pem format
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+            CERTIFICATE-----\n\t\t\t"
+          maxLength: 1024
+          type: string
+        enabled:
+          description: Whether the certificate is enabled
+          example: false
+          type: boolean
+      title: devicev2.cert
+      type: object
+    devicev2.pass:
+      example:
+        password: Excepturi rem modi.
+      properties:
+        password:
+          description: The password for the device
+          example: Excepturi rem modi.
+          type: string
+      title: devicev2.pass
       type: object
     error:
       description: Error response media type (default view)
@@ -2171,12 +2393,12 @@ components:
     propertyValue:
       description: PropertyValuePayload describes a property value
       example:
-        device_id: c38ac199-7b5f-42fd-91a1-fa7fae8b2862
+        device_id: 29809dc6-1bd9-4835-8d71-3bba0a2df47f
         value: "1976-01-12T07:41:23Z"
       properties:
         device_id:
           description: The device who send the property
-          example: c38ac199-7b5f-42fd-91a1-fa7fae8b2862
+          example: 29809dc6-1bd9-4835-8d71-3bba0a2df47f
           format: uuid
           type: string
         value:
@@ -2189,20 +2411,20 @@ components:
     thing:
       description: ThingPayload describes a thing
       example:
-        device_id: ce1b68a5-ade2-4d6a-b678-0bd76e79b238
-        id: 2bfbf35a-f788-4c85-a693-6ec8917736f9
+        device_id: 38eaa38b-19b0-401c-8734-bb6e0ab50ca1
+        id: 018a66e3-7d30-4db6-ae7c-9f6974aead47
         name: 1t2r7qwgou
         webhook_active: true
         webhook_uri: http://durgan.net/winona
       properties:
         device_id:
           description: The arn of the associated device
-          example: ce1b68a5-ade2-4d6a-b678-0bd76e79b238
+          example: 38eaa38b-19b0-401c-8734-bb6e0ab50ca1
           format: uuid
           type: string
         id:
           description: The id of the thing
-          example: 2bfbf35a-f788-4c85-a693-6ec8917736f9
+          example: 018a66e3-7d30-4db6-ae7c-9f6974aead47
           format: uuid
           type: string
         name:
@@ -2260,7 +2482,7 @@ info:
 
     * [Golang Module](https://github.com/arduino/iot-client-go)
   title: Arduino IoT Cloud API
-  version: ""
+  version: "2.0"
 openapi: 3.0.0
 paths:
   /v2/devices:
@@ -2467,6 +2689,208 @@ paths:
       summary: update devices_v2
       tags:
       - devices_v2
+  /v2/devices/{id}/certs:
+    get:
+      description: Returns the list of certs associated to the device
+      operationId: devices_v2_certs#list
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: list devices_v2_certs
+      tags:
+      - devices_v2_certs
+    put:
+      description: Creates a new cert associated to a device. The csr is signed and
+        saved in database. The CommonName will be replaced with the device id.
+      operationId: devices_v2_certs#create
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDevicesV2CertsPayload'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: create devices_v2_certs
+      tags:
+      - devices_v2_certs
+  /v2/devices/{id}/certs/{cid}:
+    delete:
+      description: Removes a cert associated to a device
+      operationId: devices_v2_certs#delete
+      parameters:
+      - description: The id of the cert
+        in: path
+        name: cid
+        required: true
+        schema:
+          type: string
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete devices_v2_certs
+      tags:
+      - devices_v2_certs
+    get:
+      description: Returns the cert requested by the user
+      operationId: devices_v2_certs#show
+      parameters:
+      - description: The id of the cert
+        in: path
+        name: cid
+        required: true
+        schema:
+          type: string
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: show devices_v2_certs
+      tags:
+      - devices_v2_certs
+    post:
+      description: Updates a cert associated to a device. The csr is signed and saved
+        in database. The CommonName will be replaced with the device id.
+      operationId: devices_v2_certs#update
+      parameters:
+      - description: The id of the cert
+        in: path
+        name: cid
+        required: true
+        schema:
+          type: string
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/devicev2.cert'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: update devices_v2_certs
+      tags:
+      - devices_v2_certs
   /v2/devices/{id}/events:
     get:
       description: GET device events
@@ -2518,6 +2942,155 @@ paths:
       summary: getEvents devices_v2
       tags:
       - devices_v2
+  /v2/devices/{id}/pass:
+    delete:
+      description: Removes the password for the device.
+      operationId: devices_v2_pass#delete
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete devices_v2_pass
+      tags:
+      - devices_v2_pass
+    get:
+      description: Returns whether the password for this device is set or not. It
+        doesn't return the password.
+      operationId: devices_v2_pass#get
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: If true, return a suggested password
+        in: query
+        name: suggested_password
+        schema:
+          type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: get devices_v2_pass
+      tags:
+      - devices_v2_pass
+    post:
+      description: Check if the password matches.
+      operationId: devices_v2_pass#check
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckDevicesV2PassPayload'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: check devices_v2_pass
+      tags:
+      - devices_v2_pass
+    put:
+      description: Sets the password for the device. It can never be read back.
+      operationId: devices_v2_pass#set
+      parameters:
+      - description: The id of the device
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/devicev2.pass'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: set devices_v2_pass
+      tags:
+      - devices_v2_pass
   /v2/devices/{id}/properties:
     get:
       description: GET device properties
