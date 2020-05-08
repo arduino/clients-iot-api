@@ -8,12 +8,6 @@ languages:
             - --type-mappings
             - object=interface{}
             description: Generate go code using openapi-generator
-          - commandline:
-            - chmod
-            - -R
-            - "766"
-            - "{{version_output_dir}}"
-            description: Chmod stuff
         templates:
           source:
             type: openapi-git
@@ -35,12 +29,6 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate doc using openapi-generator
-          - commandline:
-            - chmod
-            - -R
-            - "766"
-            - "{{version_output_dir}}"
-            description: Chmod stuff
         templates:
           patches:
             - template-patches/html2-arduino-css.patch
@@ -65,12 +53,6 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate js code using openapi-generator
-          - commandline:
-            - chmod
-            - -R
-            - "766"
-            - "{{version_output_dir}}"
-            description: Chmod stuff
         templates:
           source:
             type: openapi-git
@@ -92,12 +74,6 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate py code using openapi-generator
-          - commandline:
-            - chmod
-            - -R
-            - "766"
-            - "{{version_output_dir}}"
-            description: Chmod stuff
         templates:
           source:
             type: openapi-git
