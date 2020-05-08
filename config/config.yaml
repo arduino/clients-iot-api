@@ -36,6 +36,7 @@ languages:
             - template-patches/html2-unused-languages.patch
             - template-patches/html2-create-api-token.patch
             - template-patches/html2-auth-reference-links.patch
+            - template-patches/html2-rate-limiting-error.patch
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates
