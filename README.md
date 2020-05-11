@@ -18,7 +18,7 @@ The process to generate the clients explained in paragraphs below is fully
 automated through GitHub actions. The workflow will start every time a tag in the form of `vX.Y` (e.g. `v2.1`) is pushed to this repo. If the workflow completes
 successfully, a PR will be opened for each client in their respective git
 repositories. See the
-[actions page](https://github.com/bcmi-labs/clients-iot-apiactions) to
+[actions page](https://github.com/bcmi-labs/clients-iot-api/actions) to
 monitor the status of a workflow.
 
 ## Sample clients
@@ -44,9 +44,8 @@ The operations are detailed in the following paragraphs.
 To be able to run the workflow locally in a developmnent environment, you'll
 need the following:
 
-* Python 3.6+
-* OpenAPI generator 4.0+ (see [install instructions](https://openapi-generator.tech/docs/installation))
-* Apigentools (`pip install apigentools`)
+* Python 3.7+
+* Apigentools 1.0+ (`pip install apigentools`)
 
 ### Get an updated version of the API specification
 
@@ -74,24 +73,10 @@ CI step:
 apigentools validate
 ```
 
-### Render upstream templates
-
-This step patches the original (upstream) templates **before** the generation
-step, so that we have full control over the generated code. The step consists
-of cloning the openapi-generator repo, applying one or more patches in the form
-of patch files to it and copy the relevant templates in the folder `templates`:
-
-```sh
-apigentools templates -p template-patches openapi-git
-```
-
-There are other ways to provide upstream templates other than `openapi-git` that
-might be useful to speed up development iterations, please refer to `apigentools`
-docs for more details.
-
 ### Generate the clients
 
-Once templates are patched and ready to be used, this step is as easy as running:
+To generate clients and documentation using a template, and apply pathces before
+template filling, this is the command to run:
 
 ```sh
 apigentools generate
@@ -116,6 +101,23 @@ apigentools push
 ```
 
 A release process should take from here and shouldn't be part of this workflow.
+
+### Render upstream templates
+
+This step is not currently necessary as the `generate` step does it implicitly,
+but in case you want to only apply patches to the original (upstream) templates
+**before** the generation step, you can run it to check how the pathces will
+modify the generated code. The step consists of cloning the openapi-generator
+repo, applying one or more patches in the form of patch files to it and copy
+the relevant templates in the folder `templates`:
+
+```sh
+apigentools templates
+```
+
+There are other ways to provide upstream templates other than the currently configured
+`openapi-git` that might be useful to speed up development iterations, please refer to
+`apigentools` docs for more details.
 
 ## Customization
 
