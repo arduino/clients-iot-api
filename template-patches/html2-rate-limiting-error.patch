@@ -1,0 +1,21 @@
+diff --git a/htmlDocs2/index.mustache b/htmlDocs2/index.mustache
+--- index.mustache	2020-05-08 19:01:47.348448854 +0200
++++ "index (copy).mustache"	2020-05-08 18:58:03.574157094 +0200
+@@ -230,6 +230,17 @@
+               </ul>
+ 
+             </div>
++
++            <div id="create-auth-token" class="app-desc">
++              <h2 id="create-auth-token">Rate Limiting</h2>
++              <p>Arduino IoT APIs are rate limited, authenticated clients limit is up to 10req/s.</p>
++              <p>The following code and message are returned from the Arduino servers in case of rate limit error:</p>
++              <p><b>Status: 429 - Too Many Requests</b></p>
++              <pre>
++You have reached maximum request limit.
++              </pre>
++            </div>
++
+           </div>
+         </div>
+         <div id="sections">

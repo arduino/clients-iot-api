@@ -1,0 +1,26 @@
+diff --git a/htmlDocs2/index.mustache b/htmlDocs2/index.mustache
+index 15da582..99952c4 100644
+--- a/htmlDocs2/index.mustache
++++ b/htmlDocs2/index.mustache
+@@ -215,7 +215,21 @@ curl --request POST \
+                 </code></pre>
+             </div>
+ 
++            <div id="app-description" class="app-desc">
++              <p>Token generation code for supported clients are available at the following links:</p>
++              <ul>
++                <li>
++                  <p><a href="https://github.com/arduino/iot-client-js#authentication">Javascript Client</a></p>
++                </li>
++                <li>
++                  <p><a href="https://github.com/arduino/iot-client-py#authentication">Python Client</a></p>
++                </li>
++                <li>
++                  <p><a href="https://github.com/arduino/iot-client-go#getting-started">Golang Client</a></p>
++                </li>
++              </ul>
+ 
++            </div>
+           </div>
+         </div>
+         <div id="sections">
