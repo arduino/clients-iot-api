@@ -9,9 +9,9 @@ languages:
             - object=interface{}
             description: Generate go code using openapi-generator
           - commandline:
-            - chmod
+            - chown
             - -R
-            - 777
+            - "1000"
             - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
@@ -36,9 +36,9 @@ languages:
             - function: openapi_generator_generate
             description: Generate doc using openapi-generator
           - commandline:
-            - chmod
+            - chown
             - -R
-            - 777
+            - "1000"
             - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
@@ -68,9 +68,9 @@ languages:
             - function: openapi_generator_generate
             description: Generate js code using openapi-generator
           - commandline:
-            - chmod
+            - chown
             - -R
-            - 777
+            - "1000"
             - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
@@ -95,9 +95,9 @@ languages:
             - function: openapi_generator_generate
             description: Generate py code using openapi-generator
           - commandline:
-            - chmod
+            - chown
             - -R
-            - 777
+            - "1000"
             - "{{version_output_dir}}"
             description: Fix permission for generated files in {{version_output_dir}}
         templates:
