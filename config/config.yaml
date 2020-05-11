@@ -8,6 +8,12 @@ languages:
             - --type-mappings
             - object=interface{}
             description: Generate go code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - 777
+            - "{{version_output_dir}}"
+            description: fix permission for generated files
         templates:
           source:
             type: openapi-git
@@ -29,6 +35,12 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate doc using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - 777
+            - "{{version_output_dir}}"
+            description: fix permission for generated files
         templates:
           patches:
             - template-patches/html2-arduino-css.patch
@@ -55,6 +67,12 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate js code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - 777
+            - "{{version_output_dir}}"
+            description: fix permission for generated files
         templates:
           source:
             type: openapi-git
@@ -76,6 +94,12 @@ languages:
           - commandline:
             - function: openapi_generator_generate
             description: Generate py code using openapi-generator
+          - commandline:
+            - chmod
+            - -R
+            - 777
+            - "{{version_output_dir}}"
+            description: Fix permission for generated files in {{version_output_dir}}
         templates:
           source:
             type: openapi-git
