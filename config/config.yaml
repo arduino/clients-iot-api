@@ -11,8 +11,8 @@ languages:
           - commandline:
             - chmod
             - -R
-            - 766
-            - {{version_output_dir}}
+            - 777
+            - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
           source:
@@ -38,8 +38,8 @@ languages:
           - commandline:
             - chmod
             - -R
-            - 766
-            - {{version_output_dir}}
+            - 777
+            - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
           patches:
@@ -70,8 +70,8 @@ languages:
           - commandline:
             - chmod
             - -R
-            - 766
-            - {{version_output_dir}}
+            - 777
+            - "{{version_output_dir}}"
             description: fix permission for generated files
         templates:
           source:
@@ -97,9 +97,9 @@ languages:
           - commandline:
             - chmod
             - -R
-            - 766
-            - {{version_output_dir}}
-            description: fix permission for generated files
+            - 777
+            - "{{version_output_dir}}"
+            description: Fix permission for generated files in {{version_output_dir}}
         templates:
           source:
             type: openapi-git
