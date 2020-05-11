@@ -33,7 +33,7 @@ jobs:
         run: apigentools validate
 
       - name: Render upstream templates
-        run: apigentools templates -p template-patches openapi-git
+        run: apigentools templates
 
       - name: Generate clients
         env:
