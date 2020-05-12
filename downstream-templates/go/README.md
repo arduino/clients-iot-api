@@ -27,4 +27,4 @@ if err != nil {
 log.Printf("Got an access token, will expire on %s", tok.Expiry)
 ```
 
-For a working example, see [the example folder](./example) in this repo.
+For a working example, see [the example folder](https://github.com/arduino/iot-client-go/tree/master/example) in this repo.
