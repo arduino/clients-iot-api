@@ -32,6 +32,10 @@ jobs:
           APIGENTOOLS_GIT_VIA_HTTPS_OAUTH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
         run: apigentools generate --clone-repo
 
+      - name: Align permissions of generated code
+        run: |
+          sudo chown -R ${USER}:${USER} generated
+
       - name: Push client repos
         if: github.event_name == 'push'
         env:
