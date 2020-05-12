@@ -34,7 +34,7 @@ jobs:
 
       - name: Align permissions of generated code
         run: |
-          chown -R ${USER}:${USER} generated
+          sudo chown -R ${USER}:${USER} generated
 
       - name: Push client repos
         if: github.event_name == 'push'
