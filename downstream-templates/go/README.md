@@ -38,12 +38,12 @@ You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` secti
 
 ### Step 1
 
-![IoT Cloud Site](./img/selection_1)
+![IoT Cloud Site](./img/selection_1.png)
 
 ### Step 2
 
-![IoT Cloud Site](./img/selection_2)
+![IoT Cloud Site](./img/selection_2.png)
 
 ### Step 3
 
-![IoT Cloud Site](./img/selection_3)
+![IoT Cloud Site](./img/selection_3.png)
