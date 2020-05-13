@@ -54,6 +54,8 @@ languages:
         commands:
           - commandline:
             - function: openapi_generator_generate
+            - --type-mappings
+            - AnyType=Object
             description: Generate js code using openapi-generator
         templates:
           source:
