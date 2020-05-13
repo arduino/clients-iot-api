@@ -67,4 +67,4 @@ except ApiException as e:
     print("Got an exception: {}".format(e))
 ```
 
-For a working example, see [the example folder](https://github.com/arduino/iot-client-py/tree/master/example) in this repo.
+For a working example, see [the example folder](https://github.com/arduino/iot-client-py/tree/master/example/main.py) in this repo.
