@@ -44,7 +44,6 @@ jobs:
         run: |
           rm -rf generated/iot-client-js/docs/
           rm -rf generated/iot-client-js/test/
-          rm -rf generated/iot-client-py/arduino_iot_rest/test/
           git config --global user.email "arduinobot@arduino.cc"
           git config --global user.name "ArduinoBot"
           apigentools push
