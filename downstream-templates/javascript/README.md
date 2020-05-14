@@ -93,7 +93,7 @@ catch (error) {
 
 **NOTE:** Client Credentials are an Arduino IoT Cloud Maker Plan feature. Form more informations check the [Arduino Store](https://store.arduino.cc/digital/create).
 
-You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` section in the [IoT Cloud things dashobard](https://create.arduino.cc/iot/things):
+You can generate Arduino IoT Cloud Client Credentials in the `ARDUINO API` section in the [IoT Cloud things dashboard](https://create.arduino.cc/iot/things):
 
 ### Step 1
 
