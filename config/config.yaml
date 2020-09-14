@@ -43,7 +43,6 @@ languages:
             - template-patches/html2-create-api-token.patch
             - template-patches/html2-auth-reference-links.patch
             - template-patches/html2-rate-limiting-error.patch
-            - template-patches/javascript-api-client.patch
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates
@@ -71,6 +70,8 @@ languages:
             - "{{version_output_dir}}"
             description: Copy shared assets in the generated folder
         templates:
+          patches:
+            - template-patches/javascript-api-client.patch
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates
