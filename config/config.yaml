@@ -70,6 +70,8 @@ languages:
             - "{{version_output_dir}}"
             description: Copy shared assets in the generated folder
         templates:
+          patches:
+            - template-patches/javascript-api-client.patch
           source:
             type: openapi-git
             git_committish: "v4.3.1" # git committish to checkout before extracting the templates

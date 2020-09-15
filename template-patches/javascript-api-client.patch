@@ -1,0 +1,13 @@
+diff --git a/Javascript/es6/ApiClient.mustache b/Javascript/es6/ApiClient.mustache
+index fcb92377e1..20c1aaee78 100644
+--- a/Javascript/es6/ApiClient.mustache
++++ b/Javascript/es6/ApiClient.mustache
+@@ -358,7 +358,7 @@ class ApiClient {
+         var data = response.body;
+         if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length)) {
+             // SuperAgent does not always produce a body; use the unparsed response as a fallback
+-            data = response.text;
++            data = JSON.parse(response.text);
+         }
+ 
+         return ApiClient.convertToType(data, returnType);
