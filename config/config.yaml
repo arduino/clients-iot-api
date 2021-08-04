@@ -24,7 +24,7 @@ languages:
       downstream-templates/go/README.md: README.md
     github_org_name: arduino
     github_repo_name: iot-client-go
-    library_version: '1.3.4'
+    library_version: '1.3.5'
     spec_versions:
       - v2
     version_path_template: ''
@@ -50,7 +50,7 @@ languages:
             system: true
     github_org_name: arduino
     github_repo_name: iot-client-docs
-    library_version: '1.3.4'
+    library_version: '1.3.5'
     spec_versions:
       - v2
     version_path_template: ''
@@ -81,7 +81,7 @@ languages:
       downstream-templates/javascript/README.md: README.md
     github_org_name: arduino
     github_repo_name: iot-client-js
-    library_version: '1.3.4'
+    library_version: '1.3.5'
     spec_versions:
       - v2
     version_path_template: ''
@@ -109,7 +109,7 @@ languages:
       downstream-templates/python/setup.py: setup.py
     github_org_name: arduino
     github_repo_name: iot-client-py
-    library_version: '1.3.4'
+    library_version: '1.3.5'
     spec_versions:
       - v2
     version_path_template: ''
