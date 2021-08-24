@@ -47,3 +47,10 @@ jobs:
           git config --global user.email "arduinobot@arduino.cc"
           git config --global user.name "ArduinoBot"
           apigentools push
+          
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-without-markdown
+          path: |
+            generated
