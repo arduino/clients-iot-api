@@ -21,7 +21,7 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
-        run: pip install apigentools==1.1.0
+        run: pip install apigentools==1.1.0 # NB: If changes are needed, remeber to update the docker image accordingly at config/config.yaml 
 
       - name: Validate specfile
         run: apigentools validate
@@ -47,10 +47,3 @@ jobs:
           git config --global user.email "arduinobot@arduino.cc"
           git config --global user.name "ArduinoBot"
           apigentools push
-          
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist-without-markdown
-          path: |
-            generated
