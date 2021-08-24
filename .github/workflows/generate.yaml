@@ -21,7 +21,7 @@ jobs:
           architecture: 'x64'
 
       - name: Install apigentools
-        run: pip install apigentools
+        run: pip install apigentools==1.1.0
 
       - name: Validate specfile
         run: apigentools validate
