@@ -73,7 +73,7 @@ components:
           value: false
         fqbn: Ea ut magnam ipsa.
         href: Vel ipsam dolorem incidunt repellendus voluptatem.
-        id: 8def4d72-73fe-4a90-8710-0c3a11278406
+        id: ec5ae54b-3d46-4bf4-8c2c-6fdee5f83ec2
         label: Omnis excepturi quo amet enim earum.
         last_activity_at: "2003-01-01T21:20:30Z"
         latest_wifi_fw_version: Quia corrupti voluptatem placeat velit.
@@ -87,24 +87,24 @@ components:
         thing:
           created_at: "1987-03-16T08:14:01Z"
           deleted_at: "2014-09-27T22:43:00Z"
-          device_id: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+          device_id: 65e23e7a-3ef6-4e33-b139-531732f5746d
           href: Corrupti ex qui ut.
-          id: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+          id: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
           name: Voluptatem molestias.
           properties:
           - created_at: "1979-04-16T17:41:57Z"
             deleted_at: "2000-09-25T21:03:44Z"
             href: Velit eius blanditiis voluptatibus dolores earum.
-            id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+            id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
             last_value: "1982-06-26T22:59:33Z"
             max_value: 0.5534251248332908
             min_value: 0.06514205558620917
             name: Vero doloribus odit rerum amet culpa.
             permission: Nihil ut assumenda sed fugit.
             persist: true
-            sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+            sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
             tag: 0.9331269810984383
-            thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+            thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
             thing_name: Et accusantium ipsum rerum.
             type: Debitis nesciunt id vitae dolore aut beatae.
             update_parameter: 0.763900217608657
@@ -113,22 +113,22 @@ components:
             value_updated_at: "1974-08-31T18:07:44Z"
             variable_name: Voluptatem porro quaerat veniam.
           properties_count: 11222136127766996
-          sketch_id: 44beadca-0c7e-44f2-8a0a-0528629354ce
+          sketch_id: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
           updated_at: "1998-11-29T08:52:29Z"
-          user_id: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+          user_id: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
           webhook_active: false
           webhook_uri: Facilis doloremque dicta.
         type: Maxime est voluptas velit.
-        user_id: 47b67e7c-320c-4805-8e8c-6c9d5ff0c4a8
+        user_id: 976a8f0f-b459-4122-aa31-c970000fa88b
         webhooks:
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         wifi_fw_version: Exercitationem beatae facere.
       properties:
@@ -149,7 +149,7 @@ components:
           type: string
         id:
           description: The arn of the device
-          example: 8def4d72-73fe-4a90-8710-0c3a11278406
+          example: ec5ae54b-3d46-4bf4-8c2c-6fdee5f83ec2
           format: uuid
           type: string
         label:
@@ -199,7 +199,7 @@ components:
           type: string
         user_id:
           description: The id of the user
-          example: 47b67e7c-320c-4805-8e8c-6c9d5ff0c4a8
+          example: 976a8f0f-b459-4122-aa31-c970000fa88b
           format: uuid
           type: string
         webhooks:
@@ -231,10 +231,10 @@ components:
           signature_asn1_x: Voluptatem aut aut architecto expedita consequatur.
           signature_asn1_y: Qui atque.
         der: Perferendis quo consectetur natus amet est reiciendis.
-        device_id: f6dff1c3-b6d9-4e38-ba08-4d0987144367
+        device_id: 43728a15-9628-4b24-aed7-0f9aeb50b292
         enabled: true
         href: Eos nobis illo error.
-        id: abb97d73-e5f0-4956-be8c-1fef7b9befbf
+        id: 24f9dac7-24f8-4674-9b10-28a9acb89e09
         pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END CERTIFICATE-----"
       properties:
         ca:
@@ -249,7 +249,7 @@ components:
           type: string
         device_id:
           description: The unique identifier of the device
-          example: f6dff1c3-b6d9-4e38-ba08-4d0987144367
+          example: 43728a15-9628-4b24-aed7-0f9aeb50b292
           format: uuid
           type: string
         enabled:
@@ -263,7 +263,7 @@ components:
           type: string
         id:
           description: The unique identifier of the key
-          example: abb97d73-e5f0-4956-be8c-1fef7b9befbf
+          example: 24f9dac7-24f8-4674-9b10-28a9acb89e09
           format: uuid
           type: string
         pem:
@@ -294,10 +294,10 @@ components:
           signature_asn1_x: Voluptatem aut aut architecto expedita consequatur.
           signature_asn1_y: Qui atque.
         der: Perferendis quo consectetur natus amet est reiciendis.
-        device_id: f6dff1c3-b6d9-4e38-ba08-4d0987144367
+        device_id: 43728a15-9628-4b24-aed7-0f9aeb50b292
         enabled: true
         href: Eos nobis illo error.
-        id: abb97d73-e5f0-4956-be8c-1fef7b9befbf
+        id: 24f9dac7-24f8-4674-9b10-28a9acb89e09
         pem: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END CERTIFICATE-----"
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Cert'
@@ -313,7 +313,7 @@ components:
           value: false
         fqbn: Ea ut magnam ipsa.
         href: Vel ipsam dolorem incidunt repellendus voluptatem.
-        id: 8def4d72-73fe-4a90-8710-0c3a11278406
+        id: ec5ae54b-3d46-4bf4-8c2c-6fdee5f83ec2
         label: Omnis excepturi quo amet enim earum.
         last_activity_at: "2003-01-01T21:20:30Z"
         latest_wifi_fw_version: Quia corrupti voluptatem placeat velit.
@@ -327,24 +327,24 @@ components:
         thing:
           created_at: "1987-03-16T08:14:01Z"
           deleted_at: "2014-09-27T22:43:00Z"
-          device_id: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+          device_id: 65e23e7a-3ef6-4e33-b139-531732f5746d
           href: Corrupti ex qui ut.
-          id: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+          id: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
           name: Voluptatem molestias.
           properties:
           - created_at: "1979-04-16T17:41:57Z"
             deleted_at: "2000-09-25T21:03:44Z"
             href: Velit eius blanditiis voluptatibus dolores earum.
-            id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+            id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
             last_value: "1982-06-26T22:59:33Z"
             max_value: 0.5534251248332908
             min_value: 0.06514205558620917
             name: Vero doloribus odit rerum amet culpa.
             permission: Nihil ut assumenda sed fugit.
             persist: true
-            sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+            sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
             tag: 0.9331269810984383
-            thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+            thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
             thing_name: Et accusantium ipsum rerum.
             type: Debitis nesciunt id vitae dolore aut beatae.
             update_parameter: 0.763900217608657
@@ -353,22 +353,22 @@ components:
             value_updated_at: "1974-08-31T18:07:44Z"
             variable_name: Voluptatem porro quaerat veniam.
           properties_count: 11222136127766996
-          sketch_id: 44beadca-0c7e-44f2-8a0a-0528629354ce
+          sketch_id: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
           updated_at: "1998-11-29T08:52:29Z"
-          user_id: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+          user_id: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
           webhook_active: false
           webhook_uri: Facilis doloremque dicta.
         type: Maxime est voluptas velit.
-        user_id: 47b67e7c-320c-4805-8e8c-6c9d5ff0c4a8
+        user_id: 976a8f0f-b459-4122-aa31-c970000fa88b
         webhooks:
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         - active: false
-          id: 5d2f981f-3a91-4312-acca-746c04484454
+          id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           uri: http://boyer.net/heidi_jacobson
         wifi_fw_version: Exercitationem beatae facere.
       items:
@@ -382,13 +382,13 @@ components:
         - name: Earum ea non.
           updated_at: "1991-10-15T11:11:45Z"
           value: false
-        id: 1528f12a-07f8-4bd9-b8b3-21a88c99d9d6
+        id: d32194cd-aa3f-4303-956f-da796dd85cbd
       properties:
         events:
           $ref: '#/components/schemas/ArduinoDevicev2SimplePropertiesCollection'
         id:
           description: The device of the property
-          example: 1528f12a-07f8-4bd9-b8b3-21a88c99d9d6
+          example: d32194cd-aa3f-4303-956f-da796dd85cbd
           format: uuid
           type: string
       required:
@@ -456,7 +456,7 @@ components:
       description: DeviceWebhookV2 describes a webhook associated to the device (default view)
       example:
         active: false
-        id: 5d2f981f-3a91-4312-acca-746c04484454
+        id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
         uri: http://boyer.net/heidi_jacobson
       properties:
         active:
@@ -466,7 +466,7 @@ components:
           type: boolean
         id:
           description: The uuid of the webhook
-          example: 5d2f981f-3a91-4312-acca-746c04484454
+          example: a003eb93-6605-49fa-a2a5-1c907dff6fc1
           format: uuid
           type: string
         uri:
@@ -483,13 +483,13 @@ components:
       description: ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view)
       example:
       - active: false
-        id: 5d2f981f-3a91-4312-acca-746c04484454
+        id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
         uri: http://boyer.net/heidi_jacobson
       - active: false
-        id: 5d2f981f-3a91-4312-acca-746c04484454
+        id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
         uri: http://boyer.net/heidi_jacobson
       - active: false
-        id: 5d2f981f-3a91-4312-acca-746c04484454
+        id: a003eb93-6605-49fa-a2a5-1c907dff6fc1
         uri: http://boyer.net/heidi_jacobson
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Webhook'
@@ -499,21 +499,21 @@ components:
       description: ArduinoDevicev2properties media type (default view)
       example:
         data_retention_days: 0.2151036904241639
-        deviceId: 77687e17-ee19-443d-bf7c-2bc649ac5574
+        deviceId: 76efb7f7-af85-4154-9816-911c3d78eff9
         properties:
         - created_at: "1979-04-16T17:41:57Z"
           deleted_at: "2000-09-25T21:03:44Z"
           href: Velit eius blanditiis voluptatibus dolores earum.
-          id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           last_value: "1982-06-26T22:59:33Z"
           max_value: 0.5534251248332908
           min_value: 0.06514205558620917
           name: Vero doloribus odit rerum amet culpa.
           permission: Nihil ut assumenda sed fugit.
           persist: true
-          sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+          sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           tag: 0.9331269810984383
-          thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+          thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
           thing_name: Et accusantium ipsum rerum.
           type: Debitis nesciunt id vitae dolore aut beatae.
           update_parameter: 0.763900217608657
@@ -524,16 +524,16 @@ components:
         - created_at: "1979-04-16T17:41:57Z"
           deleted_at: "2000-09-25T21:03:44Z"
           href: Velit eius blanditiis voluptatibus dolores earum.
-          id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           last_value: "1982-06-26T22:59:33Z"
           max_value: 0.5534251248332908
           min_value: 0.06514205558620917
           name: Vero doloribus odit rerum amet culpa.
           permission: Nihil ut assumenda sed fugit.
           persist: true
-          sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+          sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           tag: 0.9331269810984383
-          thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+          thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
           thing_name: Et accusantium ipsum rerum.
           type: Debitis nesciunt id vitae dolore aut beatae.
           update_parameter: 0.763900217608657
@@ -541,7 +541,7 @@ components:
           updated_at: "1972-02-10T01:36:21Z"
           value_updated_at: "1974-08-31T18:07:44Z"
           variable_name: Voluptatem porro quaerat veniam.
-        user_id: 6f652bec-a9c5-4759-9494-c7d3049affe4
+        user_id: f9229c62-4660-49bf-938e-a3ff890195c7
       properties:
         data_retention_days:
           description: How many days the data will be kept
@@ -550,14 +550,14 @@ components:
           type: number
         deviceId:
           description: The device of the property
-          example: 77687e17-ee19-443d-bf7c-2bc649ac5574
+          example: 76efb7f7-af85-4154-9816-911c3d78eff9
           format: uuid
           type: string
         properties:
           $ref: '#/components/schemas/ArduinoPropertyCollection'
         user_id:
           description: The user id of the owner
-          example: 6f652bec-a9c5-4759-9494-c7d3049affe4
+          example: f9229c62-4660-49bf-938e-a3ff890195c7
           format: uuid
           type: string
       required:
@@ -816,16 +816,16 @@ components:
         created_at: "1979-04-16T17:41:57Z"
         deleted_at: "2000-09-25T21:03:44Z"
         href: Velit eius blanditiis voluptatibus dolores earum.
-        id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+        id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
         last_value: "1982-06-26T22:59:33Z"
         max_value: 0.5534251248332908
         min_value: 0.06514205558620917
         name: Vero doloribus odit rerum amet culpa.
         permission: Nihil ut assumenda sed fugit.
         persist: true
-        sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+        sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
         tag: 0.9331269810984383
-        thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+        thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
         thing_name: Et accusantium ipsum rerum.
         type: Debitis nesciunt id vitae dolore aut beatae.
         update_parameter: 0.763900217608657
@@ -850,7 +850,7 @@ components:
           type: string
         id:
           description: The id of the property
-          example: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          example: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           format: uuid
           type: string
         last_value:
@@ -880,7 +880,7 @@ components:
           type: boolean
         sync_id:
           description: The id of the sync pool
-          example: 89c74964-cf2c-4d98-b192-23091fe8d622
+          example: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           format: uuid
           type: string
         tag:
@@ -890,7 +890,7 @@ components:
           type: number
         thing_id:
           description: The id of the thing
-          example: b829526f-403a-4666-a52a-7c8e3ba429a9
+          example: e31060d0-16f6-4a72-ab0d-aca3636ca787
           format: uuid
           type: string
         thing_name:
@@ -940,16 +940,16 @@ components:
       - created_at: "1979-04-16T17:41:57Z"
         deleted_at: "2000-09-25T21:03:44Z"
         href: Velit eius blanditiis voluptatibus dolores earum.
-        id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+        id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
         last_value: "1982-06-26T22:59:33Z"
         max_value: 0.5534251248332908
         min_value: 0.06514205558620917
         name: Vero doloribus odit rerum amet culpa.
         permission: Nihil ut assumenda sed fugit.
         persist: true
-        sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+        sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
         tag: 0.9331269810984383
-        thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+        thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
         thing_name: Et accusantium ipsum rerum.
         type: Debitis nesciunt id vitae dolore aut beatae.
         update_parameter: 0.763900217608657
@@ -960,16 +960,16 @@ components:
       - created_at: "1979-04-16T17:41:57Z"
         deleted_at: "2000-09-25T21:03:44Z"
         href: Velit eius blanditiis voluptatibus dolores earum.
-        id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+        id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
         last_value: "1982-06-26T22:59:33Z"
         max_value: 0.5534251248332908
         min_value: 0.06514205558620917
         name: Vero doloribus odit rerum amet culpa.
         permission: Nihil ut assumenda sed fugit.
         persist: true
-        sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+        sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
         tag: 0.9331269810984383
-        thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+        thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
         thing_name: Et accusantium ipsum rerum.
         type: Debitis nesciunt id vitae dolore aut beatae.
         update_parameter: 0.763900217608657
@@ -1182,8 +1182,8 @@ components:
       example:
         responses:
         - count_values: 730611702787235200
-          property_id: bf9af9bc-d1a5-4485-92ea-2fc201b5aa22
-          thing_id: 1f020fe9-fa22-4005-aef3-4e606a15b941
+          property_id: 003d0019-899f-4db9-88d2-8e9784b80e82
+          thing_id: b336f6fe-9251-4692-9ceb-1f7b65ab8fbb
           times:
           - "2000-02-27T13:48:39Z"
           - "2000-02-27T13:48:39Z"
@@ -1196,8 +1196,8 @@ components:
           description: Responses of the request
           example:
           - count_values: 730611702787235200
-            property_id: bf9af9bc-d1a5-4485-92ea-2fc201b5aa22
-            thing_id: 1f020fe9-fa22-4005-aef3-4e606a15b941
+            property_id: 003d0019-899f-4db9-88d2-8e9784b80e82
+            thing_id: b336f6fe-9251-4692-9ceb-1f7b65ab8fbb
             times:
             - "2000-02-27T13:48:39Z"
             - "2000-02-27T13:48:39Z"
@@ -1220,8 +1220,8 @@ components:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
       example:
         count_values: 730611702787235200
-        property_id: bf9af9bc-d1a5-4485-92ea-2fc201b5aa22
-        thing_id: 1f020fe9-fa22-4005-aef3-4e606a15b941
+        property_id: 003d0019-899f-4db9-88d2-8e9784b80e82
+        thing_id: b336f6fe-9251-4692-9ceb-1f7b65ab8fbb
         times:
         - "2000-02-27T13:48:39Z"
         - "2000-02-27T13:48:39Z"
@@ -1236,12 +1236,12 @@ components:
           type: integer
         property_id:
           description: Property id
-          example: bf9af9bc-d1a5-4485-92ea-2fc201b5aa22
+          example: 003d0019-899f-4db9-88d2-8e9784b80e82
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: 1f020fe9-fa22-4005-aef3-4e606a15b941
+          example: b336f6fe-9251-4692-9ceb-1f7b65ab8fbb
           format: uuid
           type: string
         times:
@@ -1464,24 +1464,24 @@ components:
       example:
         created_at: "1987-03-16T08:14:01Z"
         deleted_at: "2014-09-27T22:43:00Z"
-        device_id: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+        device_id: 65e23e7a-3ef6-4e33-b139-531732f5746d
         href: Corrupti ex qui ut.
-        id: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+        id: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
         name: Voluptatem molestias.
         properties:
         - created_at: "1979-04-16T17:41:57Z"
           deleted_at: "2000-09-25T21:03:44Z"
           href: Velit eius blanditiis voluptatibus dolores earum.
-          id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           last_value: "1982-06-26T22:59:33Z"
           max_value: 0.5534251248332908
           min_value: 0.06514205558620917
           name: Vero doloribus odit rerum amet culpa.
           permission: Nihil ut assumenda sed fugit.
           persist: true
-          sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+          sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           tag: 0.9331269810984383
-          thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+          thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
           thing_name: Et accusantium ipsum rerum.
           type: Debitis nesciunt id vitae dolore aut beatae.
           update_parameter: 0.763900217608657
@@ -1490,9 +1490,9 @@ components:
           value_updated_at: "1974-08-31T18:07:44Z"
           variable_name: Voluptatem porro quaerat veniam.
         properties_count: 11222136127766996
-        sketch_id: 44beadca-0c7e-44f2-8a0a-0528629354ce
+        sketch_id: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
         updated_at: "1998-11-29T08:52:29Z"
-        user_id: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+        user_id: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
         webhook_active: false
         webhook_uri: Facilis doloremque dicta.
       properties:
@@ -1508,7 +1508,7 @@ components:
           type: string
         device_id:
           description: The arn of the device
-          example: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+          example: 65e23e7a-3ef6-4e33-b139-531732f5746d
           format: uuid
           type: string
         href:
@@ -1517,7 +1517,7 @@ components:
           type: string
         id:
           description: The id of the thing
-          example: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+          example: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
           format: uuid
           type: string
         name:
@@ -1533,7 +1533,7 @@ components:
           type: integer
         sketch_id:
           description: The id of the attached sketch
-          example: 44beadca-0c7e-44f2-8a0a-0528629354ce
+          example: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
           format: uuid
           type: string
         updated_at:
@@ -1543,7 +1543,7 @@ components:
           type: string
         user_id:
           description: The user id of the owner
-          example: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+          example: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
           format: uuid
           type: string
         webhook_active:
@@ -1566,24 +1566,24 @@ components:
       example:
       - created_at: "1987-03-16T08:14:01Z"
         deleted_at: "2014-09-27T22:43:00Z"
-        device_id: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+        device_id: 65e23e7a-3ef6-4e33-b139-531732f5746d
         href: Corrupti ex qui ut.
-        id: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+        id: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
         name: Voluptatem molestias.
         properties:
         - created_at: "1979-04-16T17:41:57Z"
           deleted_at: "2000-09-25T21:03:44Z"
           href: Velit eius blanditiis voluptatibus dolores earum.
-          id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           last_value: "1982-06-26T22:59:33Z"
           max_value: 0.5534251248332908
           min_value: 0.06514205558620917
           name: Vero doloribus odit rerum amet culpa.
           permission: Nihil ut assumenda sed fugit.
           persist: true
-          sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+          sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           tag: 0.9331269810984383
-          thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+          thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
           thing_name: Et accusantium ipsum rerum.
           type: Debitis nesciunt id vitae dolore aut beatae.
           update_parameter: 0.763900217608657
@@ -1592,31 +1592,31 @@ components:
           value_updated_at: "1974-08-31T18:07:44Z"
           variable_name: Voluptatem porro quaerat veniam.
         properties_count: 11222136127766996
-        sketch_id: 44beadca-0c7e-44f2-8a0a-0528629354ce
+        sketch_id: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
         updated_at: "1998-11-29T08:52:29Z"
-        user_id: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+        user_id: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
         webhook_active: false
         webhook_uri: Facilis doloremque dicta.
       - created_at: "1987-03-16T08:14:01Z"
         deleted_at: "2014-09-27T22:43:00Z"
-        device_id: 5fdf30fe-6db1-473c-94e0-9ad86d8a1db2
+        device_id: 65e23e7a-3ef6-4e33-b139-531732f5746d
         href: Corrupti ex qui ut.
-        id: 970a4c6e-497a-4c20-bb31-6cc72cca15d7
+        id: 5ee4d085-5daf-498b-92b9-e3a5946b1ef3
         name: Voluptatem molestias.
         properties:
         - created_at: "1979-04-16T17:41:57Z"
           deleted_at: "2000-09-25T21:03:44Z"
           href: Velit eius blanditiis voluptatibus dolores earum.
-          id: b7dc2233-8179-4ee8-a567-f19d1b3aded6
+          id: 555f5af8-915c-4b67-bc2c-6a1e929befbb
           last_value: "1982-06-26T22:59:33Z"
           max_value: 0.5534251248332908
           min_value: 0.06514205558620917
           name: Vero doloribus odit rerum amet culpa.
           permission: Nihil ut assumenda sed fugit.
           persist: true
-          sync_id: 89c74964-cf2c-4d98-b192-23091fe8d622
+          sync_id: cfeb9745-51c4-40a6-83bd-ae1cd9fdf5c1
           tag: 0.9331269810984383
-          thing_id: b829526f-403a-4666-a52a-7c8e3ba429a9
+          thing_id: e31060d0-16f6-4a72-ab0d-aca3636ca787
           thing_name: Et accusantium ipsum rerum.
           type: Debitis nesciunt id vitae dolore aut beatae.
           update_parameter: 0.763900217608657
@@ -1625,9 +1625,9 @@ components:
           value_updated_at: "1974-08-31T18:07:44Z"
           variable_name: Voluptatem porro quaerat veniam.
         properties_count: 11222136127766996
-        sketch_id: 44beadca-0c7e-44f2-8a0a-0528629354ce
+        sketch_id: bb0ce2b9-eb84-4993-bbed-1bf0ea5efa43
         updated_at: "1998-11-29T08:52:29Z"
-        user_id: 54886e75-da79-437a-ac7b-b3fd4d9bf31d
+        user_id: 765ee3ac-bea0-4122-a4b3-d2ec53bb18d8
         webhook_active: false
         webhook_uri: Facilis doloremque dicta.
       items:
@@ -1655,18 +1655,18 @@ components:
     BatchLastValueRequestsMediaV1:
       example:
         requests:
-        - property_id: 3e747a80-41f7-41d3-affb-e1e70869ffc8
-          thing_id: a4eaad4b-339a-4d7f-8948-bb14da940407
-        - property_id: 3e747a80-41f7-41d3-affb-e1e70869ffc8
-          thing_id: a4eaad4b-339a-4d7f-8948-bb14da940407
+        - property_id: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
+          thing_id: d1e72730-029a-47ec-a439-e0d3edcdd8e2
+        - property_id: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
+          thing_id: d1e72730-029a-47ec-a439-e0d3edcdd8e2
       properties:
         requests:
           description: Requests
           example:
-          - property_id: 3e747a80-41f7-41d3-affb-e1e70869ffc8
-            thing_id: a4eaad4b-339a-4d7f-8948-bb14da940407
-          - property_id: 3e747a80-41f7-41d3-affb-e1e70869ffc8
-            thing_id: a4eaad4b-339a-4d7f-8948-bb14da940407
+          - property_id: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
+            thing_id: d1e72730-029a-47ec-a439-e0d3edcdd8e2
+          - property_id: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
+            thing_id: d1e72730-029a-47ec-a439-e0d3edcdd8e2
           items:
             $ref: '#/components/schemas/BatchQueryRawLastValueRequestMediaV1'
           type: array
@@ -1676,17 +1676,17 @@ components:
       type: object
     BatchQueryRawLastValueRequestMediaV1:
       example:
-        property_id: 3e747a80-41f7-41d3-affb-e1e70869ffc8
-        thing_id: a4eaad4b-339a-4d7f-8948-bb14da940407
+        property_id: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
+        thing_id: d1e72730-029a-47ec-a439-e0d3edcdd8e2
       properties:
         property_id:
           description: Property id
-          example: 3e747a80-41f7-41d3-affb-e1e70869ffc8
+          example: 2e5a607c-23ab-4d0f-a3b3-d9eedd4707ae
           format: uuid
           type: string
         thing_id:
           description: Thing id
-          example: a4eaad4b-339a-4d7f-8948-bb14da940407
+          example: d1e72730-029a-47ec-a439-e0d3edcdd8e2
           format: uuid
           type: string
       required:
@@ -1918,7 +1918,7 @@ components:
         name: aro2jtyq1v
         serial: 1fs0sruzzt
         type: lora-device
-        user_id: 6f54a8fd-bdbf-4da1-9129-12f15b4787d5
+        user_id: ef8085c3-8998-4068-9df2-8cfa359e5bf7
         wifi_fw_version: 2r7qwgou
       properties:
         fqbn:
@@ -1955,7 +1955,7 @@ components:
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be inferred from the authentication header
-          example: 6f54a8fd-bdbf-4da1-9129-12f15b4787d5
+          example: ef8085c3-8998-4068-9df2-8cfa359e5bf7
           format: uuid
           type: string
         wifi_fw_version:
@@ -1972,7 +1972,7 @@ components:
       example:
         from: "1991-12-16T01:40:08Z"
         properties:
-        - 79067143-e66d-4da9-b94c-1f49270f9836
+        - 7e98a266-6390-4044-a434-748026231184
         to: "1978-02-12T09:36:18Z"
       properties:
         from:
@@ -1983,9 +1983,9 @@ components:
         properties:
           description: IDs of properties
           example:
-          - 79067143-e66d-4da9-b94c-1f49270f9836
+          - 7e98a266-6390-4044-a434-748026231184
           items:
-            example: 79067143-e66d-4da9-b94c-1f49270f9836
+            example: 7e98a266-6390-4044-a434-748026231184
             format: uuid
             type: string
           minItems: 1
@@ -2028,7 +2028,7 @@ components:
         name: aro2jtyq1v
         serial: 1fs0sruzzt
         type: lora-device
-        user_id: 6f54a8fd-bdbf-4da1-9129-12f15b4787d5
+        user_id: ef8085c3-8998-4068-9df2-8cfa359e5bf7
         wifi_fw_version: 2r7qwgou
       properties:
         fqbn:
@@ -2065,7 +2065,7 @@ components:
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be inferred from the authentication header
-          example: 6f54a8fd-bdbf-4da1-9129-12f15b4787d5
+          example: ef8085c3-8998-4068-9df2-8cfa359e5bf7
           format: uuid
           type: string
         wifi_fw_version:
@@ -2404,12 +2404,12 @@ components:
     propertyValue:
       description: PropertyValuePayload describes a property value
       example:
-        device_id: d945b7e2-6335-4e59-83d5-fbb65e2b5428
+        device_id: a60ffe2f-8689-4bfd-99d2-36c5525c958c
         value: "1972-10-31T01:44:50Z"
       properties:
         device_id:
           description: The device who send the property
-          example: d945b7e2-6335-4e59-83d5-fbb65e2b5428
+          example: a60ffe2f-8689-4bfd-99d2-36c5525c958c
           format: uuid
           type: string
         value:
@@ -2422,8 +2422,8 @@ components:
     thing:
       description: ThingPayload describes a thing
       example:
-        device_id: f47c40f3-4306-4705-9f0a-e7101a9716e8
-        id: db808942-ecc9-4e28-b1b9-a2e3f30d3429
+        device_id: 31fc110d-3ccb-4cb5-a5a9-df14ab0ad157
+        id: b43e1e58-8dd1-44fb-a6d3-5a026df1eea4
         name: 5m2dy6zqdl
         properties:
         - max_value: 0.43183504099865794
@@ -2451,12 +2451,12 @@ components:
       properties:
         device_id:
           description: The arn of the associated device
-          example: f47c40f3-4306-4705-9f0a-e7101a9716e8
+          example: 31fc110d-3ccb-4cb5-a5a9-df14ab0ad157
           format: uuid
           type: string
         id:
           description: The id of the thing
-          example: db808942-ecc9-4e28-b1b9-a2e3f30d3429
+          example: b43e1e58-8dd1-44fb-a6d3-5a026df1eea4
           format: uuid
           type: string
         name:
@@ -2540,7 +2540,7 @@ info:
     * [Golang Module](https://github.com/arduino/iot-client-go)
   title: Arduino IoT Cloud API
   version: "2.0"
-openapi: 3.0.0
+openapi: 3.0.3
 paths:
   /v2/devices:
     get:
@@ -2551,6 +2551,7 @@ paths:
         in: query
         name: across_user_ids
         schema:
+          default: false
           type: boolean
       - description: Filter by device serial number
         in: query
@@ -2589,8 +2590,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateDevicesV2Payload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateDevicesV2Payload'
         description: DeviceV2 describes a device.
         required: true
+        x-originalParamName: payload
       responses:
         "201":
           content:
@@ -2701,8 +2706,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/devicev2'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/devicev2'
         description: DeviceV2 describes a device.
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -2787,7 +2796,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateDevicesV2CertsPayload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateDevicesV2CertsPayload'
         required: true
+        x-originalParamName: payload
       responses:
         "201":
           content:
@@ -2910,7 +2923,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/devicev2.cert'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/devicev2.cert'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3001,17 +3018,26 @@ paths:
         required: true
         schema:
           type: string
-      - description: Binary expire time in minutes, default 10 mins
-        in: formData
-        name: expire_in_mins
-        schema:
-          type: integer
-      - description: OTA file
-        in: formData
-        name: ota_file
-        required: true
-        schema:
-          type: file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                expire_in_mins:
+                  default: 10
+                  description: Binary expire time in minutes, default 10 mins
+                  type: integer
+                  x-formData-name: expire_in_mins
+                ota_file:
+                  description: OTA file
+                  format: binary
+                  required:
+                  - ota_file
+                  type: string
+                  x-formData-name: ota_file
+              required:
+              - ota_file
+              type: object
       responses:
         "202":
           description: Accepted
@@ -3067,7 +3093,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/devicev2.otabinaryurl'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/devicev2.otabinaryurl'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           description: OK
@@ -3153,6 +3183,7 @@ paths:
         in: query
         name: suggested_password
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -3191,7 +3222,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CheckDevicesV2PassPayload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckDevicesV2PassPayload'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           description: OK
@@ -3229,7 +3264,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/devicev2.pass'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/devicev2.pass'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3273,6 +3312,7 @@ paths:
         in: query
         name: show_deleted
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -3313,7 +3353,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/propertiesValues'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/propertiesValues'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           description: OK
@@ -3400,7 +3444,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BatchQueryRequestsMediaV1'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BatchQueryRequestsMediaV1'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3444,7 +3492,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BatchQueryRawRequestsMediaV1'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BatchQueryRawRequestsMediaV1'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3488,7 +3540,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BatchLastValueRequestsMediaV1'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BatchLastValueRequestsMediaV1'
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3526,7 +3582,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/HistoricDataRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HistoricDataRequest'
         required: true
+        x-originalParamName: payload
       responses:
         "202":
           description: Accepted
@@ -3562,6 +3622,7 @@ paths:
         in: query
         name: across_user_ids
         schema:
+          default: false
           type: boolean
       - description: The id of the device you want to filter
         in: query
@@ -3579,11 +3640,13 @@ paths:
         in: query
         name: show_deleted
         schema:
+          default: false
           type: boolean
       - description: If true, returns things with their properties, and last values
         in: query
         name: show_properties
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -3613,14 +3676,19 @@ paths:
         in: query
         name: force
         schema:
+          default: false
           type: boolean
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/thing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/thing'
         description: ThingPayload describes a thing
         required: true
+        x-originalParamName: payload
       responses:
         "201":
           content:
@@ -3668,6 +3736,7 @@ paths:
         in: query
         name: force
         schema:
+          default: false
           type: boolean
       - description: The id of the thing
         in: path
@@ -3713,6 +3782,7 @@ paths:
         in: query
         name: show_deleted
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -3748,6 +3818,7 @@ paths:
         in: query
         name: force
         schema:
+          default: false
           type: boolean
       - description: The id of the thing
         in: path
@@ -3760,8 +3831,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/thing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/thing'
         description: ThingPayload describes a thing
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -3817,6 +3892,7 @@ paths:
         in: query
         name: show_deleted
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -3863,8 +3939,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/property'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/property'
         description: PropertyPayload describes a property of a thing. No field is mandatory
         required: true
+        x-originalParamName: payload
       responses:
         "201":
           content:
@@ -3912,6 +3992,7 @@ paths:
         in: query
         name: force
         schema:
+          default: false
           type: boolean
       - description: The id of the thing
         in: path
@@ -3967,6 +4048,7 @@ paths:
         in: query
         name: show_deleted
         schema:
+          default: false
           type: boolean
       responses:
         "200":
@@ -4019,8 +4101,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/property'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/property'
         description: PropertyPayload describes a property of a thing. No field is mandatory
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           content:
@@ -4079,8 +4165,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/propertyValue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/propertyValue'
         description: PropertyValuePayload describes a property value
         required: true
+        x-originalParamName: payload
       responses:
         "200":
           description: OK
@@ -4118,6 +4208,7 @@ paths:
         in: query
         name: desc
         schema:
+          default: false
           type: boolean
       - description: 'Get data with a timestamp >= to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
         in: query
@@ -4134,6 +4225,7 @@ paths:
         in: query
         name: interval
         schema:
+          default: 1800
           minimum: 1
           type: integer
       - description: ID of a numerical property
@@ -4222,8 +4314,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/thingSketch'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/thingSketch'
         description: ThingSketchPayload describes a sketch of a thing
         required: true
+        x-originalParamName: payload
       responses:
         "201":
           content:
@@ -4280,6 +4376,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/updateSketch'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/updateSketch'
+        x-originalParamName: payload
       responses:
         "200":
           content:
