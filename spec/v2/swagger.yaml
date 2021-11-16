@@ -438,6 +438,8 @@ components:
         thing_name:
           description: The name of the related thing
           type: string
+        thing_timezone:
+          $ref: '#/components/schemas/ArduinoTimezone'
         type:
           description: The type of the variable
           type: string
@@ -460,6 +462,58 @@ components:
         $ref: '#/components/schemas/ArduinoLinkedvariable'
       title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; type=collection; view=default'
       type: array
+    ArduinoLoradevicev1:
+      description: ArduinoLoradevicev1 media type (default view)
+      properties:
+        app_eui:
+          description: The eui of the app
+          type: string
+        app_key:
+          description: The key of the device
+          type: string
+        device_id:
+          description: The id of the device
+          format: uuid
+          type: string
+        eui:
+          description: The eui of the lora device
+          example: "71619230301"
+          type: string
+      required:
+      - eui
+      - device_id
+      - app_eui
+      - app_key
+      title: 'Mediatype identifier: application/vnd.arduino.loradevicev1+json; view=default'
+      type: object
+    ArduinoLorafreqplansv1:
+      description: ArduinoLorafreqplansv1 media type (default view)
+      properties:
+        frequency_plans:
+          description: The list of frequency plans
+          items:
+            $ref: '#/components/schemas/ArduinoLorafreqplanv1'
+          type: array
+      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplansv1+json; view=default'
+      type: object
+    ArduinoLorafreqplanv1:
+      description: ArduinoLorafreqplanv1 media type (default view)
+      properties:
+        advanced:
+          description: Frequency plan only for advanced users
+          type: boolean
+        id:
+          description: The ID of the frequency paln
+          type: string
+        name:
+          description: The name of the frequency plan
+          type: string
+      required:
+      - name
+      - id
+      - advanced
+      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplanv1+json; view=default'
+      type: object
     ArduinoProperty:
       description: ArduinoProperty media type (default view)
       properties:
@@ -807,6 +861,9 @@ components:
           additionalProperties: true
           description: Tags of the thing
           type: object
+        timezone:
+          description: Time zone of the thing
+          type: string
         updated_at:
           description: Update date of the thing
           format: date-time
@@ -826,6 +883,7 @@ components:
       - user_id
       - name
       - href
+      - timezone
       title: 'Mediatype identifier: application/vnd.arduino.thing+json; view=default'
       type: object
     ArduinoThingCollection:
@@ -844,6 +902,21 @@ components:
       required:
       - data
       title: 'Mediatype identifier: application/vnd.arduino.timeseriesmedia+json; view=default'
+      type: object
+    ArduinoTimezone:
+      description: ArduinoTimezone media type (default view)
+      properties:
+        name:
+          description: Name of the time zone.
+          type: string
+        offset:
+          description: Current UTC DST offset in seconds.
+          format: int64
+          type: integer
+      required:
+      - name
+      - offset
+      title: 'Mediatype identifier: application/vnd.arduino.timezone+json; view=default'
       type: object
     ArduinoVariableslinks:
       description: ArduinoVariableslinks media type (default view)
@@ -1129,6 +1202,63 @@ components:
       - type
       title: CreateDevicesV2Payload
       type: object
+    CreateLoraDevicesV1Payload:
+      properties:
+        app:
+          description: The app name
+          type: string
+        app_eui:
+          description: The app eui of the lora device
+          pattern: '[0-9a-z]{16}'
+          type: string
+        app_key:
+          description: The app key of the lora device
+          pattern: '[0-9a-z]{16}'
+          type: string
+        eui:
+          description: The eui of the lora device
+          pattern: '[0-9a-z]{16}'
+          type: string
+        frequency_plan:
+          description: 'The frequency plan required by your country '
+          enum:
+          - EU_863_870_TTN
+          - US_902_928_FSB_2
+          - EU_433
+          - AU_915_928_FSB_2
+          - CN_470_510_FSB_11
+          - AS_920_923
+          - AS_920_923_TTN_AU
+          - AS_923_925
+          - AS_923_925_TTN_AU
+          - KR_920_923_TTN
+          - IN_865_867
+          type: string
+        name:
+          description: A common name for the device
+          type: string
+        serial:
+          description: The optional serial number
+          type: string
+        type:
+          description: The type of device
+          enum:
+          - lora-device
+          - mkrwan1300
+          - mkrwan1310
+          type: string
+        user_id:
+          description: The id of the user. Can be the special string 'me'
+          type: string
+      required:
+      - name
+      - eui
+      - frequency_plan
+      - user_id
+      - app
+      - type
+      title: CreateLoraDevicesV1Payload
+      type: object
     HistoricDataRequest:
       properties:
         from:
@@ -1151,6 +1281,41 @@ components:
       - from
       - to
       title: HistoricDataRequest
+      type: object
+    ThingCreate:
+      description: Payload to create a new thing
+      properties:
+        device_id:
+          description: The arn of the associated device
+          format: uuid
+          type: string
+        id:
+          description: The id of the thing
+          format: uuid
+          type: string
+        name:
+          description: The friendly name of the thing
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9_.@ -]+$
+          type: string
+        properties:
+          description: The properties of the thing
+          items:
+            $ref: '#/components/schemas/property'
+          type: array
+        timezone:
+          default: America/New_York
+          description: |-
+            A time zone name
+            Check /v2/timezones for a list of valid names.
+          type: string
+        webhook_active:
+          description: Webhook uri
+          type: boolean
+        webhook_uri:
+          description: Webhook uri
+          type: string
+      title: ThingCreate
       type: object
     TimeseriesDataPoint:
       properties:
@@ -1477,6 +1642,7 @@ components:
           - LOGARITHMIC_QUANTITY
           - PRESSURE
           - INFORMATION_CONTENT
+          - SCHEDULE
           type: string
         update_parameter:
           description: The update frequency in seconds, or the amount of the property has to change in order to trigger an update
@@ -1537,8 +1703,19 @@ components:
       - value
       title: tag
       type: object
-    thing:
-      description: ThingPayload describes a thing
+    thingSketch:
+      description: ThingSketchPayload describes a sketch of a thing
+      properties:
+        sketch_version:
+          description: The autogenerated sketch version
+          enum:
+          - v1
+          - v2
+          type: string
+      title: thingSketch
+      type: object
+    thingUpdate:
+      description: Payload to update an existing thing
       properties:
         device_id:
           description: The arn of the associated device
@@ -1558,24 +1735,18 @@ components:
           items:
             $ref: '#/components/schemas/property'
           type: array
+        timezone:
+          description: |-
+            A time zone name.
+            Check /v2/timezones for a list of valid names.
+          type: string
         webhook_active:
           description: Webhook uri
           type: boolean
         webhook_uri:
           description: Webhook uri
           type: string
-      title: thing
-      type: object
-    thingSketch:
-      description: ThingSketchPayload describes a sketch of a thing
-      properties:
-        sketch_version:
-          description: The autogenerated sketch version
-          enum:
-          - v1
-          - v2
-          type: string
-      title: thingSketch
+      title: thingUpdate
       type: object
     updateSketch:
       properties:
@@ -1674,6 +1845,56 @@ info:
   version: "2.0"
 openapi: 3.0.3
 paths:
+  /v1/lora-devices/:
+    put:
+      description: Create a new lora device. Its info are saved on our database, and on the lora provider network. Creates a device_v2 automatically
+      operationId: lora_devices_v1#create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLoraDevicesV1Payload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateLoraDevicesV1Payload'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoLoradevicev1'
+          description: Created
+      summary: create lora_devices_v1
+      tags:
+      - lora_devices_v1
+  /v1/lora-freq-plans/:
+    get:
+      description: List the lora frequency plans supported
+      operationId: lora_freq_plan_v1#list
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArduinoLorafreqplansv1'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      summary: list lora_freq_plan_v1
+      tags:
+      - lora_freq_plan_v1
   /v2/dashboards:
     get:
       description: Returns the list of dashboards
@@ -3407,11 +3628,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/thing'
+              $ref: '#/components/schemas/ThingCreate'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/thing'
-        description: ThingPayload describes a thing
+              $ref: '#/components/schemas/ThingCreate'
+        description: Payload to create a new thing
         required: true
         x-originalParamName: payload
       responses:
@@ -3555,11 +3776,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/thing'
+              $ref: '#/components/schemas/thingUpdate'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/thing'
-        description: ThingPayload describes a thing
+              $ref: '#/components/schemas/thingUpdate'
+        description: Payload to update an existing thing
         required: true
         x-originalParamName: payload
       responses:
