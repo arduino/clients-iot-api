@@ -833,9 +833,18 @@ components:
           description: Delete date of the thing
           format: date-time
           type: string
+        device_fqbn:
+          description: The fqbn of the attached device, if any
+          type: string
         device_id:
-          description: The arn of the device
+          description: The id of the device
           format: uuid
+          type: string
+        device_name:
+          description: The name of the attached device, if any
+          type: string
+        device_type:
+          description: The type of the attached device, if any
           type: string
         href:
           description: The api reference of this thing
@@ -913,6 +922,10 @@ components:
           description: Current UTC DST offset in seconds.
           format: int64
           type: integer
+        until:
+          description: Date until the offset is valid.
+          format: date-time
+          type: string
       required:
       - name
       - offset
@@ -1493,6 +1506,10 @@ components:
       type: object
     propertiesValues:
       properties:
+        input:
+          default: false
+          description: If true, send property values to device's input topic.
+          type: boolean
         properties:
           items:
             $ref: '#/components/schemas/propertiesValue'
@@ -2828,6 +2845,11 @@ paths:
           multipart/form-data:
             schema:
               properties:
+                async:
+                  default: true
+                  description: If false, wait for the full OTA process, until it gets a result from the device
+                  type: boolean
+                  x-formData-name: async
                 expire_in_mins:
                   default: 10
                   description: Binary expire time in minutes, default 10 mins
@@ -2844,6 +2866,8 @@ paths:
               - ota_file
               type: object
       responses:
+        "200":
+          description: OK
         "202":
           description: Accepted
         "400":
