@@ -14,7 +14,8 @@ components:
       description: Unauthorized
   schemas:
     ArduinoCompressedv2:
-      description: compressed contains the info from which to generate the certificate (default view)
+      description: compressed contains the info from which to generate the certificate
+        (default view)
       properties:
         authority_key_identifier:
           description: The Authority Key Identifier of the certificate
@@ -48,6 +49,20 @@ components:
       - signature_asn1_y
       title: 'Mediatype identifier: application/vnd.arduino.compressedv2; view=default'
       type: object
+    ArduinoDashboardowner:
+      description: ArduinoDashboardowner media type (default view)
+      properties:
+        user_id:
+          description: The userID of the user who created the dashboard
+          format: uuid
+          type: string
+        username:
+          description: The username of the user who created the dashboard
+          type: string
+      required:
+      - user_id
+      title: 'Mediatype identifier: application/vnd.arduino.dashboardowner+json; view=default'
+      type: object
     ArduinoDashboardshare:
       description: ArduinoDashboardshare media type (default view)
       properties:
@@ -60,24 +75,31 @@ components:
           type: string
       required:
       - user_id
-      - username
       title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; view=default'
       type: object
     ArduinoDashboardshareCollection:
-      description: ArduinoDashboardshareCollection is the media type for an array of ArduinoDashboardshare (default view)
+      description: ArduinoDashboardshareCollection is the media type for an array
+        of ArduinoDashboardshare (default view)
       items:
         $ref: '#/components/schemas/ArduinoDashboardshare'
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.dashboardshare+json; type=collection;
+        view=default'
       type: array
     ArduinoDashboardv2:
       description: Dashboard is a collection of widgets (default view)
       properties:
+        created_by:
+          $ref: '#/components/schemas/ArduinoDashboardowner'
         id:
           description: The friendly name of the dashboard
           format: uuid
           type: string
         name:
           description: The friendly name of the dashboard
+          type: string
+        organization_id:
+          description: Id of the organization the dashboard belongs to
+          format: uuid
           type: string
         shared_by:
           $ref: '#/components/schemas/ArduinoDashboardshare'
@@ -96,10 +118,12 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.dashboardv2+json; view=default'
       type: object
     ArduinoDashboardv2Collection:
-      description: ArduinoDashboardv2Collection is the media type for an array of ArduinoDashboardv2 (default view)
+      description: ArduinoDashboardv2Collection is the media type for an array of
+        ArduinoDashboardv2 (default view)
       items:
         $ref: '#/components/schemas/ArduinoDashboardv2'
-      title: 'Mediatype identifier: application/vnd.arduino.dashboardv2+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.dashboardv2+json; type=collection;
+        view=default'
       type: array
     ArduinoDevicev2:
       description: ArduinoDevicev2 media type (default view)
@@ -128,7 +152,8 @@ components:
           format: date-time
           type: string
         latest_wifi_fw_version:
-          description: The latest version of the NINA/WIFI101 firmware available for this device
+          description: The latest version of the NINA/WIFI101 firmware available for
+            this device
           type: string
         metadata:
           additionalProperties: true
@@ -137,6 +162,10 @@ components:
         name:
           description: The friendly name of the device
           type: string
+        organization_id:
+          description: Id of the organization the device belongs to
+          format: uuid
+          type: string
         ota_available:
           description: True if the device type is ready to receive OTA updated
           type: boolean
@@ -144,7 +173,8 @@ components:
           description: True if the device type is OTA compatible
           type: boolean
         required_wifi_fw_version:
-          description: The required version of the NINA/WIFI101 firmware needed by IoT Cloud
+          description: The required version of the NINA/WIFI101 firmware needed by
+            IoT Cloud
           type: string
         serial:
           description: The serial uuid of the device
@@ -178,7 +208,8 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; view=default'
       type: object
     ArduinoDevicev2Cert:
-      description: DeviceCertV2 describes a certificate associated to the device (default view)
+      description: DeviceCertV2 describes a certificate associated to the device (default
+        view)
       properties:
         ca:
           description: The Certification Authority used to sign the certificate
@@ -205,7 +236,8 @@ components:
           type: string
         pem:
           description: The certificate in pem format
-          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END CERTIFICATE-----"
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAryQICCl6NZ5gDKrnSztO\n\t\t\t3Hy8PEUcuyvg/ikC+VcIo2SFFSf18a3IMYldIugqqqZCs4/4uVW3sbdLs/6PfgdX\n\t\t\t7O9D22ZiFWHPYA2k2N744MNiCD1UE+tJyllUhSblK48bn+v1oZHCM0nYQ2NqUkvS\n\t\t\tj+hwUU3RiWl7x3D2s9wSdNt7XUtW05a/FXehsPSiJfKvHJJnGOX0BgTvkLnkAOTd\n\t\t\tOrUZ/wK69Dzu4IvrN4vs9Nes8vbwPa/ddZEzGR0cQMt0JBkhk9kU/qwqUseP1QRJ\n\t\t\t5I1jR4g8aYPL/ke9K35PxZWuDp3U0UPAZ3PjFAh+5T+fc7gzCs9dPzSHloruU+gl\n\t\t\tFQIDAQAB\n\t\t\t-----END
+            CERTIFICATE-----"
           maxLength: 512
           type: string
       required:
@@ -219,16 +251,20 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; view=default'
       type: object
     ArduinoDevicev2CertCollection:
-      description: ArduinoDevicev2CertCollection is the media type for an array of ArduinoDevicev2Cert (default view)
+      description: ArduinoDevicev2CertCollection is the media type for an array of
+        ArduinoDevicev2Cert (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Cert'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.cert+json; type=collection;
+        view=default'
       type: array
     ArduinoDevicev2Collection:
-      description: ArduinoDevicev2Collection is the media type for an array of ArduinoDevicev2 (default view)
+      description: ArduinoDevicev2Collection is the media type for an array of ArduinoDevicev2
+        (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2+json; type=collection;
+        view=default'
       type: array
     ArduinoDevicev2EventProperties:
       description: ArduinoDevicev2EventProperties media type (default view)
@@ -242,10 +278,12 @@ components:
       required:
       - id
       - events
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.event.properties+json;
+        view=default'
       type: object
     ArduinoDevicev2Pass:
-      description: DeviceCertV2 describes a password associated to a device (default view)
+      description: DeviceCertV2 describes a password associated to a device (default
+        view)
       properties:
         set:
           description: Whether the password is set or not
@@ -273,16 +311,20 @@ components:
       - name
       - value
       - updated_at
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
+        view=default'
       type: object
     ArduinoDevicev2SimplePropertiesCollection:
-      description: ArduinoDevicev2SimplePropertiesCollection is the media type for an array of ArduinoDevicev2SimpleProperties (default view)
+      description: ArduinoDevicev2SimplePropertiesCollection is the media type for
+        an array of ArduinoDevicev2SimpleProperties (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2SimpleProperties'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.simple.properties+json;
+        type=collection; view=default'
       type: array
     ArduinoDevicev2Webhook:
-      description: DeviceWebhookV2 describes a webhook associated to the device (default view)
+      description: DeviceWebhookV2 describes a webhook associated to the device (default
+        view)
       properties:
         active:
           default: true
@@ -299,13 +341,16 @@ components:
       required:
       - id
       - uri
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
+        view=default'
       type: object
     ArduinoDevicev2WebhookCollection:
-      description: ArduinoDevicev2WebhookCollection is the media type for an array of ArduinoDevicev2Webhook (default view)
+      description: ArduinoDevicev2WebhookCollection is the media type for an array
+        of ArduinoDevicev2Webhook (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2Webhook'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2.webhook+json;
+        type=collection; view=default'
       type: array
     ArduinoDevicev2properties:
       description: ArduinoDevicev2properties media type (default view)
@@ -329,7 +374,8 @@ components:
       - user_id
       - data_retention_days
       - properties
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2properties+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2properties+json;
+        view=default'
       type: object
     ArduinoDevicev2propertyvalue:
       description: ArduinoDevicev2propertyvalue media type (default view)
@@ -378,13 +424,16 @@ components:
                   type: number
               type: object
           type: object
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;
+        view=default'
       type: object
     ArduinoDevicev2propertyvalueCollection:
-      description: ArduinoDevicev2propertyvalueCollection is the media type for an array of ArduinoDevicev2propertyvalue (default view)
+      description: ArduinoDevicev2propertyvalueCollection is the media type for an
+        array of ArduinoDevicev2propertyvalue (default view)
       items:
         $ref: '#/components/schemas/ArduinoDevicev2propertyvalue'
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalue+json;
+        type=collection; view=default'
       type: array
     ArduinoDevicev2propertyvalues:
       description: ArduinoDevicev2propertyvalues media type (default view)
@@ -410,7 +459,8 @@ components:
       - last_evaluated_key
       - name
       - values
-      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalues+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.devicev2propertyvalues+json;
+        view=default'
       type: object
     ArduinoLinkedvariable:
       description: ArduinoLinkedvariable media type (default view)
@@ -457,10 +507,12 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; view=default'
       type: object
     ArduinoLinkedvariableCollection:
-      description: ArduinoLinkedvariableCollection is the media type for an array of ArduinoLinkedvariable (default view)
+      description: ArduinoLinkedvariableCollection is the media type for an array
+        of ArduinoLinkedvariable (default view)
       items:
         $ref: '#/components/schemas/ArduinoLinkedvariable'
-      title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.linkedvariable+json; type=collection;
+        view=default'
       type: array
     ArduinoLoradevicev1:
       description: ArduinoLoradevicev1 media type (default view)
@@ -494,7 +546,8 @@ components:
           items:
             $ref: '#/components/schemas/ArduinoLorafreqplanv1'
           type: array
-      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplansv1+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.lorafreqplansv1+json;
+        view=default'
       type: object
     ArduinoLorafreqplanv1:
       description: ArduinoLorafreqplanv1 media type (default view)
@@ -570,7 +623,8 @@ components:
           description: The type of the property
           type: string
         update_parameter:
-          description: The update frequency in seconds, or the amount of the property has to change in order to trigger an update
+          description: The update frequency in seconds, or the amount of the property
+            has to change in order to trigger an update
           format: double
           type: number
         update_strategy:
@@ -598,10 +652,12 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.property+json; view=default'
       type: object
     ArduinoPropertyCollection:
-      description: ArduinoPropertyCollection is the media type for an array of ArduinoProperty (default view)
+      description: ArduinoPropertyCollection is the media type for an array of ArduinoProperty
+        (default view)
       items:
         $ref: '#/components/schemas/ArduinoProperty'
-      title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.property+json; type=collection;
+        view=default'
       type: array
     ArduinoSeriesBatch:
       description: ArduinoSeriesBatch media type (default view)
@@ -635,7 +691,8 @@ components:
       required:
       - responses
       - resp_version
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch+json;
+        view=default'
       type: object
     ArduinoSeriesRawBatchLastvalue:
       description: ArduinoSeriesRawBatchLastvalue media type (default view)
@@ -651,7 +708,8 @@ components:
       required:
       - status
       - responses
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch.lastvalue+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.series.raw.batch.lastvalue+json;
+        view=default'
       type: object
     ArduinoSeriesRawLastValueResponse:
       description: ArduinoSeriesRawLastValueResponse media type (default view)
@@ -684,7 +742,8 @@ components:
       - count_values
       - values
       - times
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.last.value.response+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.series.raw.last.value.response+json;
+        view=default'
       type: object
     ArduinoSeriesRawResponse:
       description: ArduinoSeriesRawResponse media type (default view)
@@ -748,7 +807,8 @@ components:
       - times
       - values
       - count_values
-      title: 'Mediatype identifier: application/vnd.arduino.series.raw.response+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.series.raw.response+json;
+        view=default'
       type: object
     ArduinoSeriesResponse:
       description: ArduinoSeriesResponse media type (default view)
@@ -809,7 +869,8 @@ components:
       - times
       - values
       - count_values
-      title: 'Mediatype identifier: application/vnd.arduino.series.response+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.series.response+json;
+        view=default'
       type: object
     ArduinoTags:
       description: ArduinoTags media type (default view)
@@ -856,6 +917,10 @@ components:
         name:
           description: The friendly name of the thing
           type: string
+        organization_id:
+          description: Id of the organization the thing belongs to
+          format: uuid
+          type: string
         properties:
           $ref: '#/components/schemas/ArduinoPropertyCollection'
         properties_count:
@@ -896,10 +961,12 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.thing+json; view=default'
       type: object
     ArduinoThingCollection:
-      description: ArduinoThingCollection is the media type for an array of ArduinoThing (default view)
+      description: ArduinoThingCollection is the media type for an array of ArduinoThing
+        (default view)
       items:
         $ref: '#/components/schemas/ArduinoThing'
-      title: 'Mediatype identifier: application/vnd.arduino.thing+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.thing+json; type=collection;
+        view=default'
       type: array
     ArduinoTimeseriesmedia:
       description: ArduinoTimeseriesmedia media type (default view)
@@ -910,7 +977,8 @@ components:
           type: array
       required:
       - data
-      title: 'Mediatype identifier: application/vnd.arduino.timeseriesmedia+json; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.timeseriesmedia+json;
+        view=default'
       type: object
     ArduinoTimezone:
       description: ArduinoTimezone media type (default view)
@@ -948,10 +1016,12 @@ components:
       description: Widget describes a dashboard widget (default view)
       properties:
         has_permission_incompatibility:
-          description: True if the linked variables permissions are incompatible with the widget
+          description: True if the linked variables permissions are incompatible with
+            the widget
           type: boolean
         has_type_incompatibility:
-          description: True if the linked variables types are incompatible with the widget
+          description: True if the linked variables types are incompatible with the
+            widget
           type: boolean
         has_unlinked_variable:
           description: If it's true the widget is linked to a soft-deleted variable
@@ -1017,10 +1087,12 @@ components:
       title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; view=default'
       type: object
     ArduinoWidgetv2Collection:
-      description: ArduinoWidgetv2Collection is the media type for an array of ArduinoWidgetv2 (default view)
+      description: ArduinoWidgetv2Collection is the media type for an array of ArduinoWidgetv2
+        (default view)
       items:
         $ref: '#/components/schemas/ArduinoWidgetv2'
-      title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection; view=default'
+      title: 'Mediatype identifier: application/vnd.arduino.widgetv2+json; type=collection;
+        view=default'
       type: array
     BatchLastValueRequestsMediaV1:
       properties:
@@ -1160,7 +1232,8 @@ components:
           type: string
         csr:
           description: The certificate request in pem format
-          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END CERTIFICATE-----\n\t\t\t"
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+            CERTIFICATE-----\n\t\t\t"
           maxLength: 1024
           type: string
         enabled:
@@ -1201,9 +1274,11 @@ components:
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
+          - nicla_vision
           type: string
         user_id:
-          description: The user_id associated to the device. If absent it will be inferred from the authentication header
+          description: The user_id associated to the device. If absent it will be
+            inferred from the authentication header
           format: uuid
           type: string
         wifi_fw_version:
@@ -1401,9 +1476,11 @@ components:
           - login_and_secretkey_wifi
           - envie_m7
           - nanorp2040connect
+          - nicla_vision
           type: string
         user_id:
-          description: The user_id associated to the device. If absent it will be inferred from the authentication header
+          description: The user_id associated to the device. If absent it will be
+            inferred from the authentication header
           format: uuid
           type: string
         wifi_fw_version:
@@ -1420,7 +1497,8 @@ components:
           type: string
         csr:
           description: The certificate request in pem format
-          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END CERTIFICATE-----\n\t\t\t"
+          example: "-----BEGIN CERTIFICATE-----\n\t\t\tMIIBeDCCAR4CAQAwgY0xCzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRl\n\t\t\tMQ8wDQYDVQQHEwZNeUNpdHkxFDASBgNVBAoTC0NvbXBhbnkgTHRkMQswCQYDVQQL\n\t\t\tEwJJVDEUMBIGA1UEAxMLZXhhbXBsZS5jb20xHzAdBgkqhkiG9w0BCQEMEHRlc3RA\n\t\t\tZXhhbXBsZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATf6J9Gk79XGJ2I\n\t\t\t+v6p/r0UmPufUcUwtlx7gx87+DaI8Vpj9R5KN71HsHYw5uq+Lm0cr0CZIdtZU4cP\n\t\t\tupd6jDQToC4wLAYJKoZIhvcNAQkOMR8wHTAbBgNVHREEFDASgRB0ZXN0QGV4YW1w\n\t\t\tbGUuY29tMAoGCCqGSM49BAMCA0gAMEUCIGQqtlGzYdjPwYZYJ41albMBcdrKI7+8\n\t\t\toiNSNWyDxJSGAiEAqQPPxMdr6vaXCCjr5s1J01WLKHzGoPFCR40rqAPs8eQ=\n\t\t\t-----END
+            CERTIFICATE-----\n\t\t\t"
           maxLength: 1024
           type: string
         enabled:
@@ -1432,7 +1510,8 @@ components:
       properties:
         async:
           default: true
-          description: If false, wait for the full OTA process, until it gets a result from the device
+          description: If false, wait for the full OTA process, until it gets a result
+            from the device
           type: boolean
         binary_key:
           description: The object key of the binary
@@ -1462,7 +1541,8 @@ components:
           example: invalid_value
           type: string
         detail:
-          description: a human-readable explanation specific to this occurrence of the problem.
+          description: a human-readable explanation specific to this occurrence of
+            the problem.
           example: Value of ID must be an integer
           type: string
         id:
@@ -1471,7 +1551,8 @@ components:
           type: string
         meta:
           additionalProperties: true
-          description: a meta object containing non-standard meta-information about the error.
+          description: a meta object containing non-standard meta-information about
+            the error.
           example:
             timestamp: 1458609066
           type: object
@@ -1539,7 +1620,7 @@ components:
           - READ_WRITE
           type: string
         persist:
-          default: false
+          default: true
           description: If true, data will persist into a timeseries database
           type: boolean
         tag:
@@ -1662,7 +1743,8 @@ components:
           - SCHEDULE
           type: string
         update_parameter:
-          description: The update frequency in seconds, or the amount of the property has to change in order to trigger an update
+          description: The update frequency in seconds, or the amount of the property
+            has to change in order to trigger an update
           format: double
           type: number
         update_strategy:
@@ -1864,7 +1946,8 @@ openapi: 3.0.3
 paths:
   /v1/lora-devices/:
     put:
-      description: Create a new lora device. Its info are saved on our database, and on the lora provider network. Creates a device_v2 automatically
+      description: Create a new lora device. Its info are saved on our database, and
+        on the lora provider network. Creates a device_v2 automatically
       operationId: lora_devices_v1#create
       requestBody:
         content:
@@ -1929,6 +2012,10 @@ paths:
         name: user_id
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1954,6 +2041,11 @@ paths:
     post:
       description: Create a new dashboard
       operationId: dashboards_v2#create
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2004,6 +2096,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -2040,6 +2136,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2072,6 +2172,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -2126,6 +2230,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2173,6 +2281,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2211,6 +2323,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -2266,6 +2382,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -2307,6 +2427,10 @@ paths:
         in: path
         name: widgetId
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -2374,6 +2498,10 @@ paths:
             pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
             type: string
           type: array
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2407,6 +2535,11 @@ paths:
     put:
       description: Creates a new device associated to the user.
       operationId: devices_v2#create
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2459,6 +2592,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -2487,6 +2624,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       responses:
@@ -2523,6 +2664,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2553,12 +2698,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
-        "412":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-          description: Precondition Failed
         "500":
           content:
             application/json:
@@ -2604,7 +2743,8 @@ paths:
       tags:
       - devices_v2_certs
     put:
-      description: Creates a new cert associated to a device. The csr is signed and saved in database. The CommonName will be replaced with the device id.
+      description: Creates a new cert associated to a device. The csr is signed and
+        saved in database. The CommonName will be replaced with the device id.
       operationId: devices_v2_certs#create
       parameters:
       - description: The id of the device
@@ -2725,7 +2865,8 @@ paths:
       tags:
       - devices_v2_certs
     post:
-      description: Updates a cert associated to a device. The csr is signed and saved in database. The CommonName will be replaced with the device id.
+      description: Updates a cert associated to a device. The csr is signed and saved
+        in database. The CommonName will be replaced with the device id.
       operationId: devices_v2_certs#update
       parameters:
       - description: The id of the cert
@@ -2799,6 +2940,10 @@ paths:
         name: start
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2847,7 +2992,8 @@ paths:
               properties:
                 async:
                   default: true
-                  description: If false, wait for the full OTA process, until it gets a result from the device
+                  description: If false, wait for the full OTA process, until it gets
+                    a result from the device
                   type: boolean
                   x-formData-name: async
                 expire_in_mins:
@@ -2999,7 +3145,8 @@ paths:
       tags:
       - devices_v2_pass
     get:
-      description: Returns whether the password for this device is set or not. It doesn't return the password.
+      description: Returns whether the password for this device is set or not. It
+        doesn't return the password.
       operationId: devices_v2_pass#get
       parameters:
       - description: The id of the device
@@ -3143,6 +3290,10 @@ paths:
         schema:
           default: false
           type: boolean
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -3175,6 +3326,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -3232,6 +3387,10 @@ paths:
       - description: The time at which to start selecting properties
         in: query
         name: start
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       responses:
@@ -3612,6 +3771,10 @@ paths:
             pattern: ^[a-zA-Z0-9_.@-]+:[a-zA-Z0-9_.@-]+$
             type: string
           type: array
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -3642,12 +3805,17 @@ paths:
       description: Creates a new thing associated to the user
       operationId: things_v2#create
       parameters:
-      - description: If true, detach device from the other thing, and attach to this thing
+      - description: If true, detach device from the other thing, and attach to this
+          thing
         in: query
         name: force
         schema:
           default: false
           type: boolean
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -3714,6 +3882,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -3754,6 +3926,10 @@ paths:
         schema:
           default: false
           type: boolean
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -3784,7 +3960,8 @@ paths:
       description: Updates a thing associated to the user
       operationId: things_v2#update
       parameters:
-      - description: If true, detach device from the other thing, and attach to this thing
+      - description: If true, detach device from the other thing, and attach to this
+          thing
         in: query
         name: force
         schema:
@@ -3794,6 +3971,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -3912,7 +4093,8 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/property'
-        description: PropertyPayload describes a property of a thing. No field is mandatory
+        description: PropertyPayload describes a property of a thing. No field is
+          mandatory
         required: true
         x-originalParamName: payload
       responses:
@@ -4074,7 +4256,8 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/property'
-        description: PropertyPayload describes a property of a thing. No field is mandatory
+        description: PropertyPayload describes a property of a thing. No field is
+          mandatory
         required: true
         x-originalParamName: payload
       responses:
@@ -4171,7 +4354,9 @@ paths:
       - properties_v2
   /v2/things/{id}/properties/{pid}/timeseries:
     get:
-      description: 'Get numerical property''s historic data binned on a specified time interval (note: the total number of data points should NOT be greater than 1000 otherwise the result will be truncated)'
+      description: 'Get numerical property''s historic data binned on a specified
+        time interval (note: the total number of data points should NOT be greater
+        than 1000 otherwise the result will be truncated)'
       operationId: properties_v2#timeseries
       parameters:
       - description: Whether data's ordering (by time) should be descending
@@ -4180,7 +4365,8 @@ paths:
         schema:
           default: false
           type: boolean
-      - description: 'Get data with a timestamp >= to this date (default: 2 weeks ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
+      - description: 'Get data with a timestamp >= to this date (default: 2 weeks
+          ago, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
         in: query
         name: from
         schema:
@@ -4191,7 +4377,8 @@ paths:
         required: true
         schema:
           type: string
-      - description: 'Binning interval in seconds (defaut: the smallest possible value compatibly with the limit of 1000 data points in the response)'
+      - description: 'Binning interval in seconds (defaut: the smallest possible value
+          compatibly with the limit of 1000 data points in the response)'
         in: query
         name: interval
         schema:
@@ -4203,7 +4390,8 @@ paths:
         required: true
         schema:
           type: string
-      - description: 'Get data with a timestamp < to this date (default: now, min: 1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
+      - description: 'Get data with a timestamp < to this date (default: now, min:
+          1842-01-01T00:00:00Z, max: 2242-01-01T00:00:00Z)'
         in: query
         name: to
         schema:
@@ -4246,6 +4434,10 @@ paths:
         required: true
         schema:
           type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -4276,6 +4468,10 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
@@ -4338,6 +4534,10 @@ paths:
         in: path
         name: sketchId
         required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
         schema:
           type: string
       requestBody:
