@@ -1,5 +1,5 @@
 {
     "packageName": "iot",
-    "packageVersion": "1.4.3",
+    "packageVersion": "1.4.4",
     "usePromises": true
 }
