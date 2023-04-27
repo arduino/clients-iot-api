@@ -1303,6 +1303,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -1519,6 +1520,7 @@ components:
           - phone
           - portenta_x8
           - opta
+          - giga
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
