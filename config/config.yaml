@@ -1,5 +1,5 @@
 container_opts:
-  image: datadog/apigentools:1.1.0
+  image: datadog/apigentools:1.6.5
 languages:
   go:
     generation:
@@ -19,7 +19,7 @@ languages:
         templates:
           source:
             type: openapi-git
-            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
             templates_dir: go # directory with templates for this language
             system: true
     downstream_templates:
@@ -102,10 +102,10 @@ languages:
             description: Copy shared assets in the generated folder
         templates:
           patches:
-            - template-patches/python-configuration.patch
+            #- template-patches/python-configuration.patch
           source:
             type: openapi-git
-            git_committish: "v4.3.1" # git committish to checkout before extracting the templates
+            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
             templates_dir: python # directory with templates for this language
             system: true
     downstream_templates:
