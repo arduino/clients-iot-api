@@ -5,8 +5,9 @@ index ac51800..2511102 100644
 @@ -265,7 +265,7 @@ conf = {{{packageName}}}.Configuration(
          """Adding retries to override urllib3 default value 3
          """
-         # Enable client side validation
+-        # Enable client side validation
 -        self.client_side_validation = True
++        # Disable client side validation
 +        self.client_side_validation = False
  
          self.socket_options = None
