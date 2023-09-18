@@ -1,5 +1,5 @@
 diff --git a/htmlDocs2/sample_js.mustache b/htmlDocs2/sample_js.mustache
-index 362400aaaa..18a49755e4 100644
+index 5100cda..4beb704 100644
 --- a/htmlDocs2/sample_js.mustache
 +++ b/htmlDocs2/sample_js.mustache
 @@ -1,6 +1,6 @@
@@ -8,15 +8,18 @@ index 362400aaaa..18a49755e4 100644
  {{#hasAuthMethods}}
 -var defaultClient = {{{jsModuleName}}}.ApiClient.instance;
 +var defaultClient = ArduinoIotClient.ApiClient.instance;
- {{#authMethods}}{{#isBasic}}
+ {{#authMethods}}{{#isBasicBasic}}
  // Configure HTTP basic authorization: {{{name}}}
  var {{{name}}} = defaultClient.authentications['{{{name}}}'];
-@@ -17,7 +17,7 @@ var {{{name}}} = defaultClient.authentications['{{{name}}}'];
- {{/authMethods}}
+@@ -21,7 +21,7 @@ var {{{name}}} = defaultClient.authentications['{{{name}}}'];
  {{/hasAuthMethods}}
  
+ // Create an instance of the API class
 -var api = new {{{jsModuleName}}}.{{{classname}}}(){{#hasParams}}
 +var api = new ArduinoIotClient.{{{classname}}}(){{#hasParams}}
  {{#hasRequiredParams}}
  {{#requiredParams}}
  var {{{paramName}}} = {{{example}}}; // {{=< >=}}{<&dataType>}<={{ }}=> {{{unescapedDescription}}}
+-- 
+2.34.1
+

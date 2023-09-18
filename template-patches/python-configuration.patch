@@ -1,16 +1,15 @@
 diff --git a/python/configuration.mustache b/python/configuration.mustache
-index dceab63..b2d56ab 100644
+index ac51800..2511102 100644
 --- a/python/configuration.mustache
 +++ b/python/configuration.mustache
-@@ -259,7 +259,7 @@ conf = {{{packageName}}}.Configuration(
+@@ -265,7 +265,7 @@ conf = {{{packageName}}}.Configuration(
          """Adding retries to override urllib3 default value 3
          """
-         # Disable client side validation
+         # Enable client side validation
 -        self.client_side_validation = True
 +        self.client_side_validation = False
  
-     def __deepcopy__(self, memo):
-         cls = self.__class__
+         self.socket_options = None
+         """Options to pass down to the underlying urllib3 socket
 -- 
-2.17.1
 

@@ -1,0 +1,78 @@
+diff --git a/htmlDocs2/index.mustache b/htmlDocs2/index.mustache
+index 65c210b..e09cc2e 100644
+--- a/htmlDocs2/index.mustache
++++ b/htmlDocs2/index.mustache
+@@ -206,6 +206,41 @@
+             <div id="app-description" class="app-desc">
+                 {{{appDescription}}}
+             </div>
++            <div id="create-auth-token" class="app-desc">
++              <h2 id="create-auth-token">Create Auth Token</h2>
++              <pre class="prettyprint"><code class="language-bsh">
++curl --request POST \
++  --url 'https://api2.arduino.cc/iot/v1/clients/token' \
++  --header 'content-type: application/x-www-form-urlencoded' \
++  --data 'grant_type=client_credentials' \
++  --data 'client_id=YOUR_CLIENT_ID' \
++  --data 'client_secret=YOUR_SECRET_ID' \
++  --data 'audience=https://api2.arduino.cc/iot'
++              </code></pre>
++            </div>
++            <div id="app-description" class="app-desc">
++              <p>Token generation code for supported clients are available at the following links:</p>
++                <ul>
++                  <li>
++                    <p><a href="https://github.com/arduino/iot-client-js#authentication">Javascript Client</a></p>
++                  </li>
++                  <li>
++                    <p><a href="https://github.com/arduino/iot-client-py#authentication">Python Client</a></p>
++                  </li>
++                <li>
++                  <p><a href="https://github.com/arduino/iot-client-go#getting-started">Golang Client</a></p>
++                </li>
++              </ul>
++            </div>
++            <div id="create-auth-token" class="app-desc">
++              <h2 id="create-auth-token">Rate Limiting</h2>
++              <p>Arduino IoT APIs are rate limited, authenticated clients limit is up to 10req/s.</p>
++              <p>The following code and message are returned from the Arduino servers in case of rate limit error:</p>
++              <p><b>Status: 429 - Too Many Requests</b></p>
++              <pre>
++You have reached maximum request limit.
++              </pre>
++            </div>
+           </div>
+         </div>
+         <div id="sections">
+@@ -233,18 +268,18 @@
+                         </p>
+                         <ul class="nav nav-tabs nav-tabs-examples">
+                           <li class="active"><a href="#examples-{{baseName}}-{{nickname}}-0-curl">Curl</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-java">Java</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-dart">Dart</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-android">Android</a></li>
+-                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-groovy">Groovy</a></li>-->
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-objc">Obj-C</a></li>
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-java">Java</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-dart">Dart</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-android">Android</a></li>-->
++                          <!--<!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-groovy">Groovy</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-objc">Obj-C</a></li>-->
+                           <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-javascript">JavaScript</a></li>
+                           <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-angular">Angular</a></li>-->
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-csharp">C#</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-php">PHP</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-perl">Perl</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-python">Python</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-rust">Rust</a></li>
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-csharp">C#</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-php">PHP</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-perl">Perl</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-python">Python</a></li>-->
++                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-rust">Rust</a></li>-->
+                         </ul>
+ 
+                         <div class="tab-content">
+-- 
+2.34.1
+
