@@ -601,6 +601,10 @@ components:
           type: string
         last_value:
           description: Last value of this property
+        linked_to_trigger:
+          description: Indicates if the property is involved in the activation of
+            at least a trigger
+          type: boolean
         max_value:
           description: Maximum value of this property
           format: double
@@ -1304,6 +1308,10 @@ components:
           - portenta_x8
           - opta
           - giga
+          - generic_device_secretkey
+          - portenta_c33
+          - unor4wifi
+          - nano_nora
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -1521,6 +1529,10 @@ components:
           - portenta_x8
           - opta
           - giga
+          - generic_device_secretkey
+          - portenta_c33
+          - unor4wifi
+          - nano_nora
           type: string
         user_id:
           description: The user_id associated to the device. If absent it will be
@@ -2011,7 +2023,7 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.loradevicev1+json:
               schema:
                 $ref: '#/components/schemas/ArduinoLoradevicev1'
           description: Created
@@ -2025,19 +2037,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoLorafreqplansv1'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoLorafreqplansv1'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.lorafreqplansv1+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2068,19 +2089,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2Collection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2Collection'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2111,25 +2141,37 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2158,13 +2200,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2172,7 +2220,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2198,13 +2249,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2212,7 +2269,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2249,19 +2309,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardv2'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2269,7 +2338,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2308,13 +2380,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2322,7 +2400,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2349,19 +2430,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardshareCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDashboardshareCollection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2369,7 +2459,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.dashboardshare+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2407,13 +2500,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2421,7 +2520,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2456,13 +2558,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2470,7 +2578,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2513,19 +2624,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoVariableslinks'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoVariableslinks'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -2533,7 +2653,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.variableslinks+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2574,25 +2697,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Collection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Collection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2623,25 +2758,37 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: Created
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "412":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2670,13 +2817,19 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2702,19 +2855,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2751,25 +2913,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2792,7 +2966,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2CertCollection'
           description: OK
@@ -2802,7 +2979,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2835,13 +3015,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2851,7 +3037,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2886,7 +3075,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2914,7 +3106,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: OK
@@ -2924,7 +3119,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -2963,13 +3161,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Cert'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Cert'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -2979,7 +3183,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.cert+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3016,25 +3223,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2EventProperties'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2EventProperties'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
         "503":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.event.properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -3087,7 +3306,10 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3095,25 +3317,37 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "410":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Gone
         "412":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3149,7 +3383,10 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3157,25 +3394,37 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "410":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Gone
         "412":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3204,7 +3453,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3233,7 +3485,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Pass'
           description: OK
@@ -3243,7 +3498,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3279,13 +3537,19 @@ paths:
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3317,13 +3581,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2Pass'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2Pass'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3333,7 +3603,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2.pass+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3366,19 +3639,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2properties'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2properties'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2properties+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3416,13 +3698,19 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3465,25 +3753,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDevicev2propertyvalues'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoDevicev2propertyvalues'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.devicev2propertyvalues+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3506,19 +3806,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTags'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3552,19 +3861,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3597,19 +3915,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3635,19 +3962,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesBatch'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesBatch'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -3657,7 +3993,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -3683,19 +4022,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesRawBatch'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesRawBatch'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -3705,7 +4053,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -3731,13 +4082,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoSeriesRawBatchLastvalue'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoSeriesRawBatchLastvalue'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -3747,7 +4104,10 @@ paths:
           description: Not Implemented
         "503":
           content:
-            application/json:
+            application/vnd.arduino.series.raw.batch.lastvalue+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Service Unavailable
@@ -3775,19 +4135,19 @@ paths:
           description: Accepted
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3847,13 +4207,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoThingCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThingCollection'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3861,7 +4227,10 @@ paths:
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3899,13 +4268,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3913,19 +4288,28 @@ paths:
           description: Unauthorized
         "409":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Conflict
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -3960,7 +4344,10 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -3970,7 +4357,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4002,13 +4392,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -4016,7 +4412,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4060,13 +4459,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -4076,19 +4481,28 @@ paths:
           description: Not Found
         "409":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Conflict
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4117,25 +4531,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoPropertyCollection'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoPropertyCollection'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4169,19 +4595,28 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -4189,13 +4624,19 @@ paths:
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4232,7 +4673,10 @@ paths:
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -4240,7 +4684,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4274,25 +4721,37 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4332,31 +4791,46 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoProperty'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoProperty'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.property+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4398,13 +4872,19 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
@@ -4412,7 +4892,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4468,13 +4951,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTimeseriesmedia'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTimeseriesmedia'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -4484,7 +4973,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.timeseriesmedia+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4510,7 +5002,10 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
@@ -4520,7 +5015,10 @@ paths:
           description: Not Found
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4557,13 +5055,19 @@ paths:
       responses:
         "201":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: Created
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -4573,13 +5077,19 @@ paths:
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4621,13 +5131,19 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoThing'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoThing'
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
@@ -4635,19 +5151,28 @@ paths:
           description: Unauthorized
         "404":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Not Found
         "412":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Precondition Failed
         "500":
           content:
-            application/json:
+            application/vnd.arduino.thing+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4670,19 +5195,28 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTags'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/ArduinoTags'
           description: OK
         "401":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.arduino.tags+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4716,19 +5250,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
@@ -4760,19 +5303,28 @@ paths:
           description: OK
         "400":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Bad Request
         "401":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Unauthorized
         "500":
           content:
-            application/json:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
               schema:
                 $ref: '#/components/schemas/error'
           description: Internal Server Error
