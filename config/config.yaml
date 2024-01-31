@@ -1,5 +1,5 @@
 container_opts:
-  image: datadog/apigentools:1.6.5
+  image: datadog/apigentools:1.6.6
 languages:
   go:
     generation:

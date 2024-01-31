@@ -31,7 +31,7 @@ Following clients have been successfully generated with the present workflow:
 
 ## Generation process
 
-Apart from the initial setup (the procedures needed to setup this git repo),
+After initial setup (the procedures needed to setup this git repo),
 the ideal workflow consists in updating this repo every time the API service
 changes, re-generate all the clients, push the generated code to the git repo
 it belongs to and release the updated clients (this last step may vary
