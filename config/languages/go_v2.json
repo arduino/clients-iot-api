@@ -3,6 +3,6 @@
     "gitRepoId": "iot-client-go",
     "isGoSubmodule": false,
     "packageName": "iot",
-    "packageVersion": "2.0.2",
+    "packageVersion": "2.0.3",
     "withGoCodegenComment": true
 }
