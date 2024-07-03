@@ -1470,8 +1470,6 @@ components:
           type: object
         type:
           description: The type of the widget
-          enum:
-          - slider, gauge
           type: string
         variables:
           $ref: '#/components/schemas/ArduinoLinkedvariableCollection'
