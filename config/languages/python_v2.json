@@ -1,6 +1,6 @@
 {
     "packageName": "iot_api_client",
     "projectName": "arduino-iot-client",
-    "packageVersion": "2.0.3",
+    "packageVersion": "2.0.4",
     "generateSourceCodeOnly": false
 }
