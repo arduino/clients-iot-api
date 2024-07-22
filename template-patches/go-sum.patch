@@ -1,5 +1,7 @@
---- go.sum.mustache.orig	2024-07-09 15:08:25.472172021 +0200
-+++ go.sum.mustache	2024-07-09 14:47:40.882292320 +0200
+diff --git a/modules/openapi-generator/src/main/resources/go/go.sum.mustache b/modules/openapi-generator/src/main/resources/go/go.sum.mustache
+index d25a7530fd5..b644e9f419c 100644
+--- a/modules/openapi-generator/src/main/resources/go/go.sum.mustache
++++ b/modules/openapi-generator/src/main/resources/go/go.sum.mustache
 @@ -1,15 +1,13 @@
 -cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 -github.com/golang/protobuf v1.2.0 h1:P3YflyNX/ehuJFLhxviNdFxQPkGK5cDcApsge1SqnvM=
