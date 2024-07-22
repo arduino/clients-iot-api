@@ -1,7 +1,7 @@
-diff --git a/modules/openapi-generator/src/main/resources/go/go.mod.mustache b/modules/openapi-generator/src/main/resources/go/go.mod.mustache
+diff --git a/go/go.mod.mustache b/go/go.mod.mustache
 index 91cea277607..7d4d168ad6a 100644
---- a/modules/openapi-generator/src/main/resources/go/go.mod.mustache
-+++ b/modules/openapi-generator/src/main/resources/go/go.mod.mustache
+--- a/go/go.mod.mustache
++++ b/go/go.mod.mustache
 @@ -1,12 +1,17 @@
  module {{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}
  
