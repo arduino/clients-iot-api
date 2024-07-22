@@ -1,0 +1,26 @@
+diff --git a/go/go.mod.mustache b/go/go.mod.mustache
+index 91cea277607..7d4d168ad6a 100644
+--- a/go/go.mod.mustache
++++ b/go/go.mod.mustache
+@@ -1,12 +1,17 @@
+ module {{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}
+ 
+-go 1.18
++go 1.19
+ 
+ require (
+-	{{#hasOAuthMethods}}
+-	golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
+-	{{/hasOAuthMethods}}
++	github.com/stretchr/testify v1.9.0
++	golang.org/x/oauth2 v0.21.0
+ 	{{#withAWSV4Signature}}
+ 	github.com/aws/aws-sdk-go v1.34.14
+ 	{{/withAWSV4Signature}}
+ )
++
++require (
++	github.com/davecgh/go-spew v1.1.1 // indirect
++	github.com/pmezard/go-difflib v1.0.0 // indirect
++	gopkg.in/yaml.v3 v3.0.1 // indirect
++)
