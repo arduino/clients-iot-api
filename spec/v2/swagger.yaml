@@ -120,6 +120,10 @@ components:
     ArduinoDashboardv2:
       description: Dashboard is a collection of widgets (default view)
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
         created_by:
           $ref: '#/components/schemas/ArduinoDashboardowner'
         id:
@@ -160,6 +164,9 @@ components:
     ArduinoDashboardv2template:
       description: ArduinoDashboardv2template media type (default view)
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          type: string
         id:
           description: The friendly ID of the dashboard
           type: string
@@ -2047,6 +2054,10 @@ components:
     dashboardv2:
       description: DashboardV2Payload describes a dashboard
       properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
         name:
           description: The friendly name of the dashboard
           maxLength: 64
@@ -5085,6 +5096,11 @@ paths:
     post:
       description: Returns the batch of time-series aggregated samples
       operationId: series_v2#batch_query
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -5145,6 +5161,11 @@ paths:
     post:
       description: Returns the batch of time-series raw samples
       operationId: series_v2#batch_query_raw
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -5205,6 +5226,11 @@ paths:
     post:
       description: Returns the batch of time-series data raw
       operationId: series_v2#batch_query_raw_last_value
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -5258,6 +5284,11 @@ paths:
         types that does not support mathematic aggregation. Types supported: strings,
         complex types.'
       operationId: series_v2#batch_query_sampling
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -5318,6 +5349,11 @@ paths:
     post:
       description: Request sending of historical data of properties by email
       operationId: series_v2#historic_data
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
