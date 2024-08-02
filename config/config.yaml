@@ -103,7 +103,7 @@ languages:
         templates:
           source:
             type: openapi-git
-            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
+            git_committish: "v7.7.0" # git committish to checkout before extracting the templates
             templates_dir: python # directory with templates for this language
             system: true
     downstream_templates:
