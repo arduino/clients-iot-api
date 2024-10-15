@@ -2750,22 +2750,16 @@ components:
             type: object
         ResourceKind:
             enum:
-                - FOLDER
                 - folder
                 - folders
-                - DEVICE
                 - device
                 - devices
-                - THING
                 - thing
                 - things
-                - DASHBOARD
                 - dashboard
                 - dashboards
-                - TRIGGER
                 - trigger
                 - triggers
-                - SKETCH
                 - sketch
                 - sketches
             type: string

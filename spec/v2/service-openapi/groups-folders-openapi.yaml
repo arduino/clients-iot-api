@@ -699,7 +699,7 @@ components:
           type: boolean
     ResourceKind:
       type: string
-      enum: [ "FOLDER", "folder", "folders", "DEVICE", "device", "devices", "THING", "thing", "things", "DASHBOARD", "dashboard", "dashboards", "TRIGGER", "trigger", "triggers", "SKETCH", "sketch", "sketches" ]
+      enum: [ "folder", "folders", "device", "devices", "thing", "things", "dashboard", "dashboards", "trigger", "triggers", "sketch", "sketches" ]
   securitySchemes:
     jwt_bearer_authentication:
       description: Bearer authentication
