@@ -19,6 +19,8 @@ const (
 	MergedOpenApi = BasePath + "swagger.yaml"
 )
 
+var pathBlacklist = make(map[string]bool)
+
 func main() {
 
 	// Load the main OpenAPI specification
@@ -28,9 +30,35 @@ func main() {
 		log.Fatalf("Failed to load %s: %v", IotAPIOpenApi, err)
 	}
 
-	apisToMerge := []string{GroupsViewsOpenApi, GroupsFoldersOpenApi}
-
 	mergedPaths := []openapi3.NewPathsOption{}
+	for _, path := range docIOT.Paths.InMatchingOrder() {
+		if _, ok := pathBlacklist[path]; ok {
+			continue
+		}
+		pathItem := docIOT.Paths.Find(path)
+		mergedPaths = append(mergedPaths, openapi3.WithPath(fmt.Sprintf("/iot%s", path), pathItem))
+	}
+
+	if docIOT.Components.Schemas == nil {
+		docIOT.Components.Schemas = make(map[string]*openapi3.SchemaRef)
+	}
+	if docIOT.Components.Responses == nil {
+		docIOT.Components.Responses = make(map[string]*openapi3.ResponseRef)
+	}
+	if docIOT.Components.Parameters == nil {
+		docIOT.Components.Parameters = make(map[string]*openapi3.ParameterRef)
+	}
+	if docIOT.Components.RequestBodies == nil {
+		docIOT.Components.RequestBodies = make(map[string]*openapi3.RequestBodyRef)
+	}
+	if docIOT.Components.Headers == nil {
+		docIOT.Components.Headers = make(map[string]*openapi3.HeaderRef)
+	}
+	if docIOT.Components.SecuritySchemes == nil {
+		docIOT.Components.SecuritySchemes = make(map[string]*openapi3.SecuritySchemeRef)
+	}
+
+	apisToMerge := []string{GroupsViewsOpenApi, GroupsFoldersOpenApi}
 	for _, api := range apisToMerge {
 		// Load the second OpenAPI specification
 		docVIEWS, err := loader.LoadFromFile(api)
@@ -39,54 +67,35 @@ func main() {
 		}
 
 		// Merge the paths
-		for _, path := range docIOT.Paths.InMatchingOrder() {
-			pathItem := docIOT.Paths.Find(path)
-			mergedPaths = append(mergedPaths, openapi3.WithPath(fmt.Sprintf("/iot/%s", path), pathItem))
-		}
 		for _, path := range docVIEWS.Paths.InMatchingOrder() {
+			if _, ok := pathBlacklist[path]; ok {
+				continue
+			}
 			pathItem := docVIEWS.Paths.Find(path)
 			mergedPaths = append(mergedPaths, openapi3.WithPath(path, pathItem))
 		}
 
 		// Merge the components
-		if docIOT.Components.Schemas == nil {
-			docIOT.Components.Schemas = make(map[string]*openapi3.SchemaRef)
-		}
 		for name, schema := range docVIEWS.Components.Schemas {
 			docIOT.Components.Schemas[name] = schema
 		}
 
-		if docIOT.Components.Responses == nil {
-			docIOT.Components.Responses = make(map[string]*openapi3.ResponseRef)
-		}
 		for name, response := range docVIEWS.Components.Responses {
 			docIOT.Components.Responses[name] = response
 		}
 
-		if docIOT.Components.Parameters == nil {
-			docIOT.Components.Parameters = make(map[string]*openapi3.ParameterRef)
-		}
 		for name, parameter := range docVIEWS.Components.Parameters {
 			docIOT.Components.Parameters[name] = parameter
 		}
 
-		if docIOT.Components.RequestBodies == nil {
-			docIOT.Components.RequestBodies = make(map[string]*openapi3.RequestBodyRef)
-		}
 		for name, requestBody := range docVIEWS.Components.RequestBodies {
 			docIOT.Components.RequestBodies[name] = requestBody
 		}
 
-		if docIOT.Components.Headers == nil {
-			docIOT.Components.Headers = make(map[string]*openapi3.HeaderRef)
-		}
 		for name, header := range docVIEWS.Components.Headers {
 			docIOT.Components.Headers[name] = header
 		}
 
-		if docIOT.Components.SecuritySchemes == nil {
-			docIOT.Components.SecuritySchemes = make(map[string]*openapi3.SecuritySchemeRef)
-		}
 		for name, securityScheme := range docVIEWS.Components.SecuritySchemes {
 			docIOT.Components.SecuritySchemes[name] = securityScheme
 		}
