@@ -137,7 +137,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/ResourceKindFilter'
+              $ref: '#/components/schemas/ResourceKind'
           examples:
             OneKind:
               summary: Example of a single kind
@@ -1476,7 +1476,7 @@ components:
           description: "Name of the folder that makes up this path node"
           type: string
           maxLength: 128
-    ResourceKindFilter:
+    ResourceKind:
       x-go-name: ResourceKindFilter
       type: string
       enum: [ "folder", "folders", "device", "devices", "thing", "things", "dashboard", "dashboards", "trigger", "triggers", "sketch", "sketches" ]
