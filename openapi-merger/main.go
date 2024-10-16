@@ -1,12 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
+	"slices"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"gopkg.in/yaml.v3"
+
+	_ "embed"
 )
 
 const (
@@ -19,9 +23,21 @@ const (
 	MergedOpenApi = BasePath + "swagger.yaml"
 )
 
-var pathBlacklist = make(map[string]bool)
+//go:embed path-blacklist.json
+var pathBlacklist string
+
+type blacklist struct{
+	Blacklist []string `json:"blacklist"`
+}
 
 func main() {
+
+	// Load blacklist
+	var bl blacklist
+	_ = json.Unmarshal([]byte(pathBlacklist), &bl)
+
+	log.Println("Merging OpenAPI specifications...")
+	log.Println("Blacklisted paths: ", bl.Blacklist)
 
 	// Load the main OpenAPI specification
 	loader := openapi3.NewLoader()
@@ -32,7 +48,7 @@ func main() {
 
 	mergedPaths := []openapi3.NewPathsOption{}
 	for _, path := range docIOT.Paths.InMatchingOrder() {
-		if _, ok := pathBlacklist[path]; ok {
+		if slices.Contains(bl.Blacklist, path) {
 			continue
 		}
 		pathItem := docIOT.Paths.Find(path)
@@ -68,7 +84,8 @@ func main() {
 
 		// Merge the paths
 		for _, path := range docVIEWS.Paths.InMatchingOrder() {
-			if _, ok := pathBlacklist[path]; ok {
+			if slices.Contains(bl.Blacklist, path) {
+				log.Println("Blacklisted path: ", path)
 				continue
 			}
 			pathItem := docVIEWS.Paths.Find(path)
