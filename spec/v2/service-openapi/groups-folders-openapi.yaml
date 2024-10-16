@@ -1,0 +1,707 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Folders API
+  description: Folders API provides support to folders in Arduino Cloud
+  contact:
+    name: Arduino Support
+    email: support@arduino.cc
+  license:
+    name: Arduino License
+    url: https://support.arduino.cc/hc/en-us/articles/4415094490770-Licensing-for-products-based-on-Arduino
+externalDocs:
+  description: Find out more about Arduino
+  url: https://www.arduino.cc
+tags:
+  - name: folders
+    description: Folders-related paths
+paths:
+  /groups/v1/folders:
+    post:
+      operationId: CreateFolder
+      summary: Creates a new folder
+      description: Creates a new folder under the specified path, if provided
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      tags:
+        - folders
+      requestBody:
+        description: Create folder request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+    get:
+      operationId: ListFolders
+      summary: List folders
+      description: Lists the available folders
+      parameters:
+        - name: parent_id
+          in: query
+          description: Used to retrieve the folder containing the resource whose ID is provided
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: child_id
+          in: query
+          description: Used to retrieve the folder containing the resource whose ID is provided
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: root
+          in: query
+          description: Specifies to return only root folders
+          schema:
+            type: boolean
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      tags:
+        - folders
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+
+  /groups/v1/folders/{folder_id}:
+    get:
+      operationId: GetFolder
+      summary: Get a folder by its ID
+      description: Retrieves a folder's metadata by its ID
+      tags:
+        - folders
+      parameters:
+        - name: folder_id
+          in: path
+          description: The ID of the folder
+          required: true
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+    patch:
+      operationId: UpdateFolder
+      summary: Update a folder
+      description: Updates a folder's metadata
+      tags:
+        - folders
+      parameters:
+        - name: folder_id
+          in: path
+          description: The ID of the folder
+          required: true
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      requestBody:
+        description: Update folder request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFolderRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+    delete:
+      operationId: DeleteFolder
+      summary: Delete a folder
+      description: Deletes a folder by its ID
+      tags:
+        - folders
+      parameters:
+        - name: folder_id
+          in: path
+          description: The ID of the folder to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: hard
+          in: query
+          description: If true, the folder is deleted permanently
+          schema:
+            type: boolean
+            default: false
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '204':
+          description: Deleted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+
+  /groups/v1/folders/{folder_id}/content/{resource_kind}/{resource_id}:
+    post:
+      operationId: MoveResourceToFolder
+      summary: Move a resource under a folder
+      description: Add the specified resource to a target folder. If the resource is already under a folder, it will be moved to the new target folder.
+      parameters:
+        - name: folder_id
+          required: true
+          in: path
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: resource_kind
+          required: true
+          in: path
+          description: Kind of the resource to be associated
+          schema:
+            $ref: '#/components/schemas/ResourceKind'
+          x-oapi-codegen-extra-tags:
+            validate: required
+          example: "device"
+        - name: resource_id
+          required: true
+          in: path
+          description: Id of the resource to be associated
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      tags:
+        - folders
+      responses:
+        '204':
+          description: Resource added
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+    delete:
+      operationId: RemoveResourceFromFolder
+      summary: Remove a resource from a folder
+      description:  Remove a resource from a folder
+      parameters:
+        - name: folder_id
+          required: true
+          in: path
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: resource_kind
+          required: true
+          in: path
+          description: Kind of the resource to be associated
+          schema:
+            $ref: '#/components/schemas/ResourceKind'
+          example: "devices"
+        - name: resource_id
+          required: true
+          in: path
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: required,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      tags:
+        - folders
+      responses:
+        '204':
+          description: Resource removed
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+      security:
+        - jwt_bearer_authentication: []
+
+components:
+  schemas:
+    ValidationError:
+      type: object
+      required:
+        - message
+        - reason
+      properties:
+        message:
+          type: string
+        reason:
+          type: string
+    APIError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Folder:
+      type: object
+      required:
+        - id
+        - name
+        - user_id
+        - created_at
+        - created_by
+        - updated_at
+        - updated_by
+      properties:
+        id:
+          description: "Folder ID"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        name:
+          description: "Name of the folder"
+          type: string
+          maxLength: 128
+        user_id:
+          description: "User owning the folder"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        organization_id:
+          description: "Organization owning the folder"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        parent:
+          $ref: '#/components/schemas/PathNode'
+        path:
+          description: "Path that leads to the folder"
+          type: array
+          items:
+            $ref: '#/components/schemas/PathNode'
+        created_by:
+          description: "User that created the folder"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        created_at:
+          description: "Folder creation datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        updated_by:
+          description: "User that last updated the folder"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        updated_at:
+          description: "Folder last update datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        deleted_by:
+          description: "User that deleted the folder"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        deleted_at:
+          description: "Folder deletion datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+    PathNode:
+      description: "Represents a folder in a path"
+      type: object
+      required:
+        - folder_id
+        - folder_name
+      properties:
+        folder_id:
+          description: "ID of the folder that makes up this path node"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        folder_name:
+          description: "Name of the folder that makes up this path node"
+          type: string
+          maxLength: 128
+    CreateFolderRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          description: "Name of the folder"
+          type: string
+          maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: required,max=64
+        parent_id:
+          description: "Parent folder of the folder being created, if any"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+    UpdateFolderRequest:
+      type: object
+      properties:
+        name:
+          description: "New name of the folder"
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,required,max=64
+        soft_deleted:
+          description: "Whether to soft delete (true) the folder or restore it (false)"
+          type: boolean
+    ResourceKind:
+      type: string
+      enum: [ "folder", "folders", "device", "devices", "thing", "things", "dashboard", "dashboards", "trigger", "triggers", "sketch", "sketches" ]
+  securitySchemes:
+    jwt_bearer_authentication:
+      description: Bearer authentication
+      type: http
+      scheme: bearer
