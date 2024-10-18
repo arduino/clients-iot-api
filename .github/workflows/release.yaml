@@ -85,11 +85,17 @@ jobs:
             template-dir: official-generator-templates/htmlDocs2/
             command-args: -o generated/html2
 
+      - name: Apply downstream templates
+        run: |
+          cp downstream-templates/go/README.md generated/go/README.md
+          cp downstream-templates/javascript/README.md generated/javascript/README.md
+          cp downstream-templates/python/README.md generated/python/README.md
+          cp downstream-templates/python/setup.py generated/python/setup.py
+          cp downstream-templates/python/utils.py generated/python/iot_api_client/utils.py
+
       - name: Align permissions of generated code
         run: |
           sudo chown -R ${USER}:${USER} generated
-          cat generated/go/go.mod
-          ls -lart generated
           
       - name: DEBUG
         run: |
