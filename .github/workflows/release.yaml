@@ -1,0 +1,76 @@
+name: release
+
+on: workflow_dispatch
+
+env:
+  GENERATOR_VERSION: 'v7.9.0'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout generator templates
+        uses: actions/checkout@v4
+        with:
+          repository: OpenAPITools/openapi-generator
+          path: official-generator-templates
+          ref: ${{ env.GENERATOR_VERSION }}
+          sparse-checkout: |
+            .github
+            modules/openapi-generator/src/main/resources
+
+      - name: Move templates
+        run: |
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/go official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/python official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/Javascript official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/htmlDocs2 official-generator-templates/
+ 
+      - name: Apply patches to templates
+        run: |
+            cd official-generator-templates
+            for f in ../template-patches/*.patch; do git apply ../template-patches/${f}; done;
+            cd ..           
+
+      - name: Create output directories
+        run: |
+            mkdir -p generated/go
+            mkdir -p generated/python
+            mkdir -p generated/javascript
+            
+    #TODO Merge all the specs in spec/v2/merged.yaml
+
+      - name: Generate go client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: go
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/go_v2.json
+            openapi-file: spec/v2/merged.yaml
+            template-dir: official-generator-templates/go/
+            command-args: -o generated/go
+
+      - name: Generate python client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: python
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/python_v2.json
+            openapi-file: spec/v2/merged.yaml
+            template-dir: official-generator-templates/python/
+            command-args: -o generated/python
+
+      - name: Align permissions of generated code
+        run: |
+          sudo chown -R ${USER}:${USER} generated
+          cat generated/go/go.mod
+          ls -lart generated
+          
+      - name: DEBUG
+        run: |
+          cat generated/go/go.mod
+          ls -lart generated           
