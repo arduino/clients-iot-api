@@ -41,6 +41,7 @@ jobs:
             mkdir -p generated/go
             mkdir -p generated/python
             mkdir -p generated/javascript
+            mkdir -p generated/html2
             
     #TODO Merge all the specs in spec/v2/merged.yaml
 
@@ -63,6 +64,26 @@ jobs:
             openapi-file: spec/v2/merged.yaml
             template-dir: official-generator-templates/python/
             command-args: -o generated/python
+
+      - name: Generate Javascript client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: python
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/javascript_v2.json
+            openapi-file: spec/v2/merged.yaml
+            template-dir: official-generator-templates/javascript/
+            command-args: -o generated/javascript
+
+      - name: Generate Docs
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: html2
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/html2_v2.json
+            openapi-file: spec/v2/merged.yaml
+            template-dir: official-generator-templates/html2/
+            command-args: -o generated/html2
 
       - name: Align permissions of generated code
         run: |
