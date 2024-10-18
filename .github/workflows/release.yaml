@@ -6,12 +6,17 @@ env:
   GENERATOR_VERSION: 'v7.9.0'
   INPUT_OPENAPI_FILE: 'openapi/openapi.yaml'
   GO_VERSION: '1.23'
+  RELEASE_BRANCH: ''
 
 jobs:
   push:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Env setup
+        run: |
+            echo "RELEASE_BRANCH=$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
+
       - name: Install Go
         uses: actions/setup-go@v5
         with:
@@ -55,7 +60,9 @@ jobs:
           repository: arduino/iot-client-go
           path: generated/go
       - run: |
-          cd generated/go && git checkout -b new-branch                      
+          echo ">>+++>>>"
+          echo ${{ env.RELEASE_BRANCH }}
+          cd generated/go && git checkout -b ${{ env.RELEASE_BRANCH }}                     
 
       - name: Checkout PYTHON client arduino repo
         uses: actions/checkout@v4
