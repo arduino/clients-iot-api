@@ -14,9 +14,7 @@ jobs:
 
     steps:
       - name: Env setup
-        run: |
-            git config --global --add url."https://${{ secrets.GH_PUSH_TOKEN }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-            git config --global --add url."https://${{ secrets.GH_PUSH_TOKEN }}:x-oauth-basic@github.com/".insteadOf "git@github.com:"   
+        run: | 
             echo "RELEASE_BRANCH="release-"$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
 
       - name: Install Go
@@ -153,4 +151,5 @@ jobs:
             git config --global user.email "github-actions-noreply@arduino.cc"
             git config --global user.name "github-actions[bot]"        
             cd generated/go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+            cd generated/python && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
           
