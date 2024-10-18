@@ -72,7 +72,7 @@ jobs:
             generator-tag: ${{ env.GENERATOR_VERSION }}
             config-file: config/languages/javascript_v2.json
             openapi-file: spec/v2/merged.yaml
-            template-dir: official-generator-templates/javascript/
+            template-dir: official-generator-templates/Javascript/
             command-args: -o generated/javascript
 
       - name: Generate Docs
@@ -82,7 +82,7 @@ jobs:
             generator-tag: ${{ env.GENERATOR_VERSION }}
             config-file: config/languages/html2_v2.json
             openapi-file: spec/v2/merged.yaml
-            template-dir: official-generator-templates/html2/
+            template-dir: official-generator-templates/htmlDocs2/
             command-args: -o generated/html2
 
       - name: Align permissions of generated code
