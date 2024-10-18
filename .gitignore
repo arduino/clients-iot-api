@@ -1,7 +1,8 @@
 !generated
 generated/*
 !generated/.gitkeep
-spec/*/full_spec.yaml
 !templates
 templates/*
 !templates/.gitkeep
+openapi/openapi.yaml
+official-generator-templates

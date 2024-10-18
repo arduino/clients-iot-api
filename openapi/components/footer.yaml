@@ -1,12 +1,4 @@
 components:
-  callbacks: {}
-  examples: {}
-  headers: {}
-  links: {}
-  parameters: {}
-  requestBodies: {}
-  responses: {}
-  schemas: {}
   securitySchemes:
     oauth2:
       type: oauth2
@@ -16,5 +8,3 @@ components:
           scopes:
             iot:devices: Read and write my devices
             iot:things: Read and write my things
-security: []
-tags: []
