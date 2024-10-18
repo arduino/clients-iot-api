@@ -149,7 +149,9 @@ jobs:
       - name: Open branches on external client REPOs
         run: |       
             git config --global user.email "github-actions-noreply@arduino.cc"
-            git config --global user.name "github-actions[bot]"        
-            cd generated/go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
-            cd generated/python && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
-          
+            git config --global user.name "github-actions[bot]"
+            cd generated
+            cd go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+            cd python && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+            cd javascript && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+            cd html2 && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
