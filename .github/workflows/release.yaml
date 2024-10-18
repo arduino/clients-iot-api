@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Env setup
         run: |
-            echo "RELEASE_BRANCH=$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
+            echo "RELEASE_BRANCH="release-"$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
 
       - name: Install Go
         uses: actions/setup-go@v5
@@ -60,8 +60,6 @@ jobs:
           repository: arduino/iot-client-go
           path: generated/go
       - run: |
-          echo ">>+++>>>"
-          echo ${{ env.RELEASE_BRANCH }}
           cd generated/go && git checkout -b ${{ env.RELEASE_BRANCH }}                     
 
       - name: Checkout PYTHON client arduino repo
@@ -142,10 +140,7 @@ jobs:
             cp -R assets/shared/* generated/python
             cp -R assets/shared/* generated/javascript
             cp -R assets/shared/* generated/html2 
-          
-# TODO COMMIT AND PUSH THE GENERATED CODE TO THE REPOs
 
-      - name: DEBUG
+      - name: Open branches on external client REPOs
         run: |
-          cat generated/go/go.mod
-          ls -lart generated           
+            cd generated/go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push origin ${{ env.RELEASE_BRANCH }} && cd ..
