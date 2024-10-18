@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Env setup
         run: |
+            git config --global --add url."https://${{ secrets.GH_PUSH_TOKEN }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+            git config --global --add url."https://${{ secrets.GH_PUSH_TOKEN }}:x-oauth-basic@github.com/".insteadOf "git@github.com:"   
             echo "RELEASE_BRANCH="release-"$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
 
       - name: Install Go
@@ -36,6 +38,7 @@ jobs:
           repository: OpenAPITools/openapi-generator
           path: official-generator-templates
           ref: ${{ env.GENERATOR_VERSION }}
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           sparse-checkout: |
             .github
             modules/openapi-generator/src/main/resources
@@ -58,6 +61,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: arduino/iot-client-go
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           path: generated/go
       - run: |
           cd generated/go && git checkout -b ${{ env.RELEASE_BRANCH }}                     
@@ -66,6 +70,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: arduino/iot-client-py
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           path: generated/python 
       - run: |
           cd generated/python && git checkout -b new-branch
@@ -74,6 +79,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: arduino/iot-client-js
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           path: generated/javascript 
       - run: |
           cd generated/javascript && git checkout -b new-branch
@@ -82,6 +88,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: arduino/iot-client-docs
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           path: generated/html2 
       - run: |
           cd generated/html2 && git checkout -b new-branch
@@ -142,5 +149,8 @@ jobs:
             cp -R assets/shared/* generated/html2 
 
       - name: Open branches on external client REPOs
-        run: |
-            cd generated/go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push origin ${{ env.RELEASE_BRANCH }} && cd ..
+        run: |       
+            git config --global user.email "github-actions-noreply@arduino.cc"
+            git config --global user.name "github-actions[bot]"        
+            cd generated/go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+          
