@@ -1,0 +1,1487 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Views API
+  description: Folders API allows to define dynamic views for quick access to Arduino Cloud resources
+  contact:
+    name: Arduino Support
+    email: support@arduino.cc
+  license:
+    name: Arduino License
+    url: https://support.arduino.cc/hc/en-us/articles/4415094490770-Licensing-for-products-based-on-Arduino
+externalDocs:
+  description: Find out more about Arduino
+  url: https://www.arduino.cc
+tags:
+  - name: views
+    description: Views-related paths
+paths:
+  /groups/v1/all:
+    get:
+      operationId: ListAllResources
+      summary: Get all the available resources
+      description: Returns all the resources matching the provided filters
+      tags:
+        - views
+      parameters:
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IoTResource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/search:
+    get:
+      operationId: SearchResources
+      summary: Get all the available resources matching the search criteria
+      description: Returns all the resources matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: kind
+          in: query
+          description: One or more resource kinds to be kept in the results
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ResourceKind'
+          examples:
+            OneKind:
+              summary: Example of a single kind
+              value: [DEVICE] # ?kind=DEVICE
+            MultipleKinds:
+              summary: Example of multiple kinds
+              value: [DEVICE,THING] # ?kind=DEVICE,THING
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IoTResource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/trash:
+    get:
+      operationId: ListTrashedResources
+      summary: Get all the deleted resources
+      description: Returns all the resources that have been deleted
+      tags:
+        - views
+      parameters:
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeletedResource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/devices:
+    get:
+      operationId: ListDevices
+      summary: Get all devices
+      description: Returns all devices to which user has access to
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/things:
+    get:
+      operationId: ListThings
+      summary: Get all things
+      description: Returns all things to which user has access to
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Thing'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/dashboards:
+    get:
+      operationId: ListDashboards
+      summary: Get all dashboards
+      description: Returns all dashboards to which user has access to
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dashboard'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/sketches:
+    get:
+      operationId: ListSketches
+      summary: Get all sketches
+      description: Returns all sketches to which user has access to
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sketch'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/triggers:
+    get:
+      operationId: ListTriggers
+      summary: Get all triggers
+      description: Returns all triggers to which user has access to
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerDefinition'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/search/devices:
+    get:
+      operationId: SearchDevices
+      summary: Search among all devices
+      description: Returns all devices matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/search/things:
+    get:
+      operationId: SearchThings
+      summary: Search among all things
+      description: Returns all things matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Thing'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/search/dashboards:
+    get:
+      operationId: SearchDashboards
+      summary: Search among all dashboards
+      description: Returns all dashboards matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dashboard'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+  /groups/v1/search/triggers:
+    get:
+      operationId: SearchTriggers
+      summary: Search among all triggers
+      description: Returns all triggers matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerDefinition'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+  
+  /groups/v1/search/sketches:
+    get:
+      operationId: SearchSketches
+      summary: Search among all sketches
+      description: Returns all sketches matching the provided search criteria
+      tags:
+        - views
+      parameters:
+        - name: X-Organization
+          in: header
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid            
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: parent_id
+          in: query
+          description: Allows to retrieve resources contained in a parent folder
+          schema:
+            type: string
+            format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        - name: name_like
+          in: query
+          description: Allows to filter resources by name
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 64
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,min=3,max=64
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sketch'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+        default:
+          description: Default error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+      security:
+        - jwt_bearer_authentication: [ ]
+
+components:
+  schemas:
+    ValidationError:
+      type: object
+      required:
+        - message
+        - reason
+      properties:
+        message:
+          type: string
+        reason:
+          type: string
+    GenericError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    IoTResource:
+      description: An IoT resource
+      type: object
+      required:
+        - id
+        - kind
+        - name
+        - owner
+        - created_at
+        - created_by
+        - updated_at
+        - updated_by
+      properties:
+        id:
+          description: "Resource ID"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        kind:
+          description: "Type of the resource"
+          type: string
+          enum: [ "FOLDER", "DEVICE", "THING", "DASHBOARD", "TRIGGER", "SKETCH" ]
+        name:
+          description: "Name of the resource"
+          type: string
+          maxLength: 128
+        owner:
+          $ref: '#/components/schemas/User'
+        organization_id:
+          description: "Organization owning the resource"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        shared_by:
+            $ref: '#/components/schemas/User'
+        shared_with:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        sketch_thing_id:
+          description: "ID of the thing that a sketch is associated with"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        sketch_path:
+          description: "Sketch path"
+          type: string
+        created_by:
+          description: "User that created the resource"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        created_at:
+          description: "Resource creation datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        updated_by:
+          description: "User that last updated the resource"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        updated_at:
+          description: "Resource last update datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        parent:
+          $ref: '#/components/schemas/PathNode'
+        path:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathNode'
+    DeletedResource:
+      allOf:
+        - $ref: '#/components/schemas/IoTResource'
+        - type: object
+          required:
+            - deleted_by
+            - deleted_at
+          properties:
+            deleted_by:
+              description: "User that deleted the resource"
+              type: string
+              format: uuid
+              x-oapi-codegen-extra-tags:
+                validate: uuid
+              example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+            deleted_at:
+              description: "Resource deletion datetime"
+              type: string
+              format: date-time
+              example: "2000-01-01T00:00:00Z"
+    BaseResource:
+      type: object
+      required:
+        - id
+        - name
+        - href
+        - created_at
+        - user_id
+      properties:
+        id:
+          description: "Folder ID"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        name:
+          description: "Name of the resource"
+          type: string
+          maxLength: 128
+        user_id:
+          description: "User owning the resource"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        organization_id:
+          description: "Organization owning the resource"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        href:
+          description: "Device HREF URL"
+          type: string
+        parent:
+          $ref: '#/components/schemas/PathNode'
+        path:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathNode'
+        created_at:
+          description: "Folder creation datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        updated_at:
+          description: "Folder last update datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+        deleted_at:
+          description: "Folder deletion datetime"
+          type: string
+          format: date-time
+          example: "2000-01-01T00:00:00Z"
+    Device:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          required:
+            - fqbn
+            - type
+            - connection_type
+            - device_status
+          properties:
+            fqbn:
+              description: "Fully Qualified Board Name"
+              type: string
+            device_status:
+              description: "Device status"
+              type: string
+              enum: ["ONLINE", "OFFLINE", "UNKNOWN"]
+            type:
+              description: "Device type"
+              type: string
+              enum: ["mkrwifi1010", "mkr1000", "nano_33_iot", "mkrgsm1400", "mkrwan1310", "mkrwan1300", "mkrnb1500", "lora-device", "login_and_secretkey_wifi", "envie_m7", "nanorp2040connect", "nicla_vision", "opta", "giga", "portenta_c33", "unor4wifi", "nano_nora"]
+            connectivity_module:
+              description: "Connectivity module"
+              type: string
+            connection_type:
+              description: "Type of connection"
+              type: string
+              enum: ["wifi", "eth", "wifiandsecret", "gsm", "nb", "lora", "catm1", "cellular"]
+            label:
+              description: "Device label"
+              type: string
+            serial:
+              description: "Device serial"
+              type: string
+            wifi_fw_version:
+              description: "WiFi firmware version"
+              type: string
+            thing_id:
+              description: "Thing ID"
+              type: string
+              format: uuid
+              minLength: 36
+              maxLength: 36
+              x-oapi-codegen-extra-tags:
+                validate: omitnil,uuid
+              example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"              
+    Thing:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          required:
+            - href
+            - type
+            - timezone
+          properties:
+            timezone:
+              description: "Thing time zone"
+              type: string
+            device_id:
+              description: "Identifier of the device connected to the given thing"
+              type: string
+              format: uuid
+              x-oapi-codegen-extra-tags:
+                validate: uuid
+              example: "B3FB5026-7337-4AB3-B203-2E6792C7C65E"
+            sketch_id:
+              description: "Identifier of the sketch associated to the given thing"
+              type: string
+              format: uuid
+              x-oapi-codegen-extra-tags:
+                validate: omitnil,uuid
+              example: "A3FB5026-7337-4AB3-B203-2E6792C7C65C"
+            tags:
+              type: object
+              additionalProperties:
+                type: string
+    Dashboard:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          properties:
+            shared_by:
+              $ref: '#/components/schemas/User'
+            shared_with:
+              type: array
+              description: "IDs of the users with whom the dashboard is shared"
+              items:
+                $ref: '#/components/schemas/User'
+            cover_image:
+              type: string
+              description: "Identifier of the cover image to be used for the dashboard"
+    Sketch:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          required:
+            - sketch_path
+            - type
+            - is_public
+          properties:
+            sketch_path:
+              description: "Sketch path"
+              type: string
+            size:
+              description: "Size"
+              type: number              
+            board_name:
+              description: "Board name"
+              type: string
+            board_type:
+              description: "Board type"
+              type: string
+            board_fqbn:
+              description: "Board type"
+              type: string
+            thing_id:
+              description: "Identifier of the sketch associated to the given thing"
+              type: string
+              format: uuid
+              x-oapi-codegen-extra-tags:
+                validate: omitnil,uuid
+              example: "A3FB5026-7337-4AB3-B203-2E6792C7C65C"
+            types:
+              type: array
+              description: "List of types"
+              items:
+                type: string
+            is_public:
+              description: "Is public"
+              type: boolean            
+    IDevice:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          description: "Id"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+        name:
+          description: "Name"
+          type: string
+    LinkedDevice:
+      type: object
+      properties:
+        Device:
+          $ref: '#/components/schemas/IDevice'
+    DeviceStatusSourceDefinition:
+      type: object
+      required:
+        - criteria
+      properties:
+        criteria:
+          description: "Critaria"
+          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+            x-oapi-codegen-extra-tags:
+              validate: omitnil,uuid
+        linked_devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkedDevice'
+        grace_period_online:
+          description: "Grace period online"
+          type: integer
+        grace_period_offline:
+          description: "Grace period offline"
+          type: integer
+    Recipient:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+    Delivery:
+      type: object
+      required:
+        - to
+      properties:
+        to:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'           
+    Email:
+      type: object
+      required:
+        - delivery
+      properties:
+        delivery:
+         $ref: '#/components/schemas/Delivery'
+    PushNotification:
+      type: object
+      required:
+        - delivery
+      properties:
+        delivery:
+         $ref: '#/components/schemas/Delivery'       
+    Action:
+      type: object
+      required:
+        - kind
+        - name
+        - trigger_id
+      properties:
+        kind:
+          description: "Kind of the action"
+          type: string
+          enum: ["NOTIFY-EMAIL", "NOTIFY-PUSH"]
+        name:
+          description: "Name of the action"
+          type: string          
+        trigger_id:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+        email:
+          $ref: '#/components/schemas/Email'
+        push_notification:
+          $ref: '#/components/schemas/PushNotification'          
+    TriggerDefinition:
+      allOf:
+        - $ref: '#/components/schemas/BaseResource'
+        - type: object
+          required:
+            - active
+            - description
+          properties:
+            active:
+              description: "Is active"
+              type: boolean 
+            description:
+              type: string
+            actions:
+              type: array
+              items:
+                $ref: '#/components/schemas/Action'
+            property_id:
+              type: string
+              format: uuid
+              example: "B3FB5026-7337-4AB3-B203-2E6792C7C65E"
+            device_status_source:
+              $ref: '#/components/schemas/DeviceStatusSourceDefinition'  
+    User:
+      description: "Represent a user"
+      type: object
+      required:
+        - user_id
+        - username
+      properties:
+        user_id:
+          description: "ID of the user"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        username:
+          description: "Username of the user"
+          type: string
+          maxLength: 128
+    PathNode:
+      description: "Represents a folder in a path"
+      type: object
+      required:
+        - folder_id
+        - folder_name
+      properties:
+        folder_id:
+          description: "ID of the folder that makes up this path node"
+          type: string
+          format: uuid
+          x-oapi-codegen-extra-tags:
+            validate: omitnil,uuid
+          example: "D3FB5026-7337-4AB3-B203-2E6792C7C65B"
+        folder_name:
+          description: "Name of the folder that makes up this path node"
+          type: string
+          maxLength: 128
+    ResourceKind:
+      x-go-name: ResourceKindFilter
+      type: string
+      enum: [ "folder", "folders", "device", "devices", "thing", "things", "dashboard", "dashboards", "trigger", "triggers", "sketch", "sketches" ]
+  securitySchemes:
+    jwt_bearer_authentication:
+      description: Bearer authentication
+      type: http
+      scheme: bearer

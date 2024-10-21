@@ -22,14 +22,14 @@ languages:
             - template-patches/go-sum.patch        
           source:
             type: openapi-git
-            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
+            git_committish: "v7.9.0" # git committish to checkout before extracting the templates
             templates_dir: go # directory with templates for this language
             system: true
     downstream_templates:
       downstream-templates/go/README.md: README.md
     github_org_name: arduino
     github_repo_name: iot-client-go
-    library_version: '1.3.5'
+    library_version: '2.1.0'
     spec_versions:
       - v2
     version_path_template: ''
@@ -47,12 +47,12 @@ languages:
             - template-patches/html2-sample-js.patch
           source:
             type: openapi-git
-            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
+            git_committish: "v7.9.0" # git committish to checkout before extracting the templates
             templates_dir: htmlDocs2 # directory with templates for this language
             system: true
     github_org_name: arduino
     github_repo_name: iot-client-docs
-    library_version: '1.3.5'
+    library_version: '2.1.0'
     spec_versions:
       - v2
     version_path_template: ''
@@ -76,14 +76,14 @@ languages:
             - template-patches/javascript-api-client.patch
           source:
             type: openapi-git
-            git_committish: "v7.0.0" # git committish to checkout before extracting the templates
+            git_committish: "v7.9.0" # git committish to checkout before extracting the templates
             templates_dir: Javascript # directory with templates for this language
             system: true
     downstream_templates:
       downstream-templates/javascript/README.md: README.md
     github_org_name: arduino
     github_repo_name: iot-client-js
-    library_version: '1.3.5'
+    library_version: '2.1.0'
     spec_versions:
       - v2
     version_path_template: ''
@@ -103,7 +103,7 @@ languages:
         templates:
           source:
             type: openapi-git
-            git_committish: "v7.7.0" # git committish to checkout before extracting the templates
+            git_committish: "v7.9.0" # git committish to checkout before extracting the templates
             templates_dir: python # directory with templates for this language
             system: true
     downstream_templates:
@@ -112,7 +112,7 @@ languages:
       downstream-templates/python/utils.py: iot_api_client/utils.py
     github_org_name: arduino
     github_repo_name: iot-client-py
-    library_version: '1.3.5'
+    library_version: '2.1.0'
     spec_versions:
       - v2
     version_path_template: ''
