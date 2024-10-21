@@ -1,8 +1,8 @@
 diff --git a/htmlDocs2/index.mustache b/htmlDocs2/index.mustache
-index 65c210b..e09cc2e 100644
+index ec5d8c742f6..c2601b4c41c 100644
 --- a/htmlDocs2/index.mustache
 +++ b/htmlDocs2/index.mustache
-@@ -206,6 +206,41 @@
+@@ -212,6 +212,41 @@
              <div id="app-description" class="app-desc">
                  {{{appDescription}}}
              </div>
@@ -44,7 +44,7 @@ index 65c210b..e09cc2e 100644
            </div>
          </div>
          <div id="sections">
-@@ -233,18 +268,18 @@
+@@ -239,18 +274,18 @@
                          </p>
                          <ul class="nav nav-tabs nav-tabs-examples">
                            <li class="active"><a href="#examples-{{baseName}}-{{nickname}}-0-curl">Curl</a></li>
@@ -63,16 +63,12 @@ index 65c210b..e09cc2e 100644
 -                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-csharp">C#</a></li>
 -                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-php">PHP</a></li>
 -                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-perl">Perl</a></li>
--                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-python">Python</a></li>
--                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-rust">Rust</a></li>
 +                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-csharp">C#</a></li>-->
 +                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-php">PHP</a></li>-->
 +                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-perl">Perl</a></li>-->
-+                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-python">Python</a></li>-->
+                           <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-python">Python</a></li>
+-                          <li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-rust">Rust</a></li>
 +                          <!--<li class=""><a href="#examples-{{baseName}}-{{nickname}}-0-rust">Rust</a></li>-->
                          </ul>
  
                          <div class="tab-content">
--- 
-2.34.1
-
