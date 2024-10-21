@@ -120,7 +120,7 @@ jobs:
       - name: Generate Javascript client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
-            generator: python
+            generator: javascript
             generator-tag: ${{ env.GENERATOR_VERSION }}
             config-file: config/languages/javascript_v2.json
             openapi-file: ${{ env.INPUT_OPENAPI_FILE }}
