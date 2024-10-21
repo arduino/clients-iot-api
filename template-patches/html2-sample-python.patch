@@ -1,0 +1,55 @@
+diff --git a/htmlDocs2/sample_python.mustache b/htmlDocs2/sample_python.mustache
+index aa92efaaf5b..e4602002faf 100644
+--- a/htmlDocs2/sample_python.mustache
++++ b/htmlDocs2/sample_python.mustache
+@@ -1,33 +1,23 @@
+-from __future__ import print_statement
+-import time
+-import {{{pythonPackageName}}}
+-from {{{pythonPackageName}}}.rest import ApiException
+-from pprint import pprint
+-{{#hasAuthMethods}}
+-{{#authMethods}}
+-{{#isBasicBasic}}
+-# Configure HTTP basic authorization: {{{name}}}
+-{{{pythonPackageName}}}.configuration.username = 'YOUR_USERNAME'
+-{{{pythonPackageName}}}.configuration.password = 'YOUR_PASSWORD'{{/isBasicBasic}}{{#isBasicBearer}}
+-# Configure Bearer{{#bearerFormat}} ({{{.}}}){{/bearerFormat}} access token for authorization: {{{name}}}
+-{{{pythonPackageName}}}.configuration.access_token = 'YOUR_ACCESS_TOKEN'{{/isBasicBearer}}{{#isApiKey}}
+-# Configure API key authorization: {{{name}}}
+-{{{pythonPackageName}}}.configuration.api_key['{{{keyParamName}}}'] = 'YOUR_API_KEY'
+-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+-# {{{pythonPackageName}}}.configuration.api_key_prefix['{{{keyParamName}}}'] = 'Bearer'{{/isApiKey}}{{#isOAuth}}
+-# Configure OAuth2 access token for authorization: {{{name}}}
+-{{{pythonPackageName}}}.configuration.access_token = 'YOUR_ACCESS_TOKEN'{{/isOAuth}}
+-{{/authMethods}}
+-{{/hasAuthMethods}}
++import iot_api_client as iot
++from iot_api_client.configuration import Configuration
++from iot_api_client.api import {{{classname}}}
++from iot_api_client.models import *
++from iot_api_client.exceptions import ApiException
++
++client_config = Configuration(host="https://api2.arduino.cc/iot")
++client_config.access_token = "JWT_ACCESS_TOKEN" 
++client = iot.ApiClient(client_config)
+ 
+ # Create an instance of the API class
+-api_instance = {{{pythonPackageName}}}.{{{classname}}}()
+-{{#allParams}}{{paramName}} = {{{example}}} # {{{dataType}}} | {{{unescapedDescription}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
++apiInstance = {{{classname}}}(client)
++{{#allParams}}
++{{paramName}} = {{{example}}} # {{{dataType}}} object instance | {{{unescapedDescription}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+ {{/allParams}}
+ 
+ try:
+ {{#summary}}    # {{{.}}}
+-{{/summary}}    {{#returnType}}api_response = {{/returnType}}api_instance.{{{operationIdSnakeCase}}}({{#allParams}}{{#required}}{{paramName}}{{/required}}{{^required}}{{paramName}}={{paramName}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}){{#returnType}}
+-    pprint(api_response){{/returnType}}
++{{/summary}}    {{#returnType}}api_response = {{/returnType}}apiInstance.{{{operationIdSnakeCase}}}({{#allParams}}{{#required}}{{paramName}}{{/required}}{{^required}}{{paramName}}={{paramName}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}){{#returnType}}
++    print(api_response){{/returnType}}
+ except ApiException as e:
+-    print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
+\ No newline at end of file
++    print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
++
