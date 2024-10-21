@@ -3,7 +3,7 @@ name: release
 on: workflow_dispatch
 
 env:
-  GENERATOR_VERSION: 'v7.9.0'
+  GENERATOR_VERSION: 'v7.0.0'
   INPUT_OPENAPI_FILE: 'openapi/openapi.yaml'
   GO_VERSION: '1.23'
   RELEASE_BRANCH: ''
