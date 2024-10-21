@@ -7,6 +7,7 @@ env:
   INPUT_OPENAPI_FILE: 'openapi/openapi.yaml'
   GO_VERSION: '1.23'
   RELEASE_BRANCH: ''
+  LATEST_COMMIT: ''
 
 jobs:
   push:
@@ -15,6 +16,8 @@ jobs:
     steps:
       - name: Env setup
         run: | 
+            git config --global user.email "github-actions-noreply@arduino.cc"
+            git config --global user.name "github-actions[bot]"
             echo "RELEASE_BRANCH="release-"$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
 
       - name: Install Go
@@ -25,10 +28,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Get latest commit
+        run: |
+            echo "LATEST_COMMIT=$(git log -1 | head -n1)" >> ${GITHUB_ENV}
+
       - name: Generate openapi yaml definition
         run: |
-            cd openapi/compose && go run compose.go
-            cd .. && cd ..
+            cd openapi/compose && go run compose.go && cd .. && cd ..
 
       - name: Checkout generator templates
         uses: actions/checkout@v4
@@ -41,7 +47,7 @@ jobs:
             .github
             modules/openapi-generator/src/main/resources
 
-      - name: Move templates
+      - name: Move required templates
         run: |
             mkdir -p generated
             mv official-generator-templates/modules/openapi-generator/src/main/resources/go official-generator-templates/
@@ -147,11 +153,13 @@ jobs:
             cp -R assets/shared/* generated/html2 
 
       - name: Open branches on external client REPOs
-        run: |       
-            git config --global user.email "github-actions-noreply@arduino.cc"
-            git config --global user.name "github-actions[bot]"
+        run: |
             cd generated
-            cd go && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
-            cd python && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
-            cd javascript && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
-            cd html2 && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..
+            for f in $(ls -d */); do cd ${f} && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..; done;
+          
+      - name: Open PRs on client REPOs
+        run: |
+            cd generated
+            for f in $(ls -d */); do cd ${f} && gh pr create -B master -H ${{ env.RELEASE_BRANCH }} --title 'Regenerate clients - ${{ env.LATEST_COMMIT }}' --body 'Created by clients-iot-api clients release automation job' && cd ..; done;
+        env:
+          GH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}           
