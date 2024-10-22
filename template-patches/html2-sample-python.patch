@@ -1,5 +1,5 @@
 diff --git a/htmlDocs2/sample_python.mustache b/htmlDocs2/sample_python.mustache
-index aa92efaaf5b..e4602002faf 100644
+index aa92efaaf5b..dfc9940a270 100644
 --- a/htmlDocs2/sample_python.mustache
 +++ b/htmlDocs2/sample_python.mustache
 @@ -1,33 +1,23 @@
@@ -30,7 +30,7 @@ index aa92efaaf5b..e4602002faf 100644
 +from iot_api_client.models import *
 +from iot_api_client.exceptions import ApiException
 +
-+client_config = Configuration(host="https://api2.arduino.cc/iot")
++client_config = Configuration(host="https://api2.arduino.cc")
 +client_config.access_token = "JWT_ACCESS_TOKEN" 
 +client = iot.ApiClient(client_config)
  

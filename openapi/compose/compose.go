@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
+	"slices"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"gopkg.in/yaml.v3"
@@ -13,22 +16,41 @@ import (
 const (
 	BasePath                = "../"
 	OpenapiComponentsFolder = BasePath + "components/"
-	RawOpenApi              = OpenapiComponentsFolder + "raw-openapi.yaml"
+	IotApiOpenApi           = OpenapiComponentsFolder + "iotapi-openapi.yaml"
 	HeaderOpenApi           = OpenapiComponentsFolder + "header.yaml"
 	FooterOpenApi           = OpenapiComponentsFolder + "footer.yaml"
 
 	MergedOpenApi = BasePath + "openapi.yaml"
 )
 
+//go:embed path-blacklist.json
+var pathBlacklist string
+
+type blacklist struct {
+	Blacklist []string `json:"blacklist"`
+}
+
 func main() {
+	// Load blacklist
+	var bl blacklist
+	_ = json.Unmarshal([]byte(pathBlacklist), &bl)
 
 	log.Println("Compose OpenAPI...")
 
-	// Load the main OpenAPI specification
+	// Load the main (IOT-API) OpenAPI specification
 	loader := openapi3.NewLoader()
-	masterOpenapi, err := loader.LoadFromFile(RawOpenApi)
+	masterOpenapi, err := loader.LoadFromFile(IotApiOpenApi)
 	if err != nil {
-		log.Fatalf("Failed to load %s: %v", RawOpenApi, err)
+		log.Fatalf("Failed to load %s: %v", IotApiOpenApi, err)
+	}
+
+	mergedPaths := []openapi3.NewPathsOption{}
+	for _, path := range masterOpenapi.Paths.InMatchingOrder() {
+		if slices.Contains(bl.Blacklist, path) {
+			continue
+		}
+		pathItem := masterOpenapi.Paths.Find(path)
+		mergedPaths = append(mergedPaths, openapi3.WithPath(fmt.Sprintf("/iot%s", path), pathItem))
 	}
 
 	if masterOpenapi.Components.Schemas == nil {
@@ -72,6 +94,9 @@ func main() {
 			masterOpenapi.Components.SecuritySchemes[name] = securityScheme
 		}
 	}
+
+	// Add merged paths to the master document
+	masterOpenapi.Paths = openapi3.NewPaths(mergedPaths...)
 
 	ym, err := masterOpenapi.MarshalYAML()
 	if err != nil {

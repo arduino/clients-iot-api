@@ -2,7 +2,7 @@
     "gitUserId": "arduino",
     "gitRepoId": "iot-client-go",
     "isGoSubmodule": true,
-    "packageName": "v2",
-    "packageVersion": "2.0.6",
+    "packageName": "v3",
+    "packageVersion": "3.0.0",
     "withGoCodegenComment": true
 }
