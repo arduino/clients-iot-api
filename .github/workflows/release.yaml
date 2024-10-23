@@ -1,7 +1,12 @@
 name: release
 
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    tags:
+      - 'v[0-9].*'
+      
 env:
   GENERATOR_VERSION: 'v7.9.0'
   INPUT_OPENAPI_FILE: 'openapi/openapi.yaml'
