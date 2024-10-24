@@ -4,5 +4,5 @@ generated/*
 !templates
 templates/*
 !templates/.gitkeep
-openapi/openapi.yaml
+openapi/openapi.*
 official-generator-templates
