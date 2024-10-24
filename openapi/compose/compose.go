@@ -20,7 +20,8 @@ const (
 	HeaderOpenApi           = OpenapiComponentsFolder + "header.yaml"
 	FooterOpenApi           = OpenapiComponentsFolder + "footer.yaml"
 
-	MergedOpenApi = BasePath + "openapi.yaml"
+	MergedOpenYAMLApi = BasePath + "openapi.yaml"
+	MergedOpenJSONApi = BasePath + "openapi.json"
 )
 
 //go:embed path-blacklist.json
@@ -107,11 +108,27 @@ func main() {
 		log.Fatalf("Failed to marshal merged document to YAML: %v", err)
 	}
 
-	err = os.WriteFile(MergedOpenApi, yamlData, 0644)
+	err = os.WriteFile(MergedOpenYAMLApi, yamlData, 0644)
 	if err != nil {
-		log.Fatalf("Failed to write %s: %v", MergedOpenApi, err)
+		log.Fatalf("Failed to write %s: %v", MergedOpenYAMLApi, err)
 	}
 
-	log.Println("Merged OpenAPI saved to " + MergedOpenApi)
+	log.Println("Merged OpenAPI saved to " + MergedOpenYAMLApi)
 
+	js, err := masterOpenapi.MarshalJSON()
+	if err != nil {
+		log.Fatalf("Failed to marshal merged document to JSON: %v", err)
+	}
+
+	jsonData, err := json.Marshal(js)
+	if err != nil {
+		log.Fatalf("Failed to marshal merged document to JSON: %v", err)
+	}
+
+	err = os.WriteFile(MergedOpenJSONApi, jsonData, 0644)
+	if err != nil {
+		log.Fatalf("Failed to write %s: %v", MergedOpenJSONApi, err)
+	}
+
+	log.Println("Merged OpenAPI saved to " + MergedOpenJSONApi)
 }

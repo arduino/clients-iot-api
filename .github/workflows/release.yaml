@@ -155,7 +155,9 @@ jobs:
             cp -R assets/shared/* generated/go/
             cp -R assets/shared/* generated/python
             cp -R assets/shared/* generated/javascript
-            cp -R assets/shared/* generated/html2 
+            cp -R assets/shared/* generated/html2
+            mkdir -p generated/html2/openapi
+            cp openapi/openapi.* generated/html2/openapi/
 
       - name: Open branches on external client REPOs
         run: |
