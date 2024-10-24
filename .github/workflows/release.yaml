@@ -1,14 +1,170 @@
 name: release
 
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    tags:
+      - 'v[0-9].*'
+      
 env:
   GENERATOR_VERSION: 'v7.9.0'
+  INPUT_OPENAPI_FILE: 'openapi/openapi.yaml'
+  GO_VERSION: '1.23'
+  RELEASE_BRANCH: ''
+  LATEST_COMMIT: ''
 
 jobs:
   push:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Env setup
+        run: | 
+            git config --global user.email "github-actions-noreply@arduino.cc"
+            git config --global user.name "github-actions[bot]"
+            echo "RELEASE_BRANCH="release-"$(date +"%Y%m%d%H%M%S")" >> ${GITHUB_ENV}
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Get latest commit
+        run: |
+            echo "LATEST_COMMIT=$(git log -1 | head -n1)" >> ${GITHUB_ENV}
+
+      - name: Generate openapi yaml definition
+        run: |
+            cd openapi/compose && go run compose.go && cd .. && cd ..
+
+      - name: Checkout generator templates
+        uses: actions/checkout@v4
+        with:
+          repository: OpenAPITools/openapi-generator
+          path: official-generator-templates
+          ref: ${{ env.GENERATOR_VERSION }}
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+          sparse-checkout: |
+            .github
+            modules/openapi-generator/src/main/resources
+
+      - name: Move required templates
+        run: |
+            mkdir -p generated
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/go official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/python official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/Javascript official-generator-templates/
+            mv official-generator-templates/modules/openapi-generator/src/main/resources/htmlDocs2 official-generator-templates/
+ 
+      - name: Apply patches to templates
+        run: |
+            cd official-generator-templates
+            for f in ../template-patches/*.patch; do git apply ../template-patches/${f}; done;
+            cd ..
+
+      - name: Checkout GO client arduino repo
+        uses: actions/checkout@v4
+        with:
+          repository: arduino/iot-client-go
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+          path: generated/go
+      - run: |
+          cd generated/go && git checkout -b ${{ env.RELEASE_BRANCH }}                     
+
+      - name: Checkout PYTHON client arduino repo
+        uses: actions/checkout@v4
+        with:
+          repository: arduino/iot-client-py
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+          path: generated/python 
+      - run: |
+          cd generated/python && git checkout -b ${{ env.RELEASE_BRANCH }}
+
+      - name: Checkout JAVASCRIPT client arduino repo
+        uses: actions/checkout@v4
+        with:
+          repository: arduino/iot-client-js
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+          path: generated/javascript 
+      - run: |
+          cd generated/javascript && git checkout -b ${{ env.RELEASE_BRANCH }}
+
+      - name: Checkout DOCS client arduino repo
+        uses: actions/checkout@v4
+        with:
+          repository: arduino/iot-client-docs
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+          path: generated/html2 
+      - run: |
+          cd generated/html2 && git checkout -b ${{ env.RELEASE_BRANCH }}
+
+      - name: Generate go client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: go
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/go_v2.json
+            openapi-file: ${{ env.INPUT_OPENAPI_FILE }}
+            template-dir: official-generator-templates/go/
+            command-args: -o generated/go
+
+      - name: Generate python client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: python
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/python_v2.json
+            openapi-file: ${{ env.INPUT_OPENAPI_FILE }}
+            template-dir: official-generator-templates/python/
+            command-args: -o generated/python
+
+      - name: Generate Javascript client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: javascript
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/javascript_v2.json
+            openapi-file: ${{ env.INPUT_OPENAPI_FILE }}
+            template-dir: official-generator-templates/Javascript/
+            command-args: -o generated/javascript
+
+      - name: Generate Docs
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+            generator: html2
+            generator-tag: ${{ env.GENERATOR_VERSION }}
+            config-file: config/languages/html2_v2.json
+            openapi-file: ${{ env.INPUT_OPENAPI_FILE }}
+            template-dir: official-generator-templates/htmlDocs2/
+            command-args: -o generated/html2
+
+      - name: Apply downstream templates
+        run: |
+          cp downstream-templates/go/README.md generated/go/README.md
+          cp downstream-templates/javascript/README.md generated/javascript/README.md
+          cp downstream-templates/python/README.md generated/python/README.md
+          cp downstream-templates/python/setup.py generated/python/setup.py
+          cp downstream-templates/python/utils.py generated/python/iot_api_client/utils.py
+
+      - name: Copy shared assets
+        run: |
+            cp -R assets/shared/* generated/go/
+            cp -R assets/shared/* generated/python
+            cp -R assets/shared/* generated/javascript
+            cp -R assets/shared/* generated/html2 
+
+      - name: Open branches on external client REPOs
+        run: |
+            cd generated
+            for f in $(ls -d */); do cd ${f} && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..; done;
+          
+      - name: Open PRs on client REPOs
+        run: |
+            cd generated
+            for f in $(ls -d */); do cd ${f} && gh pr create -B master -H ${{ env.RELEASE_BRANCH }} --title 'Regenerate clients - ${{ env.LATEST_COMMIT }}' --body 'Created by clients-iot-api clients release automation job' && cd ..; done;
+        env:
+          GH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}           
