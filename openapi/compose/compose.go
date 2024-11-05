@@ -31,10 +31,17 @@ type blacklist struct {
 	Blacklist []string `json:"blacklist"`
 }
 
+// Sanitize path, removing application/x-www-form-urlencoded from request bodies and adding oauth2 security requirement
 func sanitizeRequestBody(op *openapi3.Operation) {
+	// Remove application/x-www-form-urlencoded from request bodies
 	if op.RequestBody != nil && op.RequestBody.Value != nil {
 		delete(op.RequestBody.Value.Content, "application/x-www-form-urlencoded")
 	}
+
+	// Add bearer token security requirement
+	sec := &openapi3.SecurityRequirements{}
+	sec = sec.With(openapi3.NewSecurityRequirement().Authenticate("oauth2"))
+	op.Security = sec
 }
 
 func main() {
