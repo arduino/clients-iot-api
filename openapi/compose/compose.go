@@ -31,6 +31,12 @@ type blacklist struct {
 	Blacklist []string `json:"blacklist"`
 }
 
+func sanitizeRequestBody(op *openapi3.Operation) {
+	if op.RequestBody != nil && op.RequestBody.Value != nil {
+		delete(op.RequestBody.Value.Content, "application/x-www-form-urlencoded")
+	}
+}
+
 func main() {
 	// Load blacklist
 	var bl blacklist
@@ -51,6 +57,21 @@ func main() {
 			continue
 		}
 		pathItem := masterOpenapi.Paths.Find(path)
+		if pathItem.Post != nil {
+			sanitizeRequestBody(pathItem.Post)
+		}
+		if pathItem.Put != nil {
+			sanitizeRequestBody(pathItem.Put)
+		}
+		if pathItem.Patch != nil {
+			sanitizeRequestBody(pathItem.Patch)
+		}
+		if pathItem.Options != nil {
+			sanitizeRequestBody(pathItem.Options)
+		}
+		if pathItem.Get != nil {
+			sanitizeRequestBody(pathItem.Get)
+		}
 		mergedPaths = append(mergedPaths, openapi3.WithPath(fmt.Sprintf("/iot%s", path), pathItem))
 	}
 
