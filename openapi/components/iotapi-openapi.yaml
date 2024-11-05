@@ -13,6 +13,79 @@ components:
     OK:
       description: OK
   schemas:
+    ArduinoAction:
+      description: ArduinoAction media type (default view)
+      properties:
+        created_by:
+          description: Id of the user who created the action
+          format: uuid
+          type: string
+        description:
+          description: The description of the action
+          type: string
+        email:
+          $ref: '#/components/schemas/email_action'
+        id:
+          description: The id of the action
+          format: uuid
+          type: string
+        kind:
+          description: The kind of the action
+          enum:
+          - NOTIFY-EMAIL
+          - NOTIFY-PUSH
+          example: NOTIFY-EMAIL
+          type: string
+        name:
+          description: The name of the action
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+        push_notification:
+          $ref: '#/components/schemas/push_action'
+        trigger_id:
+          description: Id of the trigger the action is associated to
+          format: uuid
+          type: string
+      title: 'Mediatype identifier: application/vnd.arduino.action+json; view=default'
+      type: object
+    ArduinoAction_template:
+      description: ArduinoAction_template media type (default view)
+      properties:
+        description:
+          description: The description of the action
+          type: string
+        email:
+          $ref: '#/components/schemas/email_action'
+        kind:
+          description: The kind of the action
+          enum:
+          - NOTIFY-EMAIL
+          - NOTIFY-PUSH
+          example: NOTIFY-EMAIL
+          type: string
+        name:
+          description: The name of the action
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+        push_notification:
+          $ref: '#/components/schemas/push_action'
+      title: 'Mediatype identifier: application/vnd.arduino.action_template+json;
+        view=default'
+      type: object
+    ArduinoActionCollection:
+      description: ArduinoActionCollection is the media type for an array of ArduinoAction
+        (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoAction'
+      title: 'Mediatype identifier: application/vnd.arduino.action+json; type=collection;
+        view=default'
+      type: array
     ArduinoCompressedv2:
       description: compressed contains the info from which to generate the certificate
         (default view)
@@ -198,6 +271,10 @@ components:
           description: Creation date of the device
           format: date-time
           type: string
+        deleted_at:
+          description: Deletion date of the trigger
+          format: date-time
+          type: string
         device_status:
           description: The connection status of the device
           enum:
@@ -263,6 +340,10 @@ components:
           $ref: '#/components/schemas/ArduinoThing'
         type:
           description: The type of the device
+          type: string
+        updated_at:
+          description: Update date of the trigger
+          format: date-time
           type: string
         user_id:
           description: The id of the user
@@ -611,6 +692,68 @@ components:
           description: The device type name
           type: string
       title: 'Mediatype identifier: application/vnd.arduino.devicev2templatedevice+json;
+        view=default'
+      type: object
+    ArduinoLinked_device:
+      description: ArduinoLinked_device media type (default view)
+      properties:
+        device:
+          $ref: '#/components/schemas/ArduinoDevicev2'
+        status:
+          description: The status of the linked device
+          enum:
+          - OK
+          - DELETED
+          example: OK
+          type: string
+      required:
+      - status
+      - device
+      title: 'Mediatype identifier: application/vnd.arduino.linked_device+json; view=default'
+      type: object
+    ArduinoLinked_device_template:
+      description: ArduinoLinked_device_template media type (default view)
+      properties:
+        thing_id:
+          description: The thing the device is associated to
+          type: string
+      required:
+      - thing_id
+      title: 'Mediatype identifier: application/vnd.arduino.linked_device_template+json;
+        view=default'
+      type: object
+    ArduinoLinked_property:
+      description: ArduinoLinked_property media type (default view)
+      properties:
+        property:
+          $ref: '#/components/schemas/ArduinoProperty'
+        status:
+          description: The status of the linked property
+          enum:
+          - OK
+          - WRONG_TYPE
+          - DELETED
+          example: OK
+          type: string
+      required:
+      - status
+      - property
+      title: 'Mediatype identifier: application/vnd.arduino.linked_property+json;
+        view=default'
+      type: object
+    ArduinoLinked_property_template:
+      description: ArduinoLinked_property_template media type (default view)
+      properties:
+        property_id:
+          description: The property the trigger is associated to
+          type: string
+        thing_id:
+          description: The thing the trigger is associated to
+          type: string
+      required:
+      - thing_id
+      - property_id
+      title: 'Mediatype identifier: application/vnd.arduino.linked_property_template+json;
         view=default'
       type: object
     ArduinoLinkedvariable:
@@ -1524,6 +1667,155 @@ components:
       - until
       title: 'Mediatype identifier: application/vnd.arduino.timezone+json; view=default'
       type: object
+    ArduinoTrigger:
+      description: ArduinoTrigger media type (default view)
+      properties:
+        actions:
+          description: A list of actions associated with the trigger
+          items:
+            $ref: '#/components/schemas/ArduinoAction'
+          type: array
+        active:
+          description: Is true if the trigger is enabled
+          type: boolean
+        created_at:
+          description: Creation date of the trigger
+          format: date-time
+          type: string
+        created_by:
+          description: Id of the user who last updated the trigger
+          format: uuid
+          type: string
+        deleted_at:
+          description: Deletion date of the trigger
+          format: date-time
+          type: string
+        description:
+          description: The description of the trigger
+          type: string
+        device_status_source:
+          $ref: '#/components/schemas/device_status_source'
+        id:
+          description: The id of the trigger
+          format: uuid
+          type: string
+        name:
+          description: The name of the trigger
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+        property_id:
+          description: Id of the property the trigger is associated to (mutually exclusive
+            with 'device_status_source')
+          format: uuid
+          type: string
+        updated_at:
+          description: Update date of the trigger
+          format: date-time
+          type: string
+      required:
+      - name
+      title: 'Mediatype identifier: application/vnd.arduino.trigger+json; view=default'
+      type: object
+    ArduinoTrigger_template:
+      description: ArduinoTrigger_template media type (default view)
+      properties:
+        actions:
+          description: A list of actions associated with the trigger
+          items:
+            $ref: '#/components/schemas/ArduinoAction_template'
+          type: array
+        active:
+          description: Is true if the trigger is enabled
+          type: boolean
+        criteria:
+          description: The criteria of the trigger, could be INCLUDE or EXCLUDE
+          type: string
+        description:
+          description: The description of the trigger
+          type: string
+        grace_period_offline:
+          description: The amount of seconds the trigger will wait before considering
+            a matching device as offline
+          format: int64
+          type: integer
+        grace_period_online:
+          description: The amount of seconds the trigger will wait before considering
+            a matching device as online
+          format: int64
+          type: integer
+        id:
+          description: The id of the trigger
+          type: string
+        linked_devices:
+          description: A list of devices the trigger is associated to
+          items:
+            $ref: '#/components/schemas/ArduinoLinked_device_template'
+          type: array
+        linked_property:
+          $ref: '#/components/schemas/ArduinoLinked_property_template'
+        name:
+          description: The name of the trigger
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+      required:
+      - id
+      - name
+      title: 'Mediatype identifier: application/vnd.arduino.trigger_template+json;
+        view=default'
+      type: object
+    ArduinoTrigger_with_linked_entities:
+      description: ArduinoTrigger_with_linked_entities media type (default view)
+      properties:
+        actions:
+          description: A list of actions associated with the trigger
+          items:
+            $ref: '#/components/schemas/ArduinoAction'
+          type: array
+        active:
+          description: Is true if the trigger is enabled
+          type: boolean
+        created_by:
+          description: Id of the user who last updated the trigger
+          format: uuid
+          type: string
+        description:
+          description: The description of the trigger
+          type: string
+        device_status_source:
+          $ref: '#/components/schemas/Device_status_source_with_linked_devices'
+        id:
+          description: The id of the trigger
+          format: uuid
+          type: string
+        linked_property:
+          $ref: '#/components/schemas/ArduinoLinked_property'
+        name:
+          description: The name of the trigger
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+      required:
+      - id
+      - name
+      title: 'Mediatype identifier: application/vnd.arduino.trigger_with_linked_entities+json;
+        view=default'
+      type: object
+    ArduinoTriggerCollection:
+      description: ArduinoTriggerCollection is the media type for an array of ArduinoTrigger
+        (default view)
+      items:
+        $ref: '#/components/schemas/ArduinoTrigger'
+      title: 'Mediatype identifier: application/vnd.arduino.trigger+json; type=collection;
+        view=default'
+      type: array
     ArduinoVariableslinks:
       description: ArduinoVariableslinks media type (default view)
       properties:
@@ -1883,6 +2175,17 @@ components:
       - password
       title: CheckDevicesV2PassPayload
       type: object
+    Clone:
+      properties:
+        overrides:
+          description: 'The overrides to apply to the cloned dashboard. An override
+            is a tuple of ids: the id of the thing to override and the id of the new
+            thing to link'
+          items:
+            $ref: '#/components/schemas/Override'
+          type: array
+      title: Clone
+      type: object
     CreateDevicesV2CertsPayload:
       properties:
         ca:
@@ -1931,6 +2234,10 @@ components:
           maxLength: 64
           pattern: '[a-zA-Z0-9_.@-]+'
           type: string
+        soft_deleted:
+          default: false
+          description: If false, restore the thing from the soft deletion
+          type: boolean
         type:
           description: The type of the device
           enum:
@@ -2023,6 +2330,57 @@ components:
       - type
       title: CreateLoraDevicesV1Payload
       type: object
+    Dashboardv2:
+      description: Describes a dashboard
+      properties:
+        cover_image:
+          description: The cover image of the dashboard
+          maxLength: 1024
+          type: string
+        name:
+          description: The friendly name of the dashboard
+          maxLength: 64
+          pattern: '[a-zA-Z0-9_.@-]+'
+          type: string
+        soft_deleted:
+          default: false
+          description: If false, restore the thing from the soft deletion
+          type: boolean
+        widgets:
+          description: Widgets attached to this dashboard
+          items:
+            $ref: '#/components/schemas/Widget'
+          type: array
+      title: Dashboardv2
+      type: object
+    Device_status_source_with_linked_devices:
+      description: Device_status_source_with_linked_devices media type (default view)
+      properties:
+        criteria:
+          description: The criteria of the trigger, could be INCLUDE or EXCLUDE
+          type: string
+        grace_period_offline:
+          description: The amount of seconds the trigger will wait before considering
+            a matching device as offline
+          maximum: 1209600
+          minimum: 0
+          type: integer
+        grace_period_online:
+          description: The amount of seconds the trigger will wait before considering
+            a matching device as online
+          maximum: 1209600
+          minimum: 0
+          type: integer
+        linked_devices:
+          description: A list of devices the trigger is associated to
+          items:
+            $ref: '#/components/schemas/ArduinoLinked_device'
+          type: array
+      required:
+      - criteria
+      title: 'Mediatype identifier: application/vnd.device_status_source_with_linked_devices+json;
+        view=default'
+      type: object
     HistoricDataRequest:
       properties:
         from:
@@ -2045,6 +2403,28 @@ components:
       - from
       - to
       title: HistoricDataRequest
+      type: object
+    Override:
+      properties:
+        new_thing_id:
+          description: The id of the new thing to link
+          format: uuid
+          type: string
+        old_thing_id:
+          description: The id of the thing to override
+          format: uuid
+          type: string
+      required:
+      - old_thing_id
+      - new_thing_id
+      title: Override
+      type: object
+    Sharerequest:
+      properties:
+        message:
+          description: The message the user want to send to the dashboard owner
+          type: string
+      title: Sharerequest
       type: object
     ThingClone:
       description: Payload to clone a new thing from an existing one
@@ -2124,16 +2504,116 @@ components:
       - value
       title: TimeseriesDataPoint
       type: object
-    clone:
+    Widget:
+      description: Widget describes a dashboard widget
       properties:
-        overrides:
-          description: 'The overrides to apply to the cloned dashboard. An override
-            is a tuple of ids: the id of the thing to override and the id of the new
-            thing to link'
+        height:
+          description: Widget current height for desktop
+          format: int64
+          type: integer
+        height_mobile:
+          description: Widget current height for mobile
+          format: int64
+          type: integer
+        id:
+          description: The UUID of the widget, set by client
+          format: uuid
+          type: string
+        name:
+          description: The name of the widget
+          type: string
+        options:
+          additionalProperties: true
+          description: Widget options
+          type: object
+        type:
+          description: The type of the widget
+          type: string
+        variables:
           items:
-            $ref: '#/components/schemas/override'
+            format: uuid
+            type: string
           type: array
-      title: clone
+        width:
+          description: Widget current width for desktop
+          format: int64
+          type: integer
+        width_mobile:
+          description: Widget current width for mobile
+          format: int64
+          type: integer
+        x:
+          description: Widget x position for desktop
+          format: int64
+          type: integer
+        x_mobile:
+          description: Widget x position for mobile
+          format: int64
+          type: integer
+        "y":
+          description: Widget y position for desktop
+          format: int64
+          type: integer
+        y_mobile:
+          description: Widget y position for mobile
+          format: int64
+          type: integer
+      required:
+      - id
+      - type
+      - width
+      - height
+      - x
+      - "y"
+      - options
+      title: Widget
+      type: object
+    body_expression:
+      properties:
+        expression:
+          description: Content of the body of a message, variables are allowed
+          maxLength: 1000
+          type: string
+        variables:
+          description: Variables used by the expression
+          items:
+            $ref: '#/components/schemas/variable'
+          type: array
+      required:
+      - expression
+      title: body_expression
+      type: object
+    create-action:
+      properties:
+        description:
+          description: The description of the trigger
+          type: string
+        email:
+          $ref: '#/components/schemas/email_action'
+        kind:
+          description: The kind of the action
+          enum:
+          - NOTIFY-EMAIL
+          - NOTIFY-PUSH
+          example: NOTIFY-EMAIL
+          type: string
+        name:
+          description: The name of the action
+          type: string
+        organization_id:
+          description: Id of the organization the trigger belongs to
+          format: uuid
+          type: string
+        push_notification:
+          $ref: '#/components/schemas/push_action'
+        trigger_id:
+          description: Id of the trigger the action is associated to
+          format: uuid
+          type: string
+      required:
+      - kind
+      - name
+      title: create-action
       type: object
     dashboardshare:
       properties:
@@ -2146,24 +2626,37 @@ components:
           type: string
       title: dashboardshare
       type: object
-    dashboardv2:
-      description: DashboardV2Payload describes a dashboard
+    device_status_source:
       properties:
-        cover_image:
-          description: The cover image of the dashboard
-          maxLength: 1024
+        criteria:
+          description: The matching criteria of the trigger, this allows to interpret
+            device_ids as an inclusion or exclusion list
+          enum:
+          - INCLUDE
+          - EXCLUDE
           type: string
-        name:
-          description: The friendly name of the dashboard
-          maxLength: 64
-          pattern: '[a-zA-Z0-9_.@-]+'
-          type: string
-        widgets:
-          description: Widgets attached to this dashboard
+        device_ids:
+          description: A list of device IDs to be included in or excluded from the
+            trigger (see criteria). Mutually exclusive with property_id.
           items:
-            $ref: '#/components/schemas/widget'
+            format: uuid
+            type: string
           type: array
-      title: dashboardv2
+        grace_period_offline:
+          description: Amount of seconds the trigger will wait before the device will
+            be considered disconnected (requires 'device_id')
+          maximum: 1209600
+          minimum: 0
+          type: integer
+        grace_period_online:
+          description: Amount of seconds the trigger will wait before the device will
+            be considered connected (requires 'device_id')
+          maximum: 1209600
+          minimum: 0
+          type: integer
+      required:
+      - criteria
+      title: device_status_source
       type: object
     devicev2:
       description: DeviceV2 describes a device.
@@ -2194,6 +2687,10 @@ components:
           maxLength: 64
           pattern: '[a-zA-Z0-9_.@-]+'
           type: string
+        soft_deleted:
+          default: false
+          description: If false, restore the thing from the soft deletion
+          type: boolean
         type:
           description: The type of the device
           enum:
@@ -2286,6 +2783,42 @@ components:
           type: string
       title: devicev2.pass
       type: object
+    email_action:
+      properties:
+        body:
+          $ref: '#/components/schemas/body_expression'
+        delivery:
+          $ref: '#/components/schemas/email_delivery_opts'
+        subject:
+          $ref: '#/components/schemas/title_expression'
+      required:
+      - delivery
+      - subject
+      - body
+      title: email_action
+      type: object
+    email_delivery_opts:
+      properties:
+        bcc:
+          description: The "bcc:" field of an e-mail
+          items:
+            $ref: '#/components/schemas/user_recipient'
+          type: array
+        cc:
+          description: The "cc:" field of an e-mail
+          items:
+            $ref: '#/components/schemas/user_recipient'
+          type: array
+        to:
+          description: The "to:" field of an e-mail
+          items:
+            $ref: '#/components/schemas/user_recipient'
+          minItems: 1
+          type: array
+      required:
+      - to
+      title: email_delivery_opts
+      type: object
     error:
       description: Error response media type (default view)
       properties:
@@ -2315,21 +2848,6 @@ components:
           format: int64
           type: integer
       title: 'Mediatype identifier: application/vnd.goa.error+json; view=default'
-      type: object
-    override:
-      properties:
-        new_thing_id:
-          description: The id of the new thing to link
-          format: uuid
-          type: string
-        old_thing_id:
-          description: The id of the thing to override
-          format: uuid
-          type: string
-      required:
-      - old_thing_id
-      - new_thing_id
-      title: override
       type: object
     propertiesValue:
       properties:
@@ -2567,12 +3085,31 @@ components:
       - value
       title: propertyValue
       type: object
-    sharerequest:
+    push_action:
       properties:
-        message:
-          description: The message the user want to send to the dashboard owner
-          type: string
-      title: sharerequest
+        body:
+          $ref: '#/components/schemas/body_expression'
+        delivery:
+          $ref: '#/components/schemas/push_delivery_opts'
+        title:
+          $ref: '#/components/schemas/title_expression'
+      required:
+      - delivery
+      - title
+      - body
+      title: push_action
+      type: object
+    push_delivery_opts:
+      properties:
+        to:
+          description: The recipient of a push notification
+          items:
+            $ref: '#/components/schemas/user_recipient'
+          minItems: 1
+          type: array
+      required:
+      - to
+      title: push_delivery_opts
       type: object
     tag:
       properties:
@@ -2654,6 +3191,10 @@ components:
           items:
             $ref: '#/components/schemas/property'
           type: array
+        soft_deleted:
+          default: false
+          description: If false, restore the thing from the soft deletion
+          type: boolean
         timezone:
           description: |-
             A time zone name.
@@ -2667,6 +3208,73 @@ components:
           type: string
       title: thingUpdate
       type: object
+    title_expression:
+      properties:
+        expression:
+          description: Content of the title (or subject) of a message, variables are
+            allowed
+          maxLength: 100
+          type: string
+        variables:
+          description: Variables used by the expression
+          items:
+            $ref: '#/components/schemas/variable'
+          type: array
+      required:
+      - expression
+      title: title_expression
+      type: object
+    trigger:
+      properties:
+        actions:
+          description: A list of actions to be associated with the trigger
+          items:
+            $ref: '#/components/schemas/create-action'
+          type: array
+        active:
+          description: Is true if the trigger is enabled
+          type: boolean
+        description:
+          description: The description of the trigger
+          type: string
+        device_status_source:
+          $ref: '#/components/schemas/device_status_source'
+        id:
+          description: The id of the trigger
+          format: uuid
+          type: string
+        name:
+          description: The name of the trigger
+          type: string
+        property_id:
+          description: Id of the property the trigger is associated to (mutually exclusive
+            with 'device_status_source')
+          format: uuid
+          type: string
+        soft_deleted:
+          default: false
+          description: If false, restore the thing from the soft deletion
+          type: boolean
+      title: trigger
+      type: object
+    update-action:
+      properties:
+        description:
+          description: The description of the trigger
+          type: string
+        email:
+          $ref: '#/components/schemas/email_action'
+        name:
+          description: The name of the action
+          type: string
+        push_notification:
+          $ref: '#/components/schemas/push_action'
+        trigger_id:
+          description: Id of the trigger the action is associated to
+          format: uuid
+          type: string
+      title: update-action
+      type: object
     updateSketch:
       properties:
         sketch_version:
@@ -2677,69 +3285,66 @@ components:
           type: string
       title: updateSketch
       type: object
-    widget:
-      description: Widget describes a dashboard widget
+    user_recipient:
       properties:
-        height:
-          description: Widget current height for desktop
-          format: int64
-          type: integer
-        height_mobile:
-          description: Widget current height for mobile
-          format: int64
-          type: integer
+        email:
+          description: The email address of the user
+          type: string
         id:
-          description: The UUID of the widget, set by client
+          description: The id of the user
           format: uuid
           type: string
-        name:
-          description: The name of the widget
+        username:
+          description: The username of the user
           type: string
-        options:
-          additionalProperties: true
-          description: Widget options
-          type: object
-        type:
-          description: The type of the widget
-          type: string
-        variables:
-          items:
-            format: uuid
-            type: string
-          type: array
-        width:
-          description: Widget current width for desktop
-          format: int64
-          type: integer
-        width_mobile:
-          description: Widget current width for mobile
-          format: int64
-          type: integer
-        x:
-          description: Widget x position for desktop
-          format: int64
-          type: integer
-        x_mobile:
-          description: Widget x position for mobile
-          format: int64
-          type: integer
-        "y":
-          description: Widget y position for desktop
-          format: int64
-          type: integer
-        y_mobile:
-          description: Widget y position for mobile
-          format: int64
-          type: integer
       required:
       - id
-      - type
-      - width
-      - height
-      - x
-      - "y"
-      - options
-      title: widget
+      title: user_recipient
+      type: object
+    variable:
+      properties:
+        attribute:
+          description: The template expression that extracts the value from the respective
+            entity
+          enum:
+          - ID
+          - NAME
+          - VALUE
+          - TIMESTAMP
+          - USERNAME
+          - EMAIL
+          - STATUS
+          example: PROPERTY
+          type: string
+        entity:
+          description: Type of the entity being referenced
+          enum:
+          - RECIPIENT
+          - USER
+          - DEVICE
+          - THING
+          - PROPERTY
+          - TRIGGERING_DEVICE
+          example: PROPERTY
+          type: string
+        id:
+          description: The ID of the referenced entity
+          format: uuid
+          type: string
+        placeholder:
+          description: Name of the variable as referenced by the expression
+          type: string
+        property_id:
+          description: The ID of the property referenced entity
+          type: string
+        thing_id:
+          description: The ID of the thing referenced entity
+          type: string
+      required:
+      - placeholder
+      - entity
+      - attribute
+      title: variable
       type: object
     widgetlink:
       properties:
@@ -2764,6 +3369,302 @@ info:
   version: "2.0"
 openapi: 3.0.3
 paths:
+  /v1/actions:
+    get:
+      description: Returns the list of actions
+      operationId: actions_v1#list
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.action+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoActionCollection'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoActionCollection'
+          description: OK
+        "401":
+          content:
+            application/vnd.arduino.action+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.action+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.action+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: list actions_v1
+      tags:
+      - triggers_v1
+    post:
+      description: Creates a new action
+      operationId: actions_v1#create
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create-action'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/create-action'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+          description: Created
+        "400":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "412":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Failed
+        "500":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: create actions_v1
+      tags:
+      - triggers_v1
+  /v1/actions/{id}:
+    delete:
+      description: Removes an action
+      operationId: actions_v1#delete
+      parameters:
+      - description: The id of the action
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete actions_v1
+      tags:
+      - triggers_v1
+    get:
+      description: Returns an action
+      operationId: actions_v1#show
+      parameters:
+      - description: The id of the action
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+          description: OK
+        "401":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: show actions_v1
+      tags:
+      - triggers_v1
+    put:
+      description: Updates an action
+      operationId: actions_v1#update
+      parameters:
+      - description: The id of the action
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update-action'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/update-action'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoAction'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.action+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: update actions_v1
+      tags:
+      - triggers_v1
   /v1/lora-devices/:
     put:
       description: Create a new lora device. Its info are saved on our database, and
@@ -3048,6 +3949,486 @@ paths:
       summary: apply templates
       tags:
       - templates
+  /v1/triggers:
+    get:
+      description: Returns the list of triggers
+      operationId: triggers_v1#list
+      parameters:
+      - description: The id of the device associated with the triggers (mutually exclusive
+          with 'property_id')
+        in: query
+        name: device_id
+        schema:
+          type: string
+      - description: The id of the property associated with the triggers (mutually
+          exclusive with 'device_id')
+        in: query
+        name: property_id
+        schema:
+          type: string
+      - description: If true, shows the soft deleted triggers
+        in: query
+        name: show_deleted
+        schema:
+          default: false
+          type: boolean
+      - description: The source type of the trigger, could be PROPERTY, DEVICE_INCLUDE
+          or DEVICE_EXCLUDE
+        in: query
+        name: source_type
+        schema:
+          enum:
+          - PROPERTY
+          - DEVICE_INCLUDE
+          - DEVICE_EXCLUDE
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.trigger+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/ArduinoTriggerCollection'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTriggerCollection'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.trigger+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.trigger+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.trigger+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.trigger+json; type=collection:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: list triggers_v1
+      tags:
+      - triggers_v1
+    put:
+      description: Creates a new trigger
+      operationId: triggers_v1#create
+      parameters:
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/trigger'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/trigger'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "201":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+          description: Created
+        "400":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "412":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Failed
+        "500":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: create triggers_v1
+      tags:
+      - triggers_v1
+  /v1/triggers/{id}:
+    delete:
+      description: Removes a trigger
+      operationId: triggers_v1#delete
+      parameters:
+      - description: If true, hard delete the trigger
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
+      - description: The id of the trigger
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "401":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: delete triggers_v1
+      tags:
+      - triggers_v1
+    get:
+      description: Returns a trigger
+      operationId: triggers_v1#show
+      parameters:
+      - description: The id of the trigger
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.trigger_with_linked_entities+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger_with_linked_entities'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger_with_linked_entities'
+          description: OK
+        "401":
+          content:
+            application/vnd.arduino.trigger_with_linked_entities+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.trigger_with_linked_entities+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.trigger_with_linked_entities+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: show triggers_v1
+      tags:
+      - triggers_v1
+    patch:
+      description: Patch a trigger
+      operationId: triggers_v1#patch
+      parameters:
+      - description: The id of the trigger
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/trigger'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/trigger'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: patch triggers_v1
+      tags:
+      - triggers_v1
+    post:
+      description: Updates a trigger
+      operationId: triggers_v1#update
+      parameters:
+      - description: The id of the trigger
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/trigger'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/trigger'
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.trigger+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: update triggers_v1
+      tags:
+      - triggers_v1
+  /v1/triggers/{id}/template:
+    get:
+      description: Extract template from the given trigger
+      operationId: triggers_v1#template
+      parameters:
+      - description: The id of the trigger
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.trigger_template+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger_template'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoTrigger_template'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.trigger_template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.trigger_template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.arduino.trigger_template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.trigger_template+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: template triggers_v1
+      tags:
+      - triggers_v1
   /v2/dashboards:
     get:
       description: Returns the list of dashboards
@@ -3132,11 +4513,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dashboardv2'
+              $ref: '#/components/schemas/Dashboardv2'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/dashboardv2'
-        description: DashboardV2Payload describes a dashboard
+              $ref: '#/components/schemas/Dashboardv2'
+        description: Describes a dashboard
         required: true
         x-originalParamName: payload
       responses:
@@ -3195,6 +4576,12 @@ paths:
       description: Delete a dashboard
       operationId: dashboards_v2#delete
       parameters:
+      - description: If true, hard delete the thing
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
       - description: The id of the dashboard
         in: path
         name: id
@@ -3309,6 +4696,85 @@ paths:
       summary: show dashboards_v2
       tags:
       - dashboards_v2
+    patch:
+      description: Updates an existing dashboard field without overwriting the existing
+        data
+      operationId: dashboards_v2#patch
+      parameters:
+      - description: The id of the dashboard
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Organization
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dashboardv2'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dashboardv2'
+        description: Describes a dashboard
+        required: true
+        x-originalParamName: payload
+      responses:
+        "200":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/ArduinoDashboardv2'
+          description: OK
+        "400":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+        "403":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          content:
+            application/vnd.arduino.dashboardv2+json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/vnd.goa.error+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      summary: patch dashboards_v2
+      tags:
+      - dashboards_v2
     put:
       description: Updates an existing dashboard
       operationId: dashboards_v2#update
@@ -3327,11 +4793,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dashboardv2'
+              $ref: '#/components/schemas/Dashboardv2'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/dashboardv2'
-        description: DashboardV2Payload describes a dashboard
+              $ref: '#/components/schemas/Dashboardv2'
+        description: Describes a dashboard
         required: true
         x-originalParamName: payload
       responses:
@@ -3406,10 +4872,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/clone'
+              $ref: '#/components/schemas/Clone'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/clone'
+              $ref: '#/components/schemas/Clone'
         required: true
         x-originalParamName: payload
       responses:
@@ -3484,10 +4950,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/sharerequest'
+              $ref: '#/components/schemas/Sharerequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/sharerequest'
+              $ref: '#/components/schemas/Sharerequest'
         required: true
         x-originalParamName: payload
       responses:
@@ -3909,6 +5375,12 @@ paths:
         name: serial
         schema:
           type: string
+      - description: If true, shows the soft deleted devices
+        in: query
+        name: show_deleted
+        schema:
+          default: false
+          type: boolean
       - description: Filter by tags
         in: query
         name: tags
@@ -4048,6 +5520,12 @@ paths:
       description: Removes a device associated to the user
       operationId: devices_v2#delete
       parameters:
+      - description: If true, hard delete the device
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
       - description: The id of the device
         in: path
         name: id
@@ -4617,8 +6095,6 @@ paths:
                 ota_file:
                   description: OTA file
                   format: binary
-                  required:
-                  - ota_file
                   type: string
                   x-formData-name: ota_file
               required:
