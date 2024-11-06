@@ -1,6 +1,10 @@
 components:
   securitySchemes:
     oauth2:
-      description: Bearer authentication
-      type: http
-      scheme: bearer
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api2.arduino.cc/iot/v1/clients/token
+          scopes:
+            iot:devices: Read and write my devices
+            iot:things: Read and write my things
