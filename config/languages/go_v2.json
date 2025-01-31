@@ -4,5 +4,6 @@
     "isGoSubmodule": true,
     "packageName": "v3",
     "packageVersion": "3.1.0",
-    "withGoCodegenComment": true
+    "withGoCodegenComment": true,
+    "disallowAdditionalPropertiesIfNotPresent": false
 }
