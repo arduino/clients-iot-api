@@ -3,7 +3,7 @@
     "gitRepoId": "iot-client-go",
     "isGoSubmodule": true,
     "packageName": "v3",
-    "packageVersion": "3.1.0",
+    "packageVersion": "3.1.2",
     "withGoCodegenComment": true,
     "disallowAdditionalPropertiesIfNotPresent": false
 }
