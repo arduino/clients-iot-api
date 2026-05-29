@@ -71,7 +71,6 @@ jobs:
           repository: arduino/iot-client-go
           token: ${{ secrets.GH_PUSH_TOKEN }}
           path: generated/go
-          persist-credentials: false
       - run: |
           cd generated/go && git checkout -b ${{ env.RELEASE_BRANCH }}                     
 
