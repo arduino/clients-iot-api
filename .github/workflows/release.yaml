@@ -47,7 +47,6 @@ jobs:
           repository: OpenAPITools/openapi-generator
           path: official-generator-templates
           ref: ${{ env.GENERATOR_VERSION }}
-          token: ${{ secrets.GH_PUSH_TOKEN }}
           sparse-checkout: |
             .github
             modules/openapi-generator/src/main/resources
@@ -164,7 +163,7 @@ jobs:
         run: |
             cd generated
             for f in $(ls -d */); do cd ${f} && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..; done;
-          
+
       - name: Open PRs on client REPOs
         run: |
             cd generated
