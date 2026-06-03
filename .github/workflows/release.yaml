@@ -164,7 +164,7 @@ jobs:
         run: |
             cd generated
             for f in $(ls -d */); do cd ${f} && git add . && git commit -m "Release ${{ env.RELEASE_BRANCH }}" && git push -u origin ${{ env.RELEASE_BRANCH }} && cd ..; done;
-          
+
       - name: Open PRs on client REPOs
         run: |
             cd generated
