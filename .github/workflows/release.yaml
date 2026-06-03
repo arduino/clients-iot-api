@@ -47,6 +47,7 @@ jobs:
           repository: OpenAPITools/openapi-generator
           path: official-generator-templates
           ref: ${{ env.GENERATOR_VERSION }}
+          token: ${{ secrets.GH_PUSH_TOKEN }}
           sparse-checkout: |
             .github
             modules/openapi-generator/src/main/resources
